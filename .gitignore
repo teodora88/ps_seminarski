@@ -1,0 +1,16 @@
+# NetBeans
+nbproject/private/
+build/
+dist/
+*.class
+
+# OS fajlovi
+.DS_Store
+Thumbs.db
+
+# Ostalo
+*.log
+*.jar
+*.war
+*.zip
+*.exe
