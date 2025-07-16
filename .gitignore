@@ -14,3 +14,6 @@ Thumbs.db
 *.war
 *.zip
 *.exe
+/Klijent/nbproject/private/
+/Server/nbproject/private/
+/Zajednicki/nbproject/private/
