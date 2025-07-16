@@ -1,19 +1,19 @@
-# NetBeans
-nbproject/private/
-build/
-dist/
+# Ignorisanje NetBeans privatnih podešavanja
+**/nbproject/private/
+
+# Ignorisanje build i dist foldera (ako se pojave)
+**/build/
+**/dist/
+
+# Ignorisanje kompajliranih fajlova
 *.class
 
-# OS fajlovi
-.DS_Store
-Thumbs.db
+# Ignorisanje manifest fajlova
+**/manifest.mf
 
-# Ostalo
+# Ignorisanje logova, zip fajlova, i sl.
 *.log
+*.zip
 *.jar
 *.war
-*.zip
-*.exe
-/Klijent/nbproject/private/
-/Server/nbproject/private/
-/Zajednicki/nbproject/private/
+
