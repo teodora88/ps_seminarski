@@ -83,7 +83,7 @@ public class StavkaPotvrdeOIznajmljivanju implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiNazivTabele() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "stavkapotvrdeoiznajmljivanju";
     }
 
     @Override
@@ -93,7 +93,7 @@ public class StavkaPotvrdeOIznajmljivanju implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "redniBroj, potvrdaOIznajmljivanju, napomena, drustvenaIgra";
     }
 
     @Override

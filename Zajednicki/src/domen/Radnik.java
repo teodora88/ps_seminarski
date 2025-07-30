@@ -6,6 +6,7 @@ package domen;
 
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -100,27 +101,40 @@ public class Radnik implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiNazivTabele() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "radnik";
     }
 
     @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+        
+        while(rs.next()){
+            Long radnikID = rs.getLong("radnik.radnikID");
+            String ime = rs.getString("radnik.ime");
+            String prezime = rs.getString("radnik.prezime");
+            String korisnickoIme = rs.getString("radnik.korisnickoIme");
+            String lozinka = rs.getString("radnik.lozinka");
+            
+            Radnik r = new Radnik(radnikID, ime, prezime, korisnickoIme, lozinka);
+            lista.add(r);
+        }
+        
+        return lista;
     }
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "ime, prezime, korisnickoIme, lozinka";
     }
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "'" + ime + "', '" + prezime + "', '" + korisnickoIme + "', '" + lozinka + "'";
     }
 
     @Override
     public String vratiPrimarniKljuc() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "radnik.radnikID = " + radnikID;
     }
 
     @Override
@@ -130,7 +144,8 @@ public class Radnik implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiVrednostZaIzmenu() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "ime = '" + ime + "', prezime = '" + prezime + "', korisnickoIme = '" + 
+                korisnickoIme + "', lozinka = '" + lozinka + "'";
     }
     
     

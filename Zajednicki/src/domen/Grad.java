@@ -6,6 +6,7 @@ package domen;
 
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -70,27 +71,37 @@ public class Grad implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiNazivTabele() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "grad";
     }
 
     @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+        
+        while(rs.next()){
+            Long postanskiBroj = rs.getLong("grad.postanskiBroj");
+            String naziv = rs.getString("grad.naziv");
+            
+            Grad g = new Grad(postanskiBroj, naziv);
+            lista.add(g);
+        }
+        
+        return lista;
     }
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "postanskiBroj, naziv";
     }
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return postanskiBroj + ", '" + naziv + "'";
     }
 
     @Override
     public String vratiPrimarniKljuc() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "grad.postanskiBroj = " + postanskiBroj;
     }
 
     @Override
@@ -100,7 +111,7 @@ public class Grad implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiVrednostZaIzmenu() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "postanskiBroj = " + postanskiBroj + ", naziv = '" + naziv + "'"; 
     }
     
     

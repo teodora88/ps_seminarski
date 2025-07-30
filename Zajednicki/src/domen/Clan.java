@@ -20,16 +20,26 @@ public class Clan implements ApstraktniDomenskiObjekat{
     private String prezime;
     private Date datumRodjenja;
     private Date datumUclanjenja;
+    private Grad grad;
 
     public Clan() {
     }
 
-    public Clan(Long clanID, String ime, String prezime, Date datumRodjenja, Date datumUclanjenja) {
+    public Clan(Long clanID, String ime, String prezime, Date datumRodjenja, Date datumUclanjenja, Grad grad) {
         this.clanID = clanID;
         this.ime = ime;
         this.prezime = prezime;
         this.datumRodjenja = datumRodjenja;
         this.datumUclanjenja = datumUclanjenja;
+        this.grad = grad;
+    }
+
+    public Grad getGrad() {
+        return grad;
+    }
+
+    public void setGrad(Grad grad) {
+        this.grad = grad;
     }
 
     public Date getDatumUclanjenja() {
@@ -106,7 +116,7 @@ public class Clan implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiNazivTabele() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "clan";
     }
 
     @Override
@@ -116,17 +126,18 @@ public class Clan implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "ime, prezime, datumRodjenja, datumUclanjenja, grad";
     }
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "'" + ime + "', '" + prezime + "', '" + datumRodjenja + "', '" + datumUclanjenja + 
+                "', " + grad.getPostanskiBroj();
     }
 
     @Override
     public String vratiPrimarniKljuc() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "clan.clanID = " + clanID;
     }
 
     @Override
@@ -136,7 +147,8 @@ public class Clan implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiVrednostZaIzmenu() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "ime = '" + ime + "', prezime = '" + prezime + "', datumRodjenja = '" + datumRodjenja +
+                "', datumUclanjenja = '" + datumUclanjenja + "', grad = " + grad.getPostanskiBroj();
     }
     
     

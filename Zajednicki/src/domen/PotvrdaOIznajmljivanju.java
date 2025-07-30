@@ -111,7 +111,7 @@ public class PotvrdaOIznajmljivanju implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiNazivTabele() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "potvrdaoiznajmljivanju";
     }
 
     @Override
@@ -121,17 +121,17 @@ public class PotvrdaOIznajmljivanju implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "datumIznajmljivanja, datumVracanja, clan, radnik";
     }
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "'" + datumIznajmljivanja + "', '" + datumVracanja + "', " + clan.getClanID() + ", " + radnik.getRadnikID();
     }
 
     @Override
     public String vratiPrimarniKljuc() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "potvrdaoiznajmljivanju.potvrdaID = " + potvrdaID;
     }
 
     @Override
@@ -141,7 +141,8 @@ public class PotvrdaOIznajmljivanju implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiVrednostZaIzmenu() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "datumIznajmljivanja = '" + datumIznajmljivanja + "', datumVracanja = '" + datumVracanja +
+                "', clan = " + clan.getClanID() + ", radnik = " + radnik.getRadnikID();
     }
     
     

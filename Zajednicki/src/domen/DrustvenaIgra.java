@@ -6,6 +6,7 @@ package domen;
 
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -90,27 +91,39 @@ public class DrustvenaIgra implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiNazivTabele() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "drustvenaigra";
     }
 
     @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+        
+        while(rs.next()){
+            Long igraID = rs.getLong("drustvenaigra.igraID");
+            String naziv = rs.getString("drustvenaigra.naziv");
+            String tip = rs.getString("drustvenaigra.tip");
+            String opis = rs.getString("drustvenaigra.opis");
+            
+            DrustvenaIgra igra = new DrustvenaIgra(igraID, naziv, tip, opis);
+            lista.add(igra);
+        }
+        
+        return lista;
     }
 
     @Override
     public String vratiKoloneZaUbacivanje() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "naziv, tip, opis";
     }
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "'" + naziv + "', '" + tip + "', '" + opis + "'";
     }
 
     @Override
     public String vratiPrimarniKljuc() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "drustvenaigra.igraID = " + igraID;
     }
 
     @Override
@@ -120,7 +133,7 @@ public class DrustvenaIgra implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiVrednostZaIzmenu() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "naziv = '" + naziv + "', tip = '" + tip + "', opis = '" + opis + "'";
     }
     
     
