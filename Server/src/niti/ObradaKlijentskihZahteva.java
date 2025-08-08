@@ -1,6 +1,9 @@
 package niti;
 
+import java.io.IOException;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import komunikacija.Odgovor;
 import komunikacija.Posiljalac;
 import komunikacija.Primalac;
@@ -20,6 +23,7 @@ public class ObradaKlijentskihZahteva extends Thread{
     Socket soket;
     Posiljalac posiljalac;
     Primalac primalac;
+    boolean kraj = false;
 
     public ObradaKlijentskihZahteva(Socket soket) {
         this.soket = soket;
@@ -32,7 +36,7 @@ public class ObradaKlijentskihZahteva extends Thread{
     @Override
     public void run() {
         
-        while(true){
+        while(!kraj){
             
             Zahtev zahtev = (Zahtev) primalac.primi();
             Odgovor odgovor = new Odgovor();
@@ -46,6 +50,14 @@ public class ObradaKlijentskihZahteva extends Thread{
         
     }
     
-    
+    public void prekiniNit(){
+        kraj = true;
+        try {
+            soket.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        interrupt();
+    }
     
 }
