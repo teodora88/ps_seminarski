@@ -16,7 +16,7 @@ public interface Skladiste<T> {
     // ispisujemo CRUD operacije
     
     List<T> vratiSve(); // vracaju se svi objekti iz liste
-    List<T> vratiSve(T param) throws Exception; // kada radimo pretragu - vracamo objekte sa uslovom
+    List<T> vratiSve(T param, String uslov) throws Exception; // kada radimo pretragu - vracamo objekte sa uslovom
     void dodaj(T param) throws Exception;
     void izmeni(T param) throws Exception;
     void obrisi(T param) throws Exception;

@@ -12,6 +12,8 @@ import skladiste.Skladiste;
  */
 public interface SkladisteBazePodataka<T> extends Skladiste<T>{
     
+    // ovo je na vezbama DbRepository
+    
     // skladiste sluzi za CRUD operacije, skladisteBazePodataka sluzi za povezivanje baze
     
     default public void uspostaviKonekciju() throws Exception{

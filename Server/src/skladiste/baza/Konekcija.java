@@ -14,6 +14,8 @@ import konfiguracija.Konfiguracija;
  * @author T440s
  */
 public class Konekcija {
+    
+    // na vezbama se zove DbConnectionFactory
 
     private static Konekcija instanca;
     private Connection konekcija;
