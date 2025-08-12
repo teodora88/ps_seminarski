@@ -2,15 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package skladiste.baza;
+package repozitorijum.baza;
 
-import skladiste.Skladiste;
+import repozitorijum.Repozitorijum;
 
 /**
  *
  * @author T440s
  */
-public interface SkladisteBazePodataka<T> extends Skladiste<T>{
+public interface RepozitorijumBaze<T> extends Repozitorijum<T>{
     
     // ovo je na vezbama DbRepository
     

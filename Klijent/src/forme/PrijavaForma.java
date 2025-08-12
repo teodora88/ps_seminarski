@@ -115,6 +115,6 @@ public class PrijavaForma extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void dodajOsluskivacPrijave(ActionListener actionListener) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        btnPrijava.addActionListener(actionListener); 
     }
 }

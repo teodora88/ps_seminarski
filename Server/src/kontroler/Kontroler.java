@@ -4,6 +4,9 @@
  */
 package kontroler;
 
+import domen.Radnik;
+import operacija.prijava.PrijavaSO;
+
 /**
  *
  * @author T440s
@@ -20,6 +23,15 @@ public class Kontroler {
             instanca = new Kontroler();
         }
         return instanca;
+    }
+
+    public Radnik prijava(Radnik r) throws Exception {
+        
+        PrijavaSO operacija = new PrijavaSO();
+        operacija.izvrsi(r, null);
+        System.out.println("klasa kontroler" + operacija.getRadnik());
+        return operacija.getRadnik();
+        
     }
     
 }

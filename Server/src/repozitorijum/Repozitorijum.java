@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package skladiste;
+package repozitorijum;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author T440s
  */
-public interface Skladiste<T> {
+public interface Repozitorijum<T> {
     // na vezbama je ovo Repository 
     
     // ispisujemo CRUD operacije

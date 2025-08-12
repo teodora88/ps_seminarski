@@ -4,9 +4,12 @@
  */
 package kontroleri;
 
+import domen.Radnik;
 import forme.PrijavaForma;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
+import komunikacija.Komunikacija;
 
 /**
  *
@@ -18,23 +21,42 @@ public class PrijavaKontroler {
 
     public PrijavaKontroler(PrijavaForma prijavaForma) {
         this.prijavaForma = prijavaForma;
-        dodajAkcioniOsluskivac();
+        dodajOsluskivac();
     }
 
-    private void dodajAkcioniOsluskivac() {
+    private void dodajOsluskivac() {
         // addActionListener()
         
-        prijavaForma.dodajOsluskivacPrijave(new ActionListener() {
+        // dodajemo osluskivac na dugme sa forme i prosledjujemo ActionListener koji mi kreiramo u nastavku
+        prijavaForma.dodajOsluskivacPrijave(new ActionListener() { 
             @Override
             public void actionPerformed(ActionEvent e) {
                 prijava(e);
             }
 
             private void prijava(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                
+                String korisnickoIme = prijavaForma.getTxtKorisnickoIme().getText().trim();
+                String lozinka = String.valueOf(prijavaForma.getTxtLozinka().getPassword());
+                Radnik r = new Radnik(korisnickoIme, lozinka);
+                
+                Komunikacija.getInstanca().konekcija();
+                Radnik ulogovani = Komunikacija.getInstanca().prijava(r);
+                
+                if(ulogovani == null){
+                    JOptionPane.showMessageDialog(prijavaForma, "Neuspesna prijava na sistem", "Greska", JOptionPane.ERROR_MESSAGE);
+                }else{
+                    JOptionPane.showMessageDialog(prijavaForma, "Prijava na sistem je uspesna!", "uspeh", JOptionPane.INFORMATION_MESSAGE);
+                    prijavaForma.dispose();
+                }
+                
             }
         });
         
+    }
+
+    public void otvoriPrijavaFormu() {
+        prijavaForma.setVisible(true);
     }
     
 }

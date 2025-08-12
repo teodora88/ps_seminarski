@@ -4,6 +4,7 @@
  */
 package komunikacija;
 
+import domen.Radnik;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.logging.Level;
@@ -34,6 +35,7 @@ public class Komunikacija {
         
         try {
             soket = new Socket("localhost", 9000);
+            System.out.println("Klijent se povezao");
             posiljalac = new Posiljalac(soket);
             primalac = new Primalac(soket);
         } catch (IOException ex) {
@@ -42,6 +44,16 @@ public class Komunikacija {
             Logger.getLogger(Komunikacija.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+
+    public Radnik prijava(Radnik r) {
+        Zahtev zahtev = new Zahtev(Operacija.LOGIN, r);
+        posiljalac.posalji(zahtev);
+        
+        Odgovor odgovor = (Odgovor) primalac.primi();
+        Radnik ulogovani = (Radnik) odgovor.getOdgovor();
+        
+        return ulogovani;
     }
     
 }

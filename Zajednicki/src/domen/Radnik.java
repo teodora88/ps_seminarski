@@ -25,6 +25,11 @@ public class Radnik implements ApstraktniDomenskiObjekat{
     public Radnik() {
     }
 
+    public Radnik(String korisnickoIme, String lozinka) {
+        this.korisnickoIme = korisnickoIme;
+        this.lozinka = lozinka;
+    }
+
     public Radnik(Long radnikID, String ime, String prezime, String korisnickoIme, String lozinka) {
         this.radnikID = radnikID;
         this.ime = ime;
@@ -96,8 +101,13 @@ public class Radnik implements ApstraktniDomenskiObjekat{
             return false;
         }
         final Radnik other = (Radnik) obj;
-        return Objects.equals(this.korisnickoIme, other.korisnickoIme);
+        if (!Objects.equals(this.korisnickoIme, other.korisnickoIme)) {
+            return false;
+        }
+        return Objects.equals(this.lozinka, other.lozinka);
     }
+
+    
 
     @Override
     public String vratiNazivTabele() {

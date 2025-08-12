@@ -2,20 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package skladiste.baza.implementacija;
+package repozitorijum.baza.implementacija;
 
 import domen.ApstraktniDomenskiObjekat;
 import java.util.ArrayList;
 import java.util.List;
-import skladiste.baza.SkladisteBazePodataka;
 import java.sql.*;
-import skladiste.baza.Konekcija;
+import repozitorijum.baza.Konekcija;
+import repozitorijum.baza.RepozitorijumBaze;
 
 /**
  *
  * @author T440s
  */
-public class GenerickoSkladisteBaze implements SkladisteBazePodataka<ApstraktniDomenskiObjekat> {
+public class GenerickiRepozitorijumBaze implements RepozitorijumBaze<ApstraktniDomenskiObjekat> {
 
     // na vezbama se zove DbRepositoryGeneric
     @Override
@@ -29,7 +29,7 @@ public class GenerickoSkladisteBaze implements SkladisteBazePodataka<ApstraktniD
     public List<ApstraktniDomenskiObjekat> vratiSve(ApstraktniDomenskiObjekat param, String uslov) throws Exception {
         List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
 
-        String upit = "SELECT FROM " + param.vratiNazivTabele();
+        String upit = "SELECT * FROM " + param.vratiNazivTabele();
 
         if (uslov != null) {
             upit += uslov;

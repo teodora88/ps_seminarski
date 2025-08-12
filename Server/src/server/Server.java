@@ -34,8 +34,9 @@ public class Server extends Thread {
             serverSoket = new ServerSocket(9000);
 
             while (!kraj) {
+                System.out.println("Cekanje klijenta");
                 Socket s = serverSoket.accept();
-                System.out.println("Klijent se povezao!");
+                System.out.println("Klijent se povezao");
 
                 ObradaKlijentskihZahteva klijentNit = new ObradaKlijentskihZahteva(s);
                 listaKlijenata.add(klijentNit);
