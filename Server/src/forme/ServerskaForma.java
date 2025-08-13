@@ -13,7 +13,7 @@ import server.Server;
 public class ServerskaForma extends javax.swing.JFrame {
 
     Server serverNit;
-    
+
     public ServerskaForma() {
         initComponents();
         btnUgasi.setEnabled(false);
@@ -134,7 +134,7 @@ public class ServerskaForma extends javax.swing.JFrame {
 
     private void itemBazaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemBazaActionPerformed
         new KonfiguracijaBazeForma(this, true).setVisible(true);
-                
+
     }//GEN-LAST:event_itemBazaActionPerformed
 
     private void itemPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemPortActionPerformed
@@ -142,17 +142,24 @@ public class ServerskaForma extends javax.swing.JFrame {
     }//GEN-LAST:event_itemPortActionPerformed
 
     private void btnPokreniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPokreniActionPerformed
-        serverNit.start();
-        btnPokreni.setEnabled(false);
-        btnUgasi.setEnabled(true);
-        lblStatus.setText("Server je pokrenut!");
+        if (serverNit == null || !serverNit.isAlive()) {
+            serverNit = new Server();
+            serverNit.start();
+            btnPokreni.setEnabled(false);
+            btnUgasi.setEnabled(true);
+            lblStatus.setText("Server je pokrenut!");
+        } else {
+            System.out.println("Server je već pokrenut!");
+        }
     }//GEN-LAST:event_btnPokreniActionPerformed
 
     private void btnUgasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUgasiActionPerformed
-        serverNit.zaustaviServer();
-        btnPokreni.setEnabled(true);
-        btnUgasi.setEnabled(false);
-        lblStatus.setText("Server je ugasen!");
+        if (serverNit != null) {
+            serverNit.zaustaviServer();
+            btnPokreni.setEnabled(true);
+            btnUgasi.setEnabled(false);
+            lblStatus.setText("Server je ugasen!");
+        }
     }//GEN-LAST:event_btnUgasiActionPerformed
 
 

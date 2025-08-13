@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
+import kontroleri.glavni.GlavniKontroler;
 
 /**
  *
@@ -47,6 +48,7 @@ public class PrijavaKontroler {
                     JOptionPane.showMessageDialog(prijavaForma, "Neuspesna prijava na sistem", "Greska", JOptionPane.ERROR_MESSAGE);
                 }else{
                     JOptionPane.showMessageDialog(prijavaForma, "Prijava na sistem je uspesna!", "uspeh", JOptionPane.INFORMATION_MESSAGE);
+                    GlavniKontroler.getInstanca().otvoriGlavnuFormu();
                     prijavaForma.dispose();
                 }
                 

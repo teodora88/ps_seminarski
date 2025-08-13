@@ -7,6 +7,7 @@ package server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -34,17 +35,30 @@ public class Server extends Thread {
             serverSoket = new ServerSocket(9000);
 
             while (!kraj) {
-                System.out.println("Cekanje klijenta");
-                Socket s = serverSoket.accept();
-                System.out.println("Klijent se povezao");
 
-                ObradaKlijentskihZahteva klijentNit = new ObradaKlijentskihZahteva(s);
-                listaKlijenata.add(klijentNit);
-                klijentNit.start();
+                try {
+                    System.out.println("Cekanje klijenta");
+                    Socket s = serverSoket.accept();
+                    System.out.println("Klijent se povezao");
+
+                    ObradaKlijentskihZahteva klijentNit = new ObradaKlijentskihZahteva(s);
+                    listaKlijenata.add(klijentNit);
+                    klijentNit.start();
+
+                } catch (SocketException se) {
+                    
+                    if (kraj) {
+                        System.out.println("Server je zaustavljen.");
+                    } else {
+                        se.printStackTrace();
+                    }
+
+                }
+
             }
 
         } catch (IOException ex) {
-            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
     }
 

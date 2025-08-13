@@ -67,11 +67,13 @@ public class ObradaKlijentskihZahteva extends Thread {
     public void prekiniNit() {
         kraj = true;
         try {
-            soket.close();
+            if (!soket.isClosed()) {
+                soket.close();
+            }
         } catch (IOException ex) {
-            Logger.getLogger(ObradaKlijentskihZahteva.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         }
-        interrupt();
+        this.interrupt();
     }
 
 }

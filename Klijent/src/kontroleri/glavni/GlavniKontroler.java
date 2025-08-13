@@ -4,7 +4,15 @@
  */
 package kontroleri.glavni;
 
+import forme.ClanGlavnaForma;
+import forme.DrustvenaIgraGlavnaForma;
+import forme.GlavnaForma;
+import forme.PotvrdaGlavnaForma;
 import forme.PrijavaForma;
+import kontroleri.ClanGlavnaFormaKontroler;
+import kontroleri.DrustvenaIgraGlavnaFormaKontroler;
+import kontroleri.GlavnaFormaKontroler;
+import kontroleri.PotvrdaGlavnaFormaKontroler;
 import kontroleri.PrijavaKontroler;
 
 /**
@@ -15,6 +23,10 @@ public class GlavniKontroler {
     
     private static GlavniKontroler instanca;
     private PrijavaKontroler prijavaKontroler;
+    private GlavnaFormaKontroler glavnaFormaKontroler;
+    private ClanGlavnaFormaKontroler clanGlavnaFormaKontroler;
+    private DrustvenaIgraGlavnaFormaKontroler diGlavnaFormaKontroler;
+    private PotvrdaGlavnaFormaKontroler potGlavnaFormaKontroler;
 
     private GlavniKontroler() {
     }
@@ -30,5 +42,27 @@ public class GlavniKontroler {
         prijavaKontroler = new PrijavaKontroler(new PrijavaForma());
         prijavaKontroler.otvoriPrijavaFormu();
     }
+    
+    public void otvoriGlavnuFormu() {
+        glavnaFormaKontroler = new GlavnaFormaKontroler(new GlavnaForma());
+        glavnaFormaKontroler.otvoriGlavnuFormu();
+    }
+
+    public void otvoriClanGlavnuFormu() {
+        clanGlavnaFormaKontroler = new ClanGlavnaFormaKontroler(new ClanGlavnaForma());
+        clanGlavnaFormaKontroler.otvoriClanGlavnuFormu();
+    }
+
+    public void otvoriDrustvenaIgraGlavnaForma() {
+        diGlavnaFormaKontroler = new DrustvenaIgraGlavnaFormaKontroler(new DrustvenaIgraGlavnaForma());
+        diGlavnaFormaKontroler.otvoriDrustvenaIgraGlavnaForma();
+    }
+
+    public void otvoriPotvrdaGlavnaForma() {
+        potGlavnaFormaKontroler = new PotvrdaGlavnaFormaKontroler(new PotvrdaGlavnaForma());
+        potGlavnaFormaKontroler.otvoriPotvrdaGlavnaForma();
+    }
+
+    
     
 }
