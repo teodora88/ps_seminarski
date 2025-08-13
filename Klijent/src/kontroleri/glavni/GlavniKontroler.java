@@ -4,6 +4,7 @@
  */
 package kontroleri.glavni;
 
+import domen.Radnik;
 import forme.ClanGlavnaForma;
 import forme.DrustvenaIgraGlavnaForma;
 import forme.GlavnaForma;
@@ -22,6 +23,7 @@ import kontroleri.PrijavaKontroler;
 public class GlavniKontroler {
     
     private static GlavniKontroler instanca;
+    private Radnik ulogovani;
     private PrijavaKontroler prijavaKontroler;
     private GlavnaFormaKontroler glavnaFormaKontroler;
     private ClanGlavnaFormaKontroler clanGlavnaFormaKontroler;
@@ -37,6 +39,15 @@ public class GlavniKontroler {
         }
         return instanca;
     }
+
+    public void setUlogovani(Radnik ulogovani) {
+        this.ulogovani = ulogovani;
+    }
+
+    public Radnik getUlogovani() {
+        return ulogovani;
+    }
+    
 
     public void otvoriPrijavaForma() {
         prijavaKontroler = new PrijavaKontroler(new PrijavaForma());

@@ -47,6 +47,7 @@ public class PrijavaKontroler {
                 if(ulogovani == null){
                     JOptionPane.showMessageDialog(prijavaForma, "Neuspesna prijava na sistem", "Greska", JOptionPane.ERROR_MESSAGE);
                 }else{
+                    GlavniKontroler.getInstanca().setUlogovani(ulogovani);
                     JOptionPane.showMessageDialog(prijavaForma, "Prijava na sistem je uspesna!", "uspeh", JOptionPane.INFORMATION_MESSAGE);
                     GlavniKontroler.getInstanca().otvoriGlavnuFormu();
                     prijavaForma.dispose();

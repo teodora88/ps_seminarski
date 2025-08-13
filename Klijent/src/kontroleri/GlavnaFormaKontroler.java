@@ -4,6 +4,7 @@
  */
 package kontroleri;
 
+import domen.Radnik;
 import forme.GlavnaForma;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,6 +25,8 @@ public class GlavnaFormaKontroler {
 
     public void otvoriGlavnuFormu() {
         glavnaForma.setVisible(true);
+        Radnik ulogovani = GlavniKontroler.getInstanca().getUlogovani();
+        glavnaForma.getLblUlogovani().setText("Zdravo, " + ulogovani.getIme() + " " + ulogovani.getPrezime() + "!");
     }
 
     private void dodajOsluskivace() {
