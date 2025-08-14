@@ -4,7 +4,11 @@
  */
 package kontroleri;
 
+import domen.Clan;
 import forme.ClanGlavnaForma;
+import forme.modeli.ClanMT;
+import java.util.List;
+import komunikacija.Komunikacija;
 
 /**
  *
@@ -19,7 +23,16 @@ public class ClanGlavnaFormaKontroler {
     }
 
     public void otvoriClanGlavnuFormu() {
+        pripremiFormu(); // metoda za ucitavanje liste clanova 
         clanGlavnaForma.setVisible(true);
+    }
+
+    private void pripremiFormu() {
+        
+        List<Clan> listaClanova = Komunikacija.getInstanca().ucitajListuClanova();
+        ClanMT clanMT = new ClanMT(listaClanova);
+        clanGlavnaForma.getTblClanovi().setModel(clanMT);
+        
     }
     
     

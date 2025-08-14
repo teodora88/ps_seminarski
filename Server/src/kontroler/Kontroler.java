@@ -4,8 +4,11 @@
  */
 package kontroler;
 
+import domen.Clan;
 import domen.Radnik;
+import java.util.List;
 import operacija.prijava.PrijavaSO;
+import operacija.ucitajlistuclanova.UcitajListuClanovaSO;
 
 /**
  *
@@ -32,6 +35,14 @@ public class Kontroler {
         System.out.println("klasa kontroler" + operacija.getRadnik());
         return operacija.getRadnik();
         
+    }
+
+    public List<Clan> ucitajListuClanova() throws Exception {
+        
+        UcitajListuClanovaSO operacija = new UcitajListuClanovaSO();
+        operacija.izvrsi(null, null);
+        System.out.println("klasa kontroler" + operacija.getListaClanova());
+        return operacija.getListaClanova();
     }
     
 }

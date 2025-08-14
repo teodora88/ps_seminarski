@@ -1,10 +1,11 @@
 package niti;
 
+import domen.Clan;
 import domen.Radnik;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
 import komunikacija.Odgovor;
 import static komunikacija.Operacija.LOGIN;
 import komunikacija.Posiljalac;
@@ -49,6 +50,9 @@ public class ObradaKlijentskihZahteva extends Thread {
                         Radnik ulogovani = Kontroler.getInstanca().prijava(r);
                         odgovor.setOdgovor(ulogovani);
                         break;
+                    case UCITAJ_LISTU_CLANOVA:
+                        List<Clan> listaClanova = Kontroler.getInstanca().ucitajListuClanova();
+                        odgovor.setOdgovor(listaClanova);
                     default:
                         System.out.println("Greska,ta operacija ne posoji!");
 

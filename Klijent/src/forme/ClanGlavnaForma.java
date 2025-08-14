@@ -4,6 +4,8 @@
  */
 package forme;
 
+import javax.swing.JTable;
+
 /**
  *
  * @author T440s
@@ -15,6 +17,14 @@ public class ClanGlavnaForma extends javax.swing.JFrame {
      */
     public ClanGlavnaForma() {
         initComponents();
+    }
+
+    public JTable getTblClanovi() {
+        return tblClanovi;
+    }
+
+    public void setTblClanovi(JTable tblClanovi) {
+        this.tblClanovi = tblClanovi;
     }
 
     /**

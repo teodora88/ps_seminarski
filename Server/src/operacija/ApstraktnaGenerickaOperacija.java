@@ -30,7 +30,7 @@ public abstract class ApstraktnaGenerickaOperacija {
             ponistiTransakciju();
             throw e;
         } finally{
-            raskiniKonekciju();
+            //raskiniKonekciju();
         }
     }
 

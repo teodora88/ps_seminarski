@@ -5,6 +5,7 @@
 package domen;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -121,7 +122,18 @@ public class Clan implements ApstraktniDomenskiObjekat{
 
     @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<ApstraktniDomenskiObjekat> listaClanova = new ArrayList<>();
+        while(rs.next()){
+            Long clanID = rs.getLong("clan.clanID");
+            String ime = rs.getString("ime");
+            String prezime = rs.getString("prezime");
+            Date datRodj = rs.getDate("datumRodjenja");
+            Date datUcl = rs.getDate("datumUclanjenja");
+            Long grad = rs.getLong("grad");
+            Clan c = new Clan(clanID, ime, prezime, datRodj, datUcl, new Grad(grad, null));
+            listaClanova.add(c);
+        }
+        return listaClanova;
     }
 
     @Override
