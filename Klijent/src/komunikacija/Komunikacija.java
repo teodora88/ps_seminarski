@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -61,14 +62,27 @@ public class Komunikacija {
 
     public List<Clan> ucitajListuClanova() {
 
-        List<Clan> listaClanova = new ArrayList<>();
+        List<Clan> listaClanova;
         Zahtev zahtev = new Zahtev(Operacija.UCITAJ_LISTU_CLANOVA, null);
         posiljalac.posalji(zahtev);
-        
+
         Odgovor odgovor = (Odgovor) primalac.primi();
         listaClanova = (List<Clan>) odgovor.getOdgovor();
 
         return listaClanova;
+
+    }
+
+    public void obrisiClana(Clan c) throws Exception {
+
+        Zahtev zahtev = new Zahtev(Operacija.OBRISI_CLANA, c);
+        posiljalac.posalji(zahtev);
+
+        Odgovor odgovor = (Odgovor) primalac.primi();
+
+        if (odgovor.getOdgovor() instanceof Exception) {
+            throw (Exception) odgovor.getOdgovor();
+        }
 
     }
 

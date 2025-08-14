@@ -12,6 +12,6 @@ import java.io.Serializable;
  */
 public enum Operacija implements Serializable{
     
-    LOGIN, UCITAJ_LISTU_CLANOVA
+    LOGIN, UCITAJ_LISTU_CLANOVA, OBRISI_CLANA
     
 }

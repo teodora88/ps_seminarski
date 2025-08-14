@@ -62,4 +62,8 @@ public class ClanMT extends AbstractTableModel {
 
     }
 
+    public List<Clan> getListaClanova() {
+        return listaClanova;
+    }
+
 }

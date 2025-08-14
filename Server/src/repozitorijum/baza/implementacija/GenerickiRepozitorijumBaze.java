@@ -75,7 +75,7 @@ public class GenerickiRepozitorijumBaze implements RepozitorijumBaze<ApstraktniD
 
     @Override
     public void obrisi(ApstraktniDomenskiObjekat param) throws Exception {
-        String upit = "DELETE " + param.vratiNazivTabele() + " WHERE " + param.vratiPrimarniKljuc();
+        String upit = "DELETE FROM " + param.vratiNazivTabele() + " WHERE " + param.vratiPrimarniKljuc();
         System.out.println(upit);
 
         Statement statement = Konekcija.getInstanca().getKonekcija().createStatement();

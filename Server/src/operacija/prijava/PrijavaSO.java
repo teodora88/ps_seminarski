@@ -23,7 +23,9 @@ public class PrijavaSO extends ApstraktnaGenerickaOperacija{
     
     @Override
     protected void preduslovi(Object param) throws Exception {
-        // nema nista 
+        if(param == null || !(param instanceof Radnik)){
+            throw new Exception("Sistem ne moze da prijavi radnika kluba po zadatim vrednostima.");
+        }
     }
 
     @Override

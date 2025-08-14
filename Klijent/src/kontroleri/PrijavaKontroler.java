@@ -45,10 +45,10 @@ public class PrijavaKontroler {
                 Radnik ulogovani = Komunikacija.getInstanca().prijava(r);
                 
                 if(ulogovani == null){
-                    JOptionPane.showMessageDialog(prijavaForma, "Neuspesna prijava na sistem", "Greska", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(prijavaForma, "Sistem ne moze da prijavi radnika kluba po zadatim vrednostima.", "Greska", JOptionPane.ERROR_MESSAGE);
                 }else{
                     GlavniKontroler.getInstanca().setUlogovani(ulogovani);
-                    JOptionPane.showMessageDialog(prijavaForma, "Prijava na sistem je uspesna!", "uspeh", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(prijavaForma, "Sistem Vas je uspesno prijavio.", "uspeh", JOptionPane.INFORMATION_MESSAGE);
                     GlavniKontroler.getInstanca().otvoriGlavnuFormu();
                     prijavaForma.dispose();
                 }

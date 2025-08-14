@@ -53,6 +53,16 @@ public class ObradaKlijentskihZahteva extends Thread {
                     case UCITAJ_LISTU_CLANOVA:
                         List<Clan> listaClanova = Kontroler.getInstanca().ucitajListuClanova();
                         odgovor.setOdgovor(listaClanova);
+                        break;
+                    case OBRISI_CLANA:
+                        try {
+                            Clan c = (Clan) zahtev.getParametar();
+                            Kontroler.getInstanca().obrisiClana(c);
+                            odgovor.setOdgovor(null);
+                        } catch (Exception e) {
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
                     default:
                         System.out.println("Greska,ta operacija ne posoji!");
 
