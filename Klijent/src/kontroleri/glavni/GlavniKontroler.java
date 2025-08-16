@@ -5,11 +5,14 @@
 package kontroleri.glavni;
 
 import domen.Radnik;
+import forme.ClanForma;
 import forme.ClanGlavnaForma;
 import forme.DrustvenaIgraGlavnaForma;
 import forme.GlavnaForma;
 import forme.PotvrdaGlavnaForma;
 import forme.PrijavaForma;
+import javax.swing.JFrame;
+import kontroleri.ClanFormaKontroler;
 import kontroleri.ClanGlavnaFormaKontroler;
 import kontroleri.DrustvenaIgraGlavnaFormaKontroler;
 import kontroleri.GlavnaFormaKontroler;
@@ -29,6 +32,7 @@ public class GlavniKontroler {
     private ClanGlavnaFormaKontroler clanGlavnaFormaKontroler;
     private DrustvenaIgraGlavnaFormaKontroler diGlavnaFormaKontroler;
     private PotvrdaGlavnaFormaKontroler potGlavnaFormaKontroler;
+    private ClanFormaKontroler clanFormaKontroler;
 
     private GlavniKontroler() {
     }
@@ -72,6 +76,11 @@ public class GlavniKontroler {
     public void otvoriPotvrdaGlavnaForma() {
         potGlavnaFormaKontroler = new PotvrdaGlavnaFormaKontroler(new PotvrdaGlavnaForma());
         potGlavnaFormaKontroler.otvoriPotvrdaGlavnaForma();
+    }
+
+    public void otvoriClanFormu(JFrame parent) {
+        clanFormaKontroler = new ClanFormaKontroler(new ClanForma(parent, true));
+        clanFormaKontroler.otvoriClanFormu();
     }
 
     

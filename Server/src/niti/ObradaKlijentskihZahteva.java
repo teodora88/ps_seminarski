@@ -1,6 +1,7 @@
 package niti;
 
 import domen.Clan;
+import domen.Grad;
 import domen.Radnik;
 import java.io.IOException;
 import java.net.Socket;
@@ -56,12 +57,16 @@ public class ObradaKlijentskihZahteva extends Thread {
                         break;
                     case OBRISI_CLANA:
                         try {
-                            Clan c = (Clan) zahtev.getParametar();
-                            Kontroler.getInstanca().obrisiClana(c);
-                            odgovor.setOdgovor(null);
-                        } catch (Exception e) {
-                            odgovor.setOdgovor(e);
-                        }
+                        Clan c = (Clan) zahtev.getParametar();
+                        Kontroler.getInstanca().obrisiClana(c);
+                        odgovor.setOdgovor(null);
+                    } catch (Exception e) {
+                        odgovor.setOdgovor(e);
+                    }
+                    break;
+                    case VRATI_LISTU_GRADOVA:
+                        List<Grad> listaGradova = Kontroler.getInstanca().ucitajListuGradova();
+                        odgovor.setOdgovor(listaGradova);
                         break;
                     default:
                         System.out.println("Greska,ta operacija ne posoji!");

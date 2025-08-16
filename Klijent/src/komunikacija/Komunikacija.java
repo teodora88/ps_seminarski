@@ -5,6 +5,7 @@
 package komunikacija;
 
 import domen.Clan;
+import domen.Grad;
 import domen.Radnik;
 import java.io.IOException;
 import java.net.Socket;
@@ -84,6 +85,19 @@ public class Komunikacija {
             throw (Exception) odgovor.getOdgovor();
         }
 
+    }
+
+    public List<Grad> vratiListuGradova() {
+        
+        List<Grad> listaClanova;
+        
+        Zahtev zahtev = new Zahtev(Operacija.VRATI_LISTU_GRADOVA, null);
+        posiljalac.posalji(zahtev);
+        
+        Odgovor odgovor = (Odgovor) primalac.primi();
+        listaClanova = (List<Grad>) odgovor.getOdgovor();
+        
+        return listaClanova;
     }
 
 }

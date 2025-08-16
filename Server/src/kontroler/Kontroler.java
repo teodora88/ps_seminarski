@@ -5,11 +5,13 @@
 package kontroler;
 
 import domen.Clan;
+import domen.Grad;
 import domen.Radnik;
 import java.util.List;
 import operacija.clan.ObrisiClanaSO;
 import operacija.prijava.PrijavaSO;
 import operacija.clan.UcitajListuClanovaSO;
+import operacija.grad.UcitajListuGradovaSO;
 
 /**
  *
@@ -49,6 +51,13 @@ public class Kontroler {
     public void obrisiClana(Clan c) throws Exception {
         ObrisiClanaSO operacija = new ObrisiClanaSO();
         operacija.izvrsi(c, null);
+    }
+
+    public List<Grad> ucitajListuGradova() throws Exception {
+        UcitajListuGradovaSO operacija = new UcitajListuGradovaSO();
+        operacija.izvrsi(null, null);
+        System.out.println("klasa kontroler: " + operacija.getListaGradova());
+        return operacija.getListaGradova();
     }
     
 }

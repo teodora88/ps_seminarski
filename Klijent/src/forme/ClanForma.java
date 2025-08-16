@@ -4,6 +4,8 @@
  */
 package forme;
 
+import javax.swing.JComboBox;
+
 /**
  *
  * @author T440s
@@ -17,6 +19,16 @@ public class ClanForma extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
+
+    public JComboBox<String> getCmbGrad() {
+        return cmbGrad;
+    }
+
+    public void setCmbGrad(JComboBox<String> cmbGrad) {
+        this.cmbGrad = cmbGrad;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

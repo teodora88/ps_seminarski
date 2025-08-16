@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
+import kontroleri.glavni.GlavniKontroler;
 
 /**
  *
@@ -63,6 +64,13 @@ public class ClanGlavnaFormaKontroler {
                      
                 }
 
+            }
+        });
+        
+        clanGlavnaForma.dodajOsluskivacDodajNovog(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GlavniKontroler.getInstanca().otvoriClanFormu(clanGlavnaForma);
             }
         });
 
