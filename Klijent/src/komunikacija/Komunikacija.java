@@ -100,4 +100,17 @@ public class Komunikacija {
         return listaClanova;
     }
 
+    public void dodajClana(Clan c) throws Exception {
+        
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_CLANA, c);
+        posiljalac.posalji(zahtev);
+        
+        Odgovor odgovor = (Odgovor) primalac.primi();
+
+        if (odgovor.getOdgovor() instanceof Exception) {
+            throw (Exception) odgovor.getOdgovor();
+        }
+        
+    }
+
 }

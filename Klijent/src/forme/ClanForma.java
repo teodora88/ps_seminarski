@@ -4,7 +4,11 @@
  */
 package forme;
 
+import domen.Grad;
+import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -20,12 +24,62 @@ public class ClanForma extends javax.swing.JDialog {
         initComponents();
     }
 
-    public JComboBox<String> getCmbGrad() {
+    public JComboBox<Grad> getCmbGrad() {
         return cmbGrad;
     }
 
-    public void setCmbGrad(JComboBox<String> cmbGrad) {
+    public void setCmbGrad(JComboBox<Grad> cmbGrad) {
         this.cmbGrad = cmbGrad;
+    }
+
+    
+
+    public JTextField getTxtDatumRodjenja() {
+        return txtDatumRodjenja;
+    }
+
+    public void setTxtDatumRodjenja(JTextField txtDatumRodjenja) {
+        this.txtDatumRodjenja = txtDatumRodjenja;
+    }
+
+    public JTextField getTxtDatumUclanjenja() {
+        return txtDatumUclanjenja;
+    }
+
+    public void setTxtDatumUclanjenja(JTextField txtDatumUclanjenja) {
+        this.txtDatumUclanjenja = txtDatumUclanjenja;
+    }
+
+    public JTextField getTxtID() {
+        return txtID;
+    }
+
+    public void setTxtID(JTextField txtID) {
+        this.txtID = txtID;
+    }
+
+    public JTextField getTxtIme() {
+        return txtIme;
+    }
+
+    public void setTxtIme(JTextField txtIme) {
+        this.txtIme = txtIme;
+    }
+
+    public JTextField getTxtPrezime() {
+        return txtPrezime;
+    }
+
+    public void setTxtPrezime(JTextField txtPrezime) {
+        this.txtPrezime = txtPrezime;
+    }
+
+    public JLabel getLblID() {
+        return lblID;
+    }
+
+    public void setLblID(JLabel lblID) {
+        this.lblID = lblID;
     }
     
     
@@ -39,7 +93,7 @@ public class ClanForma extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        lblID = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -52,11 +106,13 @@ public class ClanForma extends javax.swing.JDialog {
         btnSacuvaj = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         cmbGrad = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Dodaj/izmeni clana");
 
-        jLabel1.setText("ID");
+        lblID.setText("ID");
 
         jLabel2.setText("Ime ");
 
@@ -70,65 +126,77 @@ public class ClanForma extends javax.swing.JDialog {
 
         jLabel6.setText("Grad");
 
-        cmbGrad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        jLabel1.setText("Format datuma je: dd.MM.yyyy");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        jLabel7.setText("Format datuma je: dd.MM.yyyy");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtID)
-                    .addComponent(txtIme)
-                    .addComponent(txtPrezime)
-                    .addComponent(txtDatumRodjenja)
-                    .addComponent(txtDatumUclanjenja)
-                    .addComponent(cmbGrad, 0, 162, Short.MAX_VALUE))
-                .addContainerGap(52, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSacuvaj)
                 .addGap(93, 93, 93))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblID)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtID)
+                            .addComponent(txtIme)
+                            .addComponent(txtPrezime)
+                            .addComponent(txtDatumRodjenja)
+                            .addComponent(txtDatumUclanjenja)
+                            .addComponent(cmbGrad, 0, 162, Short.MAX_VALUE)))
+                    .addComponent(jLabel7))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(44, 44, 44)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(lblID)
                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtDatumRodjenja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtDatumUclanjenja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(cmbGrad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addComponent(btnSacuvaj)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -137,17 +205,23 @@ public class ClanForma extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSacuvaj;
-    private javax.swing.JComboBox<String> cmbGrad;
+    private javax.swing.JComboBox<Grad> cmbGrad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel lblID;
     private javax.swing.JTextField txtDatumRodjenja;
     private javax.swing.JTextField txtDatumUclanjenja;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtIme;
     private javax.swing.JTextField txtPrezime;
     // End of variables declaration//GEN-END:variables
+
+    public void dodajOsluskivacSacuvaj(ActionListener actionListener) {
+        btnSacuvaj.addActionListener(actionListener);
+    }
 }

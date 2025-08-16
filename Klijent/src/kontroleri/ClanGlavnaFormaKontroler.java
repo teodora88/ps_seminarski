@@ -32,7 +32,7 @@ public class ClanGlavnaFormaKontroler {
         clanGlavnaForma.setVisible(true);
     }
 
-    private void pripremiFormu() {
+    public void pripremiFormu() {
 
         List<Clan> listaClanova = Komunikacija.getInstanca().ucitajListuClanova();
         ClanMT clanMT = new ClanMT(listaClanova);

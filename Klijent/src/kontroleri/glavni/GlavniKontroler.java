@@ -12,7 +12,7 @@ import forme.GlavnaForma;
 import forme.PotvrdaGlavnaForma;
 import forme.PrijavaForma;
 import javax.swing.JFrame;
-import kontroleri.ClanFormaKontroler;
+import kontroleri.DodajClanaKontroler;
 import kontroleri.ClanGlavnaFormaKontroler;
 import kontroleri.DrustvenaIgraGlavnaFormaKontroler;
 import kontroleri.GlavnaFormaKontroler;
@@ -32,7 +32,7 @@ public class GlavniKontroler {
     private ClanGlavnaFormaKontroler clanGlavnaFormaKontroler;
     private DrustvenaIgraGlavnaFormaKontroler diGlavnaFormaKontroler;
     private PotvrdaGlavnaFormaKontroler potGlavnaFormaKontroler;
-    private ClanFormaKontroler clanFormaKontroler;
+    private DodajClanaKontroler clanFormaKontroler;
 
     private GlavniKontroler() {
     }
@@ -79,8 +79,12 @@ public class GlavniKontroler {
     }
 
     public void otvoriClanFormu(JFrame parent) {
-        clanFormaKontroler = new ClanFormaKontroler(new ClanForma(parent, true));
+        clanFormaKontroler = new DodajClanaKontroler(new ClanForma(parent, true));
         clanFormaKontroler.otvoriClanFormu();
+    }
+
+    public void osveziTabeluClanova() {
+        clanGlavnaFormaKontroler.pripremiFormu();
     }
 
     

@@ -8,6 +8,7 @@ import domen.Clan;
 import domen.Grad;
 import domen.Radnik;
 import java.util.List;
+import operacija.clan.DodajClanaSO;
 import operacija.clan.ObrisiClanaSO;
 import operacija.prijava.PrijavaSO;
 import operacija.clan.UcitajListuClanovaSO;
@@ -58,6 +59,11 @@ public class Kontroler {
         operacija.izvrsi(null, null);
         System.out.println("klasa kontroler: " + operacija.getListaGradova());
         return operacija.getListaGradova();
+    }
+
+    public void dodajClana(Clan c) throws Exception {
+        DodajClanaSO operacija = new DodajClanaSO();
+        operacija.izvrsi(c, null);
     }
     
 }
