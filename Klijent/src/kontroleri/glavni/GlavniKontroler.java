@@ -11,11 +11,13 @@ import forme.DrustvenaIgraGlavnaForma;
 import forme.GlavnaForma;
 import forme.PotvrdaGlavnaForma;
 import forme.PrijavaForma;
+import java.util.HashMap;
 import javax.swing.JFrame;
 import kontroleri.DodajClanaKontroler;
 import kontroleri.ClanGlavnaFormaKontroler;
 import kontroleri.DrustvenaIgraGlavnaFormaKontroler;
 import kontroleri.GlavnaFormaKontroler;
+import kontroleri.IzmeniClanaKontroler;
 import kontroleri.PotvrdaGlavnaFormaKontroler;
 import kontroleri.PrijavaKontroler;
 
@@ -32,9 +34,12 @@ public class GlavniKontroler {
     private ClanGlavnaFormaKontroler clanGlavnaFormaKontroler;
     private DrustvenaIgraGlavnaFormaKontroler diGlavnaFormaKontroler;
     private PotvrdaGlavnaFormaKontroler potGlavnaFormaKontroler;
-    private DodajClanaKontroler clanFormaKontroler;
+    private DodajClanaKontroler dodajClanaKontroler;
+    private IzmeniClanaKontroler izmeniClanaKontroler;
+    private HashMap<String, Object> mapa;
 
     private GlavniKontroler() {
+        mapa = new HashMap<>();
     }
 
     public static GlavniKontroler getInstanca() {
@@ -78,15 +83,26 @@ public class GlavniKontroler {
         potGlavnaFormaKontroler.otvoriPotvrdaGlavnaForma();
     }
 
-    public void otvoriClanFormu(JFrame parent) {
-        clanFormaKontroler = new DodajClanaKontroler(new ClanForma(parent, true));
-        clanFormaKontroler.otvoriClanFormu();
+    public void otvoriClanFormuDodajNovog(JFrame parent) {
+        dodajClanaKontroler = new DodajClanaKontroler(new ClanForma(parent, true));
+        dodajClanaKontroler.otvoriClanFormu();
     }
 
     public void osveziTabeluClanova() {
         clanGlavnaFormaKontroler.pripremiFormu();
     }
 
+    public void otvoriClanFormuZaIzmenu(ClanGlavnaForma clanGlavnaForma) {
+        izmeniClanaKontroler = new IzmeniClanaKontroler(new ClanForma(clanGlavnaForma, true));
+        izmeniClanaKontroler.otvoriClanFormu();
+    }
+
+    public void dodajParametre(String s, Object o){
+        mapa.put(s,o);
+    }
     
+    public Object vratiParametre(String s){
+        return mapa.get(s);
+    }
     
 }

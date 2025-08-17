@@ -6,6 +6,7 @@ package forme;
 
 import domen.Grad;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -81,6 +82,22 @@ public class ClanForma extends javax.swing.JDialog {
     public void setLblID(JLabel lblID) {
         this.lblID = lblID;
     }
+
+    public JButton getBtnSacuvajIzmene() {
+        return btnSacuvajIzmene;
+    }
+
+    public void setBtnSacuvajIzmene(JButton btnSacuvajIzmene) {
+        this.btnSacuvajIzmene = btnSacuvajIzmene;
+    }
+
+    public JButton getBtnSacuvajNovogClana() {
+        return btnSacuvajNovogClana;
+    }
+
+    public void setBtnSacuvajNovogClana(JButton btnSacuvajNovogClana) {
+        this.btnSacuvajNovogClana = btnSacuvajNovogClana;
+    }
     
     
 
@@ -103,11 +120,12 @@ public class ClanForma extends javax.swing.JDialog {
         txtPrezime = new javax.swing.JTextField();
         txtDatumRodjenja = new javax.swing.JTextField();
         txtDatumUclanjenja = new javax.swing.JTextField();
-        btnSacuvaj = new javax.swing.JButton();
+        btnSacuvajNovogClana = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         cmbGrad = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        btnSacuvajIzmene = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Dodaj/izmeni clana");
@@ -122,7 +140,7 @@ public class ClanForma extends javax.swing.JDialog {
 
         jLabel5.setText("Datum uclanjenja");
 
-        btnSacuvaj.setText("Sacuvaj");
+        btnSacuvajNovogClana.setText("Sacuvaj novog clana");
 
         jLabel6.setText("Grad");
 
@@ -132,14 +150,12 @@ public class ClanForma extends javax.swing.JDialog {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
         jLabel7.setText("Format datuma je: dd.MM.yyyy");
 
+        btnSacuvajIzmene.setText("Sacuvaj Izmene");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSacuvaj)
-                .addGap(93, 93, 93))
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,6 +178,12 @@ public class ClanForma extends javax.swing.JDialog {
                             .addComponent(cmbGrad, 0, 162, Short.MAX_VALUE)))
                     .addComponent(jLabel7))
                 .addContainerGap(52, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(61, Short.MAX_VALUE)
+                .addComponent(btnSacuvajNovogClana)
+                .addGap(18, 18, 18)
+                .addComponent(btnSacuvajIzmene)
+                .addGap(73, 73, 73))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,9 +216,11 @@ public class ClanForma extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(cmbGrad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(btnSacuvaj)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSacuvajNovogClana)
+                    .addComponent(btnSacuvajIzmene))
+                .addGap(19, 19, 19))
         );
 
         pack();
@@ -204,7 +228,8 @@ public class ClanForma extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSacuvaj;
+    private javax.swing.JButton btnSacuvajIzmene;
+    private javax.swing.JButton btnSacuvajNovogClana;
     private javax.swing.JComboBox<Grad> cmbGrad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -221,7 +246,11 @@ public class ClanForma extends javax.swing.JDialog {
     private javax.swing.JTextField txtPrezime;
     // End of variables declaration//GEN-END:variables
 
-    public void dodajOsluskivacSacuvaj(ActionListener actionListener) {
-        btnSacuvaj.addActionListener(actionListener);
+    public void dodajOsluskivacSacuvajNovog(ActionListener actionListener) {
+        btnSacuvajNovogClana.addActionListener(actionListener);
+    }
+
+    public void dodajOsluskivacSacuvajIzmene(ActionListener actionListener) {
+        btnSacuvajIzmene.addActionListener(actionListener);
     }
 }

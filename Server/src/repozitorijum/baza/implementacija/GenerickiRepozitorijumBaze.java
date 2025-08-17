@@ -64,7 +64,8 @@ public class GenerickiRepozitorijumBaze implements RepozitorijumBaze<ApstraktniD
     @Override
     public void izmeni(ApstraktniDomenskiObjekat param) throws Exception {
 
-        String upit = "UPDATE " + param.vratiNazivTabele() + " SET " + param.vratiVrednostZaIzmenu();
+        String upit = "UPDATE " + param.vratiNazivTabele() + " SET " + param.vratiVrednostZaIzmenu() +
+                        " WHERE " + param.vratiPrimarniKljuc();
         System.out.println(upit);
 
         Statement statement = Konekcija.getInstanca().getKonekcija().createStatement();

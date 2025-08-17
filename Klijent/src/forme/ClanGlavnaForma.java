@@ -143,4 +143,8 @@ public class ClanGlavnaForma extends javax.swing.JFrame {
     public void dodajOsluskivacDodajNovog(ActionListener actionListener) {
         btndodajNovog.addActionListener(actionListener);
     }
+
+    public void dodajOsluskivacIzmeni(ActionListener actionListener) {
+        btnIzmeni.addActionListener(actionListener);
+    }
 }

@@ -9,6 +9,7 @@ import domen.Grad;
 import domen.Radnik;
 import java.util.List;
 import operacija.clan.DodajClanaSO;
+import operacija.clan.IzmeniClanaSO;
 import operacija.clan.ObrisiClanaSO;
 import operacija.prijava.PrijavaSO;
 import operacija.clan.UcitajListuClanovaSO;
@@ -63,6 +64,11 @@ public class Kontroler {
 
     public void dodajClana(Clan c) throws Exception {
         DodajClanaSO operacija = new DodajClanaSO();
+        operacija.izvrsi(c, null);
+    }
+
+    public void izmeniClana(Clan c) throws Exception {
+        IzmeniClanaSO operacija = new IzmeniClanaSO();
         operacija.izvrsi(c, null);
     }
     

@@ -50,10 +50,10 @@ public class ClanGlavnaFormaKontroler {
                 // ako je red -1, nismo selektovali clana za brisanje
                 if (red == -1) {
                     JOptionPane.showMessageDialog(clanGlavnaForma, "Sistem ne moze da obrise clana.", "Greska", JOptionPane.ERROR_MESSAGE);
-                }else{
+                } else {
                     ClanMT clanMT = (ClanMT) clanGlavnaForma.getTblClanovi().getModel();
                     Clan c = clanMT.getListaClanova().get(red); // izvlacimo clana koji je selektovan 
-                    
+
                     try {
                         Komunikacija.getInstanca().obrisiClana(c);
                         JOptionPane.showMessageDialog(clanGlavnaForma, "Sistem je obrisao clana.", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
@@ -61,16 +61,37 @@ public class ClanGlavnaFormaKontroler {
                     } catch (Exception exc) {
                         JOptionPane.showMessageDialog(clanGlavnaForma, "Sistem ne moze da obrise clana.", "Greska", JOptionPane.ERROR_MESSAGE);
                     }
-                     
+
                 }
 
             }
         });
-        
+
         clanGlavnaForma.dodajOsluskivacDodajNovog(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GlavniKontroler.getInstanca().otvoriClanFormu(clanGlavnaForma);
+                GlavniKontroler.getInstanca().otvoriClanFormuDodajNovog(clanGlavnaForma);
+            }
+        });
+
+        clanGlavnaForma.dodajOsluskivacIzmeni(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int red = clanGlavnaForma.getTblClanovi().getSelectedRow();
+                // ako je red -1, nismo selektovali clana za izmenu
+                if (red == -1) {
+                    JOptionPane.showMessageDialog(clanGlavnaForma, "Sistem ne moze da izmeni podatke o clanu.", "Greska", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    ClanMT clanMT = (ClanMT) clanGlavnaForma.getTblClanovi().getModel();
+                    Clan c = clanMT.getListaClanova().get(red);  // izvlacimo clana koji je selektovan 
+
+                    GlavniKontroler.getInstanca().dodajParametre("clan", c); // saljemo selektovanog clana kroz hash mapu do glavnog kontrolera
+
+                    GlavniKontroler.getInstanca().otvoriClanFormuZaIzmenu(clanGlavnaForma);
+
+                }
+
             }
         });
 
