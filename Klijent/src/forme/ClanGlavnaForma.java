@@ -7,6 +7,7 @@ package forme;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -37,6 +38,22 @@ public class ClanGlavnaForma extends javax.swing.JFrame {
         this.btnObrisi = btnObrisi;
     }
 
+    public JTextField getTxtPretragaIme() {
+        return txtPretragaIme;
+    }
+
+    public void setTxtPretragaIme(JTextField txtPretragaIme) {
+        this.txtPretragaIme = txtPretragaIme;
+    }
+
+    public JTextField getTxtPretragaPrezime() {
+        return txtPretragaPrezime;
+    }
+
+    public void setTxtPretragaPrezime(JTextField txtPretragaPrezime) {
+        this.txtPretragaPrezime = txtPretragaPrezime;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,11 +66,15 @@ public class ClanGlavnaForma extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblClanovi = new javax.swing.JTable();
-        txtPretraga = new javax.swing.JTextField();
+        txtPretragaIme = new javax.swing.JTextField();
         btnPretraga = new javax.swing.JButton();
         btndodajNovog = new javax.swing.JButton();
         btnIzmeni = new javax.swing.JButton();
         btnObrisi = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        txtPretragaPrezime = new javax.swing.JTextField();
+        btnResetujPretragu = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -81,6 +102,12 @@ public class ClanGlavnaForma extends javax.swing.JFrame {
 
         btnObrisi.setText("Obrisi");
 
+        jLabel1.setText("Ime");
+
+        jLabel2.setText("Prezime");
+
+        btnResetujPretragu.setText("Resetuj pretragu");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -91,27 +118,46 @@ public class ClanGlavnaForma extends javax.swing.JFrame {
                         .addGap(52, 52, 52)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(txtPretraga, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(84, 84, 84)
-                        .addComponent(btnPretraga))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(77, 77, 77)
                         .addComponent(btndodajNovog)
                         .addGap(48, 48, 48)
                         .addComponent(btnIzmeni)
                         .addGap(52, 52, 52)
-                        .addComponent(btnObrisi)))
-                .addContainerGap(75, Short.MAX_VALUE))
+                        .addComponent(btnObrisi))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtPretragaIme, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(28, 28, 28)
+                                .addComponent(txtPretragaPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(38, 38, 38)
+                                .addComponent(btnPretraga))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(btnResetujPretragu)))))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPretraga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtPretragaIme, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPretraga))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtPretragaPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnResetujPretragu))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -129,11 +175,15 @@ public class ClanGlavnaForma extends javax.swing.JFrame {
     private javax.swing.JButton btnIzmeni;
     private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPretraga;
+    private javax.swing.JButton btnResetujPretragu;
     private javax.swing.JButton btndodajNovog;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTable tblClanovi;
-    private javax.swing.JTextField txtPretraga;
+    private javax.swing.JTextField txtPretragaIme;
+    private javax.swing.JTextField txtPretragaPrezime;
     // End of variables declaration//GEN-END:variables
 
     public void dodajOsluskivacObrisi(ActionListener actionListener) {
@@ -146,5 +196,13 @@ public class ClanGlavnaForma extends javax.swing.JFrame {
 
     public void dodajOsluskivacIzmeni(ActionListener actionListener) {
         btnIzmeni.addActionListener(actionListener);
+    }
+
+    public void dodajOsluskivacPretrazi(ActionListener actionListener) {
+        btnPretraga.addActionListener(actionListener);
+    }
+
+    public void dodajOsluskivacResetuj(ActionListener actionListener) {
+        btnResetujPretragu.addActionListener(actionListener);
     }
 }

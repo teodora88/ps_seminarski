@@ -8,6 +8,7 @@ import domen.Clan;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -64,6 +65,17 @@ public class ClanMT extends AbstractTableModel {
 
     public List<Clan> getListaClanova() {
         return listaClanova;
+    }
+
+    public void pretrazi(String ime, String prezime) {
+        
+        List<Clan> listaPretrage = listaClanova.stream()
+                .filter(c->(ime == null || ime.isEmpty() || c.getIme().toLowerCase().contains(ime.toLowerCase())))
+                .filter(c->(prezime == null || prezime.isEmpty() || c.getPrezime().toLowerCase().contains(prezime.toLowerCase())))
+                .collect(Collectors.toList());
+        listaClanova = listaPretrage;
+        fireTableDataChanged();
+        
     }
 
 }

@@ -94,6 +94,26 @@ public class ClanGlavnaFormaKontroler {
 
             }
         });
+        
+        clanGlavnaForma.dodajOsluskivacPretrazi(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                String ime = clanGlavnaForma.getTxtPretragaIme().getText().trim();
+                String prezime = clanGlavnaForma.getTxtPretragaPrezime().getText().trim();
+                
+                ClanMT clanMT = (ClanMT) clanGlavnaForma.getTblClanovi().getModel(); 
+                clanMT.pretrazi(ime, prezime);
+                
+            }
+        });
+        
+        clanGlavnaForma.dodajOsluskivacResetuj(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pripremiFormu();
+            }
+        });
 
     }
 
