@@ -44,13 +44,18 @@ public class DrustvenaIgraGlavnaFormaKontroler {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
+                String naziv = diGlavnaForma.getTxtPretraga().getText().trim();
+                
+                IgraMT igraMT = (IgraMT) diGlavnaForma.getTblDrusteveIgre().getModel(); 
+                igraMT.pretrazi(naziv);
+                
             }
         });
         
         diGlavnaForma.dodajOsluskivacResetuj(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+                pripremiFormu();
             }
         });
         

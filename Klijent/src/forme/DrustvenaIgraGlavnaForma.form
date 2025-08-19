@@ -31,7 +31,7 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-              <Component id="txtPRetraga" min="-2" pref="230" max="-2" attributes="0"/>
+              <Component id="txtPretraga" min="-2" pref="230" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
@@ -59,7 +59,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="txtPRetraga" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtPretraga" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -91,7 +91,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="txtPRetraga">
+    <Component class="javax.swing.JTextField" name="txtPretraga">
     </Component>
     <Component class="javax.swing.JButton" name="btnPretraga">
       <Properties>
