@@ -4,7 +4,6 @@
  */
 package domen;
 
-
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,8 +14,8 @@ import java.util.Objects;
  *
  * @author T440s
  */
-public class PotvrdaOIznajmljivanju implements ApstraktniDomenskiObjekat{
-    
+public class PotvrdaOIznajmljivanju implements ApstraktniDomenskiObjekat {
+
     private Long potvrdaID;
     private Date datumIznajmljivanja;
     private Date datumVracanja = null;
@@ -116,7 +115,31 @@ public class PotvrdaOIznajmljivanju implements ApstraktniDomenskiObjekat{
 
     @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
+
+        while (rs.next()) {
+            PotvrdaOIznajmljivanju potvrda = new PotvrdaOIznajmljivanju();
+            potvrda.setPotvrdaID(rs.getLong("potvrdaoiznajmljivanju.potvrdaID"));
+            potvrda.setDatumIznajmljivanja(rs.getDate("datumIznajmljivanja"));
+            potvrda.setDatumVracanja(rs.getDate("datumVracanja"));
+
+            Clan c = new Clan();
+            c.setClanID(rs.getLong("clan.clanID"));
+            c.setIme(rs.getString("clan.ime"));
+            c.setPrezime(rs.getString("clan.prezime"));
+            potvrda.setClan(c);
+            
+            Radnik r = new Radnik();
+            r.setRadnikID(rs.getLong("radnik.radnikID"));
+            r.setIme(rs.getString("radnik.ime"));
+            r.setPrezime(rs.getString("radnik.prezime"));
+            potvrda.setRadnik(r);
+
+            lista.add(potvrda);
+        }
+
+        return lista;
     }
 
     @Override
@@ -141,10 +164,8 @@ public class PotvrdaOIznajmljivanju implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiVrednostZaIzmenu() {
-        return "datumIznajmljivanja = '" + datumIznajmljivanja + "', datumVracanja = '" + datumVracanja +
-                "', clan = " + clan.getClanID() + ", radnik = " + radnik.getRadnikID();
+        return "datumIznajmljivanja = '" + datumIznajmljivanja + "', datumVracanja = '" + datumVracanja
+                + "', clan = " + clan.getClanID() + ", radnik = " + radnik.getRadnikID();
     }
-    
-    
-    
+
 }

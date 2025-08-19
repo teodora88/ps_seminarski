@@ -7,6 +7,7 @@ package komunikacija;
 import domen.Clan;
 import domen.DrustvenaIgra;
 import domen.Grad;
+import domen.PotvrdaOIznajmljivanju;
 import domen.Radnik;
 import java.io.IOException;
 import java.net.Socket;
@@ -135,6 +136,19 @@ public class Komunikacija {
         listaIgara = (List<DrustvenaIgra>) odgovor.getOdgovor();
 
         return listaIgara;
+        
+    }
+
+    public List<PotvrdaOIznajmljivanju> ucitajListuPotvrda() {
+        
+        List<PotvrdaOIznajmljivanju> listaPotvrda;
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_LISTU_POTVRDA, null);
+        posiljalac.posalji(zahtev);
+
+        Odgovor odgovor = (Odgovor) primalac.primi();
+        listaPotvrda = (List<PotvrdaOIznajmljivanju>) odgovor.getOdgovor();
+
+        return listaPotvrda;
         
     }
 

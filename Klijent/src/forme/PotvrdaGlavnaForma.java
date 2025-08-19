@@ -4,6 +4,8 @@
  */
 package forme;
 
+import javax.swing.JTable;
+
 /**
  *
  * @author T440s
@@ -15,6 +17,10 @@ public class PotvrdaGlavnaForma extends javax.swing.JFrame {
      */
     public PotvrdaGlavnaForma() {
         initComponents();
+    }
+
+    public JTable getTblListaPotvrda() {
+        return tblListaPotvrda;
     }
 
     /**
@@ -31,6 +37,8 @@ public class PotvrdaGlavnaForma extends javax.swing.JFrame {
         txtPretraga = new javax.swing.JTextField();
         btnPretraga = new javax.swing.JButton();
         btnDodaj = new javax.swing.JButton();
+        btnResetujPretragu = new javax.swing.JButton();
+        btnIzmeni = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Rad sa potvrdama");
@@ -50,35 +58,58 @@ public class PotvrdaGlavnaForma extends javax.swing.JFrame {
 
         btnPretraga.setText("Pretrazi");
 
-        btnDodaj.setText("Dodaj");
+        btnDodaj.setText("Dodaj novu potvrdu");
+
+        btnResetujPretragu.setText("Resetuj pretragu");
+
+        btnIzmeni.setText("Izmeni");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(133, 133, 133)
+                        .addComponent(btnDodaj)
+                        .addGap(115, 115, 115)
+                        .addComponent(btnIzmeni))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(99, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(txtPretraga, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
+                        .addGap(77, 77, 77)
+                        .addComponent(btnResetujPretragu)
+                        .addGap(125, 125, 125))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnPretraga)
-                        .addGap(36, 36, 36)
-                        .addComponent(btnDodaj))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57))
+                        .addGap(151, 151, 151))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPretraga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPretraga)
-                    .addComponent(btnDodaj))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(btnPretraga)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnResetujPretragu)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnDodaj)
+                            .addComponent(btnIzmeni)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(txtPretraga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -88,7 +119,9 @@ public class PotvrdaGlavnaForma extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDodaj;
+    private javax.swing.JButton btnIzmeni;
     private javax.swing.JButton btnPretraga;
+    private javax.swing.JButton btnResetujPretragu;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblListaPotvrda;
     private javax.swing.JTextField txtPretraga;

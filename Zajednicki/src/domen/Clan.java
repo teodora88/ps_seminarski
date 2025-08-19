@@ -129,8 +129,10 @@ public class Clan implements ApstraktniDomenskiObjekat{
             String prezime = rs.getString("prezime");
             Date datRodj = rs.getDate("datumRodjenja");
             Date datUcl = rs.getDate("datumUclanjenja");
-            Long grad = rs.getLong("grad");//todo
-            Clan c = new Clan(clanID, ime, prezime, datRodj, datUcl, new Grad(grad, null));
+            Grad g = new Grad();
+            g.setPostanskiBroj(rs.getLong("grad.postanskiBroj"));
+            g.setNaziv(rs.getString("grad.naziv"));
+            Clan c = new Clan(clanID, ime, prezime, datRodj, datUcl, g);
             listaClanova.add(c);
         }
         return listaClanova;

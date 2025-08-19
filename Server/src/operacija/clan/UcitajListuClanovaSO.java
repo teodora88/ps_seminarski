@@ -23,7 +23,7 @@ public class UcitajListuClanovaSO extends ApstraktnaGenerickaOperacija{
 
     @Override
     protected void izvrsiOperaciju(Object param, String uslov) throws Exception {
-        listaClanova = repo.vratiSve(new Clan(), "");
+        listaClanova = repo.vratiSve(new Clan(), " JOIN grad ON clan.grad = grad.postanskiBroj");
     }
 
     public List<Clan> getListaClanova() {

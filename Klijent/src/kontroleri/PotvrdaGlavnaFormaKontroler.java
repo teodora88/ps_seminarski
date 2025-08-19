@@ -4,7 +4,12 @@
  */
 package kontroleri;
 
+import domen.PotvrdaOIznajmljivanju;
 import forme.PotvrdaGlavnaForma;
+import forme.modeli.ClanMT;
+import forme.modeli.PotvrdaMT;
+import java.util.List;
+import komunikacija.Komunikacija;
 
 /**
  *
@@ -16,10 +21,24 @@ public class PotvrdaGlavnaFormaKontroler {
 
     public PotvrdaGlavnaFormaKontroler(PotvrdaGlavnaForma potGlavaForma) {
         this.potGlavaForma = potGlavaForma;
+        dodajOsluskivace();
     }
 
     public void otvoriPotvrdaGlavnaForma() {
+        pripremiFormu();
         potGlavaForma.setVisible(true);
+    }
+
+    private void pripremiFormu() {
+        
+        List<PotvrdaOIznajmljivanju> listaPotvrda = Komunikacija.getInstanca().ucitajListuPotvrda();
+        PotvrdaMT potvrdaMT = new PotvrdaMT(listaPotvrda);
+        potGlavaForma.getTblListaPotvrda().setModel(potvrdaMT);
+        
+    }
+
+    private void dodajOsluskivace() {
+        //todo
     }
     
 }

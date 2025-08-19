@@ -3,6 +3,7 @@ package niti;
 import domen.Clan;
 import domen.DrustvenaIgra;
 import domen.Grad;
+import domen.PotvrdaOIznajmljivanju;
 import domen.Radnik;
 import java.io.IOException;
 import java.net.Socket;
@@ -90,6 +91,10 @@ public class ObradaKlijentskihZahteva extends Thread {
                     case UCITAJ_LISTU_IGARA:
                         List<DrustvenaIgra> listaIgara = Kontroler.getInstanca().ucitajListuIgara();
                         odgovor.setOdgovor(listaIgara);
+                        break;
+                    case UCITAJ_LISTU_POTVRDA:
+                        List<PotvrdaOIznajmljivanju> listaPotvrda = Kontroler.getInstanca().ucitajListuPotvrda();
+                        odgovor.setOdgovor(listaPotvrda);
                         break;
                     default:
                         System.out.println("Greska,ta operacija ne posoji!");

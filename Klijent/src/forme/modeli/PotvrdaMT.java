@@ -1,0 +1,66 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package forme.modeli;
+
+import domen.PotvrdaOIznajmljivanju;
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.table.AbstractTableModel;
+
+/**
+ *
+ * @author T440s
+ */
+public class PotvrdaMT extends AbstractTableModel{
+    
+    List<PotvrdaOIznajmljivanju> listaPotvrda;
+    String[] kolone = {"potvrdaID", "datumIznajmljivanja", "datumVracanja", "clan", "radnik"};
+
+    public PotvrdaMT(List<PotvrdaOIznajmljivanju> listaPotvrda) {
+        this.listaPotvrda = listaPotvrda;
+    }
+
+    public List<PotvrdaOIznajmljivanju> getListaPotvrda() {
+        return listaPotvrda;
+    }
+
+    @Override
+    public int getRowCount() {
+        return listaPotvrda.size();
+    }
+
+    @Override
+    public int getColumnCount() {
+        return kolone.length;
+    }
+
+    @Override
+    public String getColumnName(int column) {
+        return kolone[column];
+    }
+
+    @Override
+    public Object getValueAt(int rowIndex, int columnIndex) {
+
+        PotvrdaOIznajmljivanju potvrda = listaPotvrda.get(rowIndex);
+
+        switch (columnIndex) {
+            case 0:
+                return potvrda.getPotvrdaID();
+            case 1:
+                return potvrda.getDatumIznajmljivanja();
+            case 2:
+                return potvrda.getDatumVracanja();
+            case 3:
+                return potvrda.getClan().getIme();  // + " " + potvrda.getClan().getPrezime();
+            case 4:
+                return potvrda.getRadnik().getIme(); // + " " + potvrda.getClan().getPrezime();
+            default:
+                return "N/A";
+        }
+
+    }
+    
+}

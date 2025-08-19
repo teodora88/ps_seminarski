@@ -7,6 +7,7 @@ package kontroler;
 import domen.Clan;
 import domen.DrustvenaIgra;
 import domen.Grad;
+import domen.PotvrdaOIznajmljivanju;
 import domen.Radnik;
 import java.util.List;
 import operacija.clan.DodajClanaSO;
@@ -16,6 +17,7 @@ import operacija.prijava.PrijavaSO;
 import operacija.clan.UcitajListuClanovaSO;
 import operacija.grad.UcitajListuGradovaSO;
 import operacija.igra.UcitajListuIgaraSO;
+import operacija.potvrda.UcitajListuPotvrdaSO;
 
 /**
  *
@@ -83,6 +85,15 @@ public class Kontroler {
         operacija.izvrsi(null, null);
         System.out.println("klasa kontroler" + operacija.getListaIgara());
         return operacija.getListaIgara();
+        
+    }
+
+    public List<PotvrdaOIznajmljivanju> ucitajListuPotvrda() throws Exception {
+        
+        UcitajListuPotvrdaSO operacija = new UcitajListuPotvrdaSO();
+        operacija.izvrsi(null, null);
+        System.out.println("klasa kontroler " + operacija.getListaPotvrda());
+        return operacija.getListaPotvrda();
         
     }
     
