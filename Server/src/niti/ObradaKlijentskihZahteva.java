@@ -1,6 +1,7 @@
 package niti;
 
 import domen.Clan;
+import domen.DrustvenaIgra;
 import domen.Grad;
 import domen.Radnik;
 import java.io.IOException;
@@ -86,6 +87,10 @@ public class ObradaKlijentskihZahteva extends Thread {
                         odgovor.setOdgovor(e);
                     }
                     break;
+                    case UCITAJ_LISTU_IGARA:
+                        List<DrustvenaIgra> listaIgara = Kontroler.getInstanca().ucitajListuIgara();
+                        odgovor.setOdgovor(listaIgara);
+                        break;
                     default:
                         System.out.println("Greska,ta operacija ne posoji!");
 

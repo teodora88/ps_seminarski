@@ -5,6 +5,7 @@
 package komunikacija;
 
 import domen.Clan;
+import domen.DrustvenaIgra;
 import domen.Grad;
 import domen.Radnik;
 import java.io.IOException;
@@ -122,6 +123,19 @@ public class Komunikacija {
         if (odgovor.getOdgovor() instanceof Exception) {
             throw (Exception) odgovor.getOdgovor();
         }
+    }
+
+    public List<DrustvenaIgra> ucitajListuIgara() {
+        
+        List<DrustvenaIgra> listaIgara;
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_LISTU_IGARA, null);
+        posiljalac.posalji(zahtev);
+
+        Odgovor odgovor = (Odgovor) primalac.primi();
+        listaIgara = (List<DrustvenaIgra>) odgovor.getOdgovor();
+
+        return listaIgara;
+        
     }
 
 }

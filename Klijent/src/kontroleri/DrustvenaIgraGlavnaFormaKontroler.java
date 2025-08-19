@@ -4,7 +4,13 @@
  */
 package kontroleri;
 
+import domen.DrustvenaIgra;
 import forme.DrustvenaIgraGlavnaForma;
+import forme.modeli.IgraMT;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+import komunikacija.Komunikacija;
 
 /**
  *
@@ -16,10 +22,38 @@ public class DrustvenaIgraGlavnaFormaKontroler {
 
     public DrustvenaIgraGlavnaFormaKontroler(DrustvenaIgraGlavnaForma diGlavnaForma) {
         this.diGlavnaForma = diGlavnaForma;
+        dodajOsluskivace();
     }
 
     public void otvoriDrustvenaIgraGlavnaForma() {
+        pripremiFormu();
         diGlavnaForma.setVisible(true);
+    }
+    
+    private void pripremiFormu() {
+        
+        List<DrustvenaIgra> listaIgara = Komunikacija.getInstanca().ucitajListuIgara();
+        IgraMT igraMT = new IgraMT(listaIgara);
+        diGlavnaForma.getTblDrusteveIgre().setModel(igraMT);
+        
+    }
+    
+    private void dodajOsluskivace() {
+        
+        diGlavnaForma.dodajOsluskivacPretraga(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+        
+        diGlavnaForma.dodajOsluskivacResetuj(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+            }
+        });
+        
     }
     
 }

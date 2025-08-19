@@ -5,6 +5,7 @@
 package kontroler;
 
 import domen.Clan;
+import domen.DrustvenaIgra;
 import domen.Grad;
 import domen.Radnik;
 import java.util.List;
@@ -14,6 +15,7 @@ import operacija.clan.ObrisiClanaSO;
 import operacija.prijava.PrijavaSO;
 import operacija.clan.UcitajListuClanovaSO;
 import operacija.grad.UcitajListuGradovaSO;
+import operacija.igra.UcitajListuIgaraSO;
 
 /**
  *
@@ -48,6 +50,7 @@ public class Kontroler {
         operacija.izvrsi(null, null);
         System.out.println("klasa kontroler" + operacija.getListaClanova());
         return operacija.getListaClanova();
+        
     }
 
     public void obrisiClana(Clan c) throws Exception {
@@ -56,10 +59,12 @@ public class Kontroler {
     }
 
     public List<Grad> ucitajListuGradova() throws Exception {
+        
         UcitajListuGradovaSO operacija = new UcitajListuGradovaSO();
         operacija.izvrsi(null, null);
         System.out.println("klasa kontroler: " + operacija.getListaGradova());
         return operacija.getListaGradova();
+        
     }
 
     public void dodajClana(Clan c) throws Exception {
@@ -70,6 +75,15 @@ public class Kontroler {
     public void izmeniClana(Clan c) throws Exception {
         IzmeniClanaSO operacija = new IzmeniClanaSO();
         operacija.izvrsi(c, null);
+    }
+
+    public List<DrustvenaIgra> ucitajListuIgara() throws Exception {
+        
+        UcitajListuIgaraSO operacija = new UcitajListuIgaraSO();
+        operacija.izvrsi(null, null);
+        System.out.println("klasa kontroler" + operacija.getListaIgara());
+        return operacija.getListaIgara();
+        
     }
     
 }
