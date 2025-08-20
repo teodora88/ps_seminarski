@@ -135,6 +135,8 @@ public class PotvrdaOIznajmljivanju implements ApstraktniDomenskiObjekat {
             r.setIme(rs.getString("radnik.ime"));
             r.setPrezime(rs.getString("radnik.prezime"));
             potvrda.setRadnik(r);
+            
+            potvrda.setListaStavki(new ArrayList<>());
 
             lista.add(potvrda);
         }

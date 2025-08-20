@@ -9,6 +9,7 @@ import domen.DrustvenaIgra;
 import domen.Grad;
 import domen.PotvrdaOIznajmljivanju;
 import domen.Radnik;
+import domen.StavkaPotvrdeOIznajmljivanju;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -149,6 +150,19 @@ public class Komunikacija {
         listaPotvrda = (List<PotvrdaOIznajmljivanju>) odgovor.getOdgovor();
 
         return listaPotvrda;
+        
+    }
+
+    public List<StavkaPotvrdeOIznajmljivanju> usitajListuStavki(Long potvrdaID) {
+        
+        List<StavkaPotvrdeOIznajmljivanju> listaStavki;
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_LISTU_STAVKI, potvrdaID);
+        posiljalac.posalji(zahtev);
+
+        Odgovor odgovor = (Odgovor) primalac.primi();
+        listaStavki =  (List<StavkaPotvrdeOIznajmljivanju>) odgovor.getOdgovor();
+
+        return listaStavki;
         
     }
 

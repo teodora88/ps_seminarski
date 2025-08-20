@@ -5,9 +5,9 @@ import domen.DrustvenaIgra;
 import domen.Grad;
 import domen.PotvrdaOIznajmljivanju;
 import domen.Radnik;
+import domen.StavkaPotvrdeOIznajmljivanju;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
 import komunikacija.Odgovor;
 import static komunikacija.Operacija.LOGIN;
@@ -95,6 +95,10 @@ public class ObradaKlijentskihZahteva extends Thread {
                     case UCITAJ_LISTU_POTVRDA:
                         List<PotvrdaOIznajmljivanju> listaPotvrda = Kontroler.getInstanca().ucitajListuPotvrda();
                         odgovor.setOdgovor(listaPotvrda);
+                        break;
+                    case UCITAJ_LISTU_STAVKI:
+                        List<StavkaPotvrdeOIznajmljivanju> listaStavki = Kontroler.getInstanca().ucitajListuStavki((Long)zahtev.getParametar());
+                        odgovor.setOdgovor(listaStavki);
                         break;
                     default:
                         System.out.println("Greska,ta operacija ne posoji!");

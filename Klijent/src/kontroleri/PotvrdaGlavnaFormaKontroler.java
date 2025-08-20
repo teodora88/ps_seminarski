@@ -5,9 +5,13 @@
 package kontroleri;
 
 import domen.PotvrdaOIznajmljivanju;
+import domen.StavkaPotvrdeOIznajmljivanju;
 import forme.PotvrdaGlavnaForma;
-import forme.modeli.ClanMT;
 import forme.modeli.PotvrdaMT;
+import forme.modeli.StavkaMT;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 import komunikacija.Komunikacija;
 
@@ -35,10 +39,34 @@ public class PotvrdaGlavnaFormaKontroler {
         PotvrdaMT potvrdaMT = new PotvrdaMT(listaPotvrda);
         potGlavaForma.getTblListaPotvrda().setModel(potvrdaMT);
         
+        List<StavkaPotvrdeOIznajmljivanju> listaStavki = new ArrayList<>();
+        StavkaMT stavkaMT = new StavkaMT(listaStavki);
+        potGlavaForma.getTblStavkeIzabranePotvrde().setModel(stavkaMT);
+        
     }
 
     private void dodajOsluskivace() {
-        //todo
+        
+        potGlavaForma.getTblListaPotvrda().addMouseListener(new MouseAdapter() {
+            
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                
+                int red = potGlavaForma.getTblListaPotvrda().getSelectedRow();
+                
+                if(red != -1){
+                    PotvrdaMT potMT = (PotvrdaMT) potGlavaForma.getTblListaPotvrda().getModel();
+                    PotvrdaOIznajmljivanju pot = potMT.getListaPotvrda().get(red);
+                    
+                    List<StavkaPotvrdeOIznajmljivanju> listaStavki = Komunikacija.getInstanca().usitajListuStavki(pot.getPotvrdaID());
+                    StavkaMT stMT = new StavkaMT(listaStavki);
+                    potGlavaForma.getTblStavkeIzabranePotvrde().setModel(stMT);
+                }
+                
+            }
+        });
+        
+        
     }
     
 }

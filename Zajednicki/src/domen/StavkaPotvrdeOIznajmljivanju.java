@@ -6,6 +6,7 @@ package domen;
 
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -88,7 +89,25 @@ public class StavkaPotvrdeOIznajmljivanju implements ApstraktniDomenskiObjekat{
 
     @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        List<ApstraktniDomenskiObjekat> listaStavki = new ArrayList<>();
+        
+        while(rs.next()){
+            StavkaPotvrdeOIznajmljivanju stavka = new StavkaPotvrdeOIznajmljivanju();
+            stavka.setRedniBroj(rs.getLong("redniBroj"));
+            stavka.setNapomena(rs.getString("napomena"));
+            
+            DrustvenaIgra drig = new DrustvenaIgra();
+            drig.setIgraID(rs.getLong("drustvenaigra.igraID"));
+            drig.setNaziv(rs.getString("naziv"));
+            drig.setTip(rs.getString("tip"));
+            drig.setOpis(rs.getString("opis"));
+            stavka.setDrustvenaIgra(drig);
+            
+            listaStavki.add(stavka);
+        }
+        
+        return listaStavki;
     }
 
     @Override

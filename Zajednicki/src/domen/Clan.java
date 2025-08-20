@@ -85,7 +85,7 @@ public class Clan implements ApstraktniDomenskiObjekat{
 
     @Override
     public String toString() {
-        return ime + prezime;
+        return ime + " " + prezime;
     }
 
     @Override

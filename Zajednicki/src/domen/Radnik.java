@@ -80,7 +80,7 @@ public class Radnik implements ApstraktniDomenskiObjekat{
 
     @Override
     public String toString() {
-        return korisnickoIme;
+        return ime + " " + prezime;
     }
 
     @Override

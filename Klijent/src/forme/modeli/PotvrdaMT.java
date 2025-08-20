@@ -6,7 +6,6 @@ package forme.modeli;
 
 import domen.PotvrdaOIznajmljivanju;
 import java.util.List;
-import java.util.stream.Collectors;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -54,9 +53,9 @@ public class PotvrdaMT extends AbstractTableModel{
             case 2:
                 return potvrda.getDatumVracanja();
             case 3:
-                return potvrda.getClan().getIme();  // + " " + potvrda.getClan().getPrezime();
+                return potvrda.getClan(); 
             case 4:
-                return potvrda.getRadnik().getIme(); // + " " + potvrda.getClan().getPrezime();
+                return potvrda.getRadnik(); 
             default:
                 return "N/A";
         }

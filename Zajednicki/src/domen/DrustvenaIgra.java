@@ -65,7 +65,7 @@ public class DrustvenaIgra implements ApstraktniDomenskiObjekat{
 
     @Override
     public String toString() {
-        return naziv + tip;
+        return naziv;
     }
 
     @Override

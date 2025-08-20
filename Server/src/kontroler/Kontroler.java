@@ -9,6 +9,7 @@ import domen.DrustvenaIgra;
 import domen.Grad;
 import domen.PotvrdaOIznajmljivanju;
 import domen.Radnik;
+import domen.StavkaPotvrdeOIznajmljivanju;
 import java.util.List;
 import operacija.clan.DodajClanaSO;
 import operacija.clan.IzmeniClanaSO;
@@ -18,6 +19,7 @@ import operacija.clan.UcitajListuClanovaSO;
 import operacija.grad.UcitajListuGradovaSO;
 import operacija.igra.UcitajListuIgaraSO;
 import operacija.potvrda.UcitajListuPotvrdaSO;
+import operacija.potvrda.UcitajListuStavkiSO;
 
 /**
  *
@@ -95,6 +97,12 @@ public class Kontroler {
         System.out.println("klasa kontroler " + operacija.getListaPotvrda());
         return operacija.getListaPotvrda();
         
+    }
+
+    public List<StavkaPotvrdeOIznajmljivanju> ucitajListuStavki(Long potvrdaID) throws Exception {
+        UcitajListuStavkiSO operacija = new UcitajListuStavkiSO();
+        operacija.izvrsi(potvrdaID, null);
+        return operacija.getListaStavki();
     }
     
 }
