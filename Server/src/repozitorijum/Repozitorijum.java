@@ -20,4 +20,5 @@ public interface Repozitorijum<T> {
     void dodaj(T param) throws Exception;
     void izmeni(T param) throws Exception;
     void obrisi(T param) throws Exception;
+    int dodajIVratiPK(T param) throws Exception;
 }

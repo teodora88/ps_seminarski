@@ -74,6 +74,10 @@ public class PotvrdaForma extends javax.swing.JDialog {
     public JTextField getTxtNapomena() {
         return txtNapomena;
     }
+
+    public JTextField getTxtDatumIznajmljivanja() {
+        return txtDatumIznajmljivanja;
+    }
     
 
     /**
@@ -307,5 +311,9 @@ public class PotvrdaForma extends javax.swing.JDialog {
 
     public void dodajOsluskivasObrisiStavku(ActionListener actionListener) {
         btnObrisiStavku.addActionListener(actionListener);
+    }
+
+    public void dodajOsluskivacDodajPotvrdu(ActionListener actionListener) {
+        btnSacuvajPotvrdu.addActionListener(actionListener);
     }
 }

@@ -18,6 +18,7 @@ import operacija.prijava.PrijavaSO;
 import operacija.clan.UcitajListuClanovaSO;
 import operacija.grad.UcitajListuGradovaSO;
 import operacija.igra.UcitajListuIgaraSO;
+import operacija.potvrda.DodajPotvrduSO;
 import operacija.potvrda.UcitajListuPotvrdaSO;
 import operacija.potvrda.UcitajListuStavkiSO;
 
@@ -103,6 +104,11 @@ public class Kontroler {
         UcitajListuStavkiSO operacija = new UcitajListuStavkiSO();
         operacija.izvrsi(potvrdaID, null);
         return operacija.getListaStavki();
+    }
+
+    public void dodajPotvrdu(PotvrdaOIznajmljivanju pot)throws Exception{
+        DodajPotvrduSO operacija = new DodajPotvrduSO();
+        operacija.izvrsi(pot, null);
     }
     
 }

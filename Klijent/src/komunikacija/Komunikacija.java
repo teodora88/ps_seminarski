@@ -117,6 +117,7 @@ public class Komunikacija {
     }
 
     public void izmeniClana(Clan c) throws Exception {
+        
         Zahtev zahtev = new Zahtev(Operacija.IZMENI_CLANA, c);
         posiljalac.posalji(zahtev);
         
@@ -125,6 +126,7 @@ public class Komunikacija {
         if (odgovor.getOdgovor() instanceof Exception) {
             throw (Exception) odgovor.getOdgovor();
         }
+        
     }
 
     public List<DrustvenaIgra> ucitajListuIgara() {
@@ -163,6 +165,19 @@ public class Komunikacija {
         listaStavki =  (List<StavkaPotvrdeOIznajmljivanju>) odgovor.getOdgovor();
 
         return listaStavki;
+        
+    }
+
+    public void dodajPotvrdu(PotvrdaOIznajmljivanju pot) throws Exception {
+        
+        Zahtev zahtev = new Zahtev(Operacija.DODAJ_POTVRDU, pot);
+        posiljalac.posalji(zahtev);
+        
+        Odgovor odgovor = (Odgovor) primalac.primi();
+
+        if (odgovor.getOdgovor() instanceof Exception) {
+            throw (Exception) odgovor.getOdgovor();
+        }
         
     }
 

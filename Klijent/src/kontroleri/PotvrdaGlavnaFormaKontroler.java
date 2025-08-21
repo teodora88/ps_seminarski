@@ -36,7 +36,7 @@ public class PotvrdaGlavnaFormaKontroler {
         potGlavaForma.setVisible(true);
     }
 
-    private void pripremiFormu() {
+    public void pripremiFormu() {
         
         List<PotvrdaOIznajmljivanju> listaPotvrda = Komunikacija.getInstanca().ucitajListuPotvrda();
         PotvrdaMT potvrdaMT = new PotvrdaMT(listaPotvrda);

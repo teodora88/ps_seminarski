@@ -64,8 +64,8 @@ public class GenerickiRepozitorijumBaze implements RepozitorijumBaze<ApstraktniD
     @Override
     public void izmeni(ApstraktniDomenskiObjekat param) throws Exception {
 
-        String upit = "UPDATE " + param.vratiNazivTabele() + " SET " + param.vratiVrednostZaIzmenu() +
-                        " WHERE " + param.vratiPrimarniKljuc();
+        String upit = "UPDATE " + param.vratiNazivTabele() + " SET " + param.vratiVrednostZaIzmenu()
+                + " WHERE " + param.vratiPrimarniKljuc();
         System.out.println(upit);
 
         Statement statement = Konekcija.getInstanca().getKonekcija().createStatement();
@@ -83,6 +83,30 @@ public class GenerickiRepozitorijumBaze implements RepozitorijumBaze<ApstraktniD
         statement.executeUpdate(upit);
 
         statement.close();
+    }
+
+    @Override
+    public int dodajIVratiPK(ApstraktniDomenskiObjekat param) throws Exception {
+
+        String upit = "INSERT INTO " + param.vratiNazivTabele()
+                + " (" + param.vratiKoloneZaUbacivanje() + ") VALUES ("
+                + param.vratiVrednostiZaUbacivanje() + ")";
+        System.out.println(upit);
+        
+        PreparedStatement prStat = Konekcija.getInstanca().getKonekcija().prepareStatement(upit, Statement.RETURN_GENERATED_KEYS);
+        prStat.executeUpdate();
+        
+        ResultSet rs = prStat.getGeneratedKeys();
+        int genKljuc = -1;
+        if(rs.next()){
+            genKljuc = rs.getInt(1);
+        }
+        
+        rs.close();
+        prStat.close();
+        
+        return genKljuc;
+
     }
 
 }

@@ -18,7 +18,7 @@ public class PotvrdaOIznajmljivanju implements ApstraktniDomenskiObjekat {
 
     private Long potvrdaID;
     private Date datumIznajmljivanja;
-    private Date datumVracanja = null;
+    private Date datumVracanja;
     private Clan clan;
     private Radnik radnik;
     private List<StavkaPotvrdeOIznajmljivanju> listaStavki = new ArrayList<>();
@@ -151,7 +151,8 @@ public class PotvrdaOIznajmljivanju implements ApstraktniDomenskiObjekat {
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        return "'" + datumIznajmljivanja + "', '" + datumVracanja + "', " + clan.getClanID() + ", " + radnik.getRadnikID();
+        String datumVracanjaStr = "NULL";
+        return "'" + datumIznajmljivanja + "', " + datumVracanjaStr + ", " + clan.getClanID() + ", " + radnik.getRadnikID();
     }
 
     @Override

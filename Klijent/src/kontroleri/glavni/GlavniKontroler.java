@@ -112,5 +112,9 @@ public class GlavniKontroler {
         dodajPotKontroler = new DodajPotvrduKontroler(new PotvrdaForma(potGlavaForma, true));
         dodajPotKontroler.otvoriPotvrdaFormu();
     }
+
+    public void osveziTabeluPotvrda() {
+        potGlavnaFormaKontroler.pripremiFormu();
+    }
     
 }

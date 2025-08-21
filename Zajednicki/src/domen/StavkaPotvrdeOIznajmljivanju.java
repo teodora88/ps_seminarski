@@ -19,6 +19,7 @@ public class StavkaPotvrdeOIznajmljivanju implements ApstraktniDomenskiObjekat{
     private Long redniBroj;
     private String napomena;
     private DrustvenaIgra drustvenaIgra;
+    private Long potvrdaID;
 
     public StavkaPotvrdeOIznajmljivanju() {
     }
@@ -53,6 +54,15 @@ public class StavkaPotvrdeOIznajmljivanju implements ApstraktniDomenskiObjekat{
         this.napomena = napomena;
     }
 
+    public void setPotvrdaID(Long potvrdaID) {
+        this.potvrdaID = potvrdaID;
+    }
+
+    public Long getPotvrdaID() {
+        return potvrdaID;
+    }
+
+    
     @Override
     public String toString() {
         return "StavkaPotvrdeOIznajmljivanju{" + "redniBroj=" + redniBroj + ", drustvenaIgra=" + drustvenaIgra + '}';
@@ -117,7 +127,7 @@ public class StavkaPotvrdeOIznajmljivanju implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return redniBroj + ", " + potvrdaID + ", '" + napomena + "', " + drustvenaIgra.getIgraID();
     }
 
     @Override

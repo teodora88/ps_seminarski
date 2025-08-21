@@ -97,9 +97,18 @@ public class ObradaKlijentskihZahteva extends Thread {
                         odgovor.setOdgovor(listaPotvrda);
                         break;
                     case UCITAJ_LISTU_STAVKI:
-                        List<StavkaPotvrdeOIznajmljivanju> listaStavki = Kontroler.getInstanca().ucitajListuStavki((Long)zahtev.getParametar());
+                        List<StavkaPotvrdeOIznajmljivanju> listaStavki = Kontroler.getInstanca().ucitajListuStavki((Long) zahtev.getParametar());
                         odgovor.setOdgovor(listaStavki);
                         break;
+                    case DODAJ_POTVRDU:
+                        try {
+                        PotvrdaOIznajmljivanju pot = (PotvrdaOIznajmljivanju) zahtev.getParametar();
+                        Kontroler.getInstanca().dodajPotvrdu(pot);
+                        odgovor.setOdgovor(null);
+                    } catch (Exception e) {
+                        odgovor.setOdgovor(e);
+                    }
+                    break;
                     default:
                         System.out.println("Greska,ta operacija ne posoji!");
 

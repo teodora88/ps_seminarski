@@ -23,7 +23,7 @@ import kontroleri.glavni.GlavniKontroler;
  * @author T440s
  */
 public class DodajClanaKontroler {
-    
+
     private final ClanForma clanForma;
 
     public DodajClanaKontroler(ClanForma clanForma) {
@@ -32,26 +32,31 @@ public class DodajClanaKontroler {
     }
 
     public void otvoriClanFormu() {
-        List<Grad> listaGradova = Komunikacija.getInstanca().vratiListuGradova();
-        popuniComboGrad(listaGradova);
+
         pripremiFormuClan();
-        
+
         clanForma.setVisible(true);
     }
 
-    private void popuniComboGrad(List<Grad> listaGradova) {
-        clanForma.getCmbGrad().removeAllItems();
-        
-        for(Grad g : listaGradova){
-            clanForma.getCmbGrad().addItem(g);
-        }
-    }
-    
     private void pripremiFormuClan() {
         clanForma.getLblID().setVisible(false);
         clanForma.getTxtID().setVisible(false);
         clanForma.getBtnSacuvajIzmene().setVisible(false);
         clanForma.getBtnSacuvajNovogClana().setVisible(true);
+
+        popuniComboGrad();
+
+    }
+
+    private void popuniComboGrad() {
+
+        List<Grad> listaGradova = Komunikacija.getInstanca().vratiListuGradova();
+        clanForma.getCmbGrad().removeAllItems();
+
+        for (Grad g : listaGradova) {
+            clanForma.getCmbGrad().addItem(g);
+        }
+        
     }
 
     private void dodajOsluskivac() {
@@ -59,14 +64,14 @@ public class DodajClanaKontroler {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    dodaj(e);
+                    dodajClana(e);
                 } catch (ParseException ex) {
-                    JOptionPane.showMessageDialog(clanForma, "Morate uneti datum u formatu dd.MM.yyyy","Neispravan datum",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(clanForma, "Morate uneti datum u formatu dd.MM.yyyy", "Neispravan datum", JOptionPane.ERROR_MESSAGE);
                     Logger.getLogger(DodajClanaKontroler.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
 
-            private void dodaj(ActionEvent e) throws ParseException {
+            private void dodajClana(ActionEvent e) throws ParseException {
                 String ime = clanForma.getTxtIme().getText().trim();
                 String prezime = clanForma.getTxtPrezime().getText().trim();
                 String strDatRodj = clanForma.getTxtDatumRodjenja().getText().trim();
@@ -76,25 +81,19 @@ public class DodajClanaKontroler {
                 java.util.Date utilDatUcl = new SimpleDateFormat("dd.MM.yyyy").parse(strDatUcl);
                 java.sql.Date sqlDatUcl = new java.sql.Date(utilDatUcl.getTime());
                 Grad grad = (Grad) clanForma.getCmbGrad().getSelectedItem();
-                
+
                 Clan c = new Clan(-1L, ime, prezime, sqlDatRodj, sqlDatUcl, grad);
-                
+
                 try {
                     Komunikacija.getInstanca().dodajClana(c);
                     JOptionPane.showMessageDialog(clanForma, "Sistem je kreirao novog clana.", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
                     GlavniKontroler.getInstanca().osveziTabeluClanova();
                     clanForma.dispose();
                 } catch (Exception ex) {
-                        JOptionPane.showMessageDialog(clanForma, "Sistem ne moze da kreira novog clana.", "Greska", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(clanForma, "Sistem ne moze da kreira novog clana.", "Greska", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
     }
 
-    
-
-    
-    
-    
-    
 }
