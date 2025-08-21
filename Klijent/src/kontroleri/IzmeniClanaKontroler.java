@@ -32,22 +32,16 @@ public class IzmeniClanaKontroler {
     }
 
     public void otvoriClanFormu() {
-        List<Grad> listaGradova = Komunikacija.getInstanca().vratiListuGradova();
-        popuniComboGrad(listaGradova);
+                
         pripremiFormuClan();
-
         clanForma.setVisible(true);
-    }
-
-    private void popuniComboGrad(List<Grad> listaGradova) {
-        clanForma.getCmbGrad().removeAllItems();
-
-        for (Grad g : listaGradova) {
-            clanForma.getCmbGrad().addItem(g);
-        }
+        
     }
 
     private void pripremiFormuClan() {
+        
+        popuniComboGrad();
+        
         clanForma.getLblID().setVisible(true);
         clanForma.getTxtID().setVisible(true);
         clanForma.getTxtID().setEditable(false);
@@ -63,6 +57,17 @@ public class IzmeniClanaKontroler {
         clanForma.getTxtDatumRodjenja().setText(sdf.format(c.getDatumRodjenja()));
         clanForma.getTxtDatumUclanjenja().setText(sdf.format(c.getDatumUclanjenja()));
         clanForma.getCmbGrad().setSelectedItem(c.getGrad());
+        
+    }
+    
+    private void popuniComboGrad() {
+        
+        List<Grad> listaGradova = Komunikacija.getInstanca().vratiListuGradova();
+        clanForma.getCmbGrad().removeAllItems();
+
+        for (Grad g : listaGradova) {
+            clanForma.getCmbGrad().addItem(g);
+        }
     }
 
     private void dodajOsluskivac() {

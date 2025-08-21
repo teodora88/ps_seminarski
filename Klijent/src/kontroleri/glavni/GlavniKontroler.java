@@ -20,6 +20,7 @@ import kontroleri.DodajPotvrduKontroler;
 import kontroleri.DrustvenaIgraGlavnaFormaKontroler;
 import kontroleri.GlavnaFormaKontroler;
 import kontroleri.IzmeniClanaKontroler;
+import kontroleri.IzmeniPotvrduKontroler;
 import kontroleri.PotvrdaGlavnaFormaKontroler;
 import kontroleri.PrijavaKontroler;
 
@@ -40,6 +41,7 @@ public class GlavniKontroler {
     private IzmeniClanaKontroler izmeniClanaKontroler;
     private HashMap<String, Object> mapa;
     private DodajPotvrduKontroler dodajPotKontroler;
+    private IzmeniPotvrduKontroler izmeniPotKon;
 
     private GlavniKontroler() {
         mapa = new HashMap<>();
@@ -115,6 +117,11 @@ public class GlavniKontroler {
 
     public void osveziTabeluPotvrda() {
         potGlavnaFormaKontroler.pripremiFormu();
+    }
+
+    public void otvoriPotvrdaFormuZaIzmenu(PotvrdaGlavnaForma potGlavaForma) {
+        izmeniPotKon = new IzmeniPotvrduKontroler(new PotvrdaForma(potGlavaForma, true));
+        izmeniPotKon.otvoriPotvrdaFormu();
     }
     
 }

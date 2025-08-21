@@ -109,6 +109,15 @@ public class ObradaKlijentskihZahteva extends Thread {
                         odgovor.setOdgovor(e);
                     }
                     break;
+                    case IZMENI_POTVRDU:
+                        try {
+                        PotvrdaOIznajmljivanju pot = (PotvrdaOIznajmljivanju) zahtev.getParametar();
+                        Kontroler.getInstanca().izmeniPotvrdu(pot);
+                        odgovor.setOdgovor(null);
+                    } catch (Exception e) {
+                        odgovor.setOdgovor(e);
+                    }
+                    break;
                     default:
                         System.out.println("Greska,ta operacija ne posoji!");
 

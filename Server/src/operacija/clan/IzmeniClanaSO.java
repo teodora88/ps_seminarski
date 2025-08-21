@@ -17,13 +17,13 @@ public class IzmeniClanaSO extends ApstraktnaGenerickaOperacija{
     protected void preduslovi(Object param) throws Exception {
         
         if(param == null || !(param instanceof Clan)){
-            throw new Exception("Sistem ne moze da kreira novog clana.");
+            throw new Exception("Sistem ne moze da izmeni podatke o clanu.");
         }
         
         Clan c = (Clan) param;
         
         if(c.getIme() == null || c.getIme().isEmpty()){
-            throw new Exception("Sistem ne moze da kreira novog clana.");
+            throw new Exception("Sistem ne moze da izmeni podatke o clanu.");
         }
         
         // todo 

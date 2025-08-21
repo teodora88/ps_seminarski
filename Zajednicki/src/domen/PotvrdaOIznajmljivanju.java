@@ -167,8 +167,7 @@ public class PotvrdaOIznajmljivanju implements ApstraktniDomenskiObjekat {
 
     @Override
     public String vratiVrednostZaIzmenu() {
-        return "datumIznajmljivanja = '" + datumIznajmljivanja + "', datumVracanja = '" + datumVracanja
-                + "', clan = " + clan.getClanID() + ", radnik = " + radnik.getRadnikID();
+        return "datumVracanja = '" + datumVracanja + "'";
     }
 
 }

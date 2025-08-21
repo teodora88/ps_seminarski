@@ -180,7 +180,7 @@ public class DodajPotvrduKontroler {
                     GlavniKontroler.getInstanca().osveziTabeluPotvrda();
                     potForma.dispose();
                 } catch (Exception ex) {
-                    Logger.getLogger(DodajPotvrduKontroler.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(potForma, "Sistem ne moze da kreirao novu potvrdu o iznajmljivanju.", "Greska", JOptionPane.ERROR_MESSAGE);
                 }
 
             }

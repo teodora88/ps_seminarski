@@ -19,6 +19,7 @@ import operacija.clan.UcitajListuClanovaSO;
 import operacija.grad.UcitajListuGradovaSO;
 import operacija.igra.UcitajListuIgaraSO;
 import operacija.potvrda.DodajPotvrduSO;
+import operacija.potvrda.IzmeniPotvrduSO;
 import operacija.potvrda.UcitajListuPotvrdaSO;
 import operacija.potvrda.UcitajListuStavkiSO;
 
@@ -108,6 +109,11 @@ public class Kontroler {
 
     public void dodajPotvrdu(PotvrdaOIznajmljivanju pot)throws Exception{
         DodajPotvrduSO operacija = new DodajPotvrduSO();
+        operacija.izvrsi(pot, null);
+    }
+
+    public void izmeniPotvrdu(PotvrdaOIznajmljivanju pot) throws Exception {
+        IzmeniPotvrduSO operacija = new IzmeniPotvrduSO();
         operacija.izvrsi(pot, null);
     }
     

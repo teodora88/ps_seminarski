@@ -4,6 +4,7 @@
  */
 package kontroleri;
 
+import domen.Clan;
 import domen.PotvrdaOIznajmljivanju;
 import domen.StavkaPotvrdeOIznajmljivanju;
 import forme.PotvrdaGlavnaForma;
@@ -15,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
 import kontroleri.glavni.GlavniKontroler;
 
@@ -76,6 +78,50 @@ public class PotvrdaGlavnaFormaKontroler {
             }
         });
         
+        potGlavaForma.dodajOsluskivacPretrazi(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                String ime = potGlavaForma.getTxtPretragaIme().getText().trim();
+                String prezime = potGlavaForma.getTxtPretragaPrezime().getText().trim();
+                
+                Clan c = new Clan();
+                c.setIme(ime);
+                c.setPrezime(prezime);
+                
+                PotvrdaMT potMT = (PotvrdaMT) potGlavaForma.getTblListaPotvrda().getModel();
+                potMT.prertaziPotvrdu(c);
+                
+            }
+        }); 
+        
+        potGlavaForma.dodajOsluskivacResetuj(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                pripremiFormu();
+            }
+        });
+        
+        potGlavaForma.dodajOsluskivacIzmeniPotvrdu(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                int red = potGlavaForma.getTblListaPotvrda().getSelectedRow();
+                
+                if (red == -1) {
+                    JOptionPane.showMessageDialog(potGlavaForma, "Sistem ne moze da zapamti potvrdu o iznajmljivanju.", "Greska", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    PotvrdaMT potMT = (PotvrdaMT) potGlavaForma.getTblListaPotvrda().getModel();
+                    PotvrdaOIznajmljivanju pot = potMT.getListaPotvrda().get(red); 
+
+                    GlavniKontroler.getInstanca().dodajParametre("potvrda", pot); // saljemo selektovanog clana kroz hash mapu do glavnog kontrolera
+
+                    GlavniKontroler.getInstanca().otvoriPotvrdaFormuZaIzmenu(potGlavaForma);
+
+                }
+                
+            }
+        });
         
     }
     

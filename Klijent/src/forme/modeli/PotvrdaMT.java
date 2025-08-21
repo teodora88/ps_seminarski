@@ -4,16 +4,18 @@
  */
 package forme.modeli;
 
+import domen.Clan;
 import domen.PotvrdaOIznajmljivanju;
 import java.util.List;
+import java.util.stream.Collectors;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
  * @author T440s
  */
-public class PotvrdaMT extends AbstractTableModel{
-    
+public class PotvrdaMT extends AbstractTableModel {
+
     List<PotvrdaOIznajmljivanju> listaPotvrda;
     String[] kolone = {"potvrdaID", "datumIznajmljivanja", "datumVracanja", "clan", "radnik"};
 
@@ -53,13 +55,31 @@ public class PotvrdaMT extends AbstractTableModel{
             case 2:
                 return potvrda.getDatumVracanja();
             case 3:
-                return potvrda.getClan(); 
+                return potvrda.getClan();
             case 4:
-                return potvrda.getRadnik(); 
+                return potvrda.getRadnik();
             default:
                 return "N/A";
         }
 
     }
-    
+
+    public void prertaziPotvrdu(Clan c) {
+
+        String ime = c.getIme();
+        String prezime = c.getPrezime();
+
+        List<PotvrdaOIznajmljivanju> listaPretrage = listaPotvrda.stream()
+                .filter(p -> (ime == null || ime.isEmpty()
+                || p.getClan().getIme().toLowerCase().contains(ime.toLowerCase())))
+                .filter(p -> (prezime == null || prezime.isEmpty()
+                || p.getClan().getPrezime().toLowerCase().contains(prezime.toLowerCase())))
+                .collect(Collectors.toList());
+        
+        this.listaPotvrda = listaPretrage;
+
+        fireTableDataChanged();
+
+    }
+
 }

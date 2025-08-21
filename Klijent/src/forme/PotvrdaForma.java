@@ -78,6 +78,14 @@ public class PotvrdaForma extends javax.swing.JDialog {
     public JTextField getTxtDatumIznajmljivanja() {
         return txtDatumIznajmljivanja;
     }
+
+    public JLabel getLblNapomena() {
+        return lblNapomena;
+    }
+
+    public JLabel getLblIgra() {
+        return lblIgra;
+    }
     
 
     /**
@@ -104,9 +112,9 @@ public class PotvrdaForma extends javax.swing.JDialog {
         tblStavke = new javax.swing.JTable();
         btnDodajStavku = new javax.swing.JButton();
         btnObrisiStavku = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        lblIgra = new javax.swing.JLabel();
         cmbIgra = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
+        lblNapomena = new javax.swing.JLabel();
         txtNapomena = new javax.swing.JTextField();
         btnIzmeniPotvrdu = new javax.swing.JButton();
         btnSacuvajPotvrdu = new javax.swing.JButton();
@@ -145,9 +153,9 @@ public class PotvrdaForma extends javax.swing.JDialog {
 
         btnObrisiStavku.setText("Obrisi stavku");
 
-        jLabel5.setText("Drustvena igra");
+        lblIgra.setText("Drustvena igra");
 
-        jLabel6.setText("Napomena");
+        lblNapomena.setText("Napomena");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -159,8 +167,8 @@ public class PotvrdaForma extends javax.swing.JDialog {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addComponent(lblIgra)
+                            .addComponent(lblNapomena))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cmbIgra, 0, 155, Short.MAX_VALUE)
@@ -176,12 +184,12 @@ public class PotvrdaForma extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(lblIgra)
                     .addComponent(cmbIgra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDodajStavku))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
+                    .addComponent(lblNapomena)
                     .addComponent(txtNapomena, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnObrisiStavku))
                 .addGap(18, 18, 18)
@@ -291,12 +299,12 @@ public class PotvrdaForma extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblID;
+    private javax.swing.JLabel lblIgra;
+    private javax.swing.JLabel lblNapomena;
     private javax.swing.JLabel lblRadnik;
     private javax.swing.JTable tblStavke;
     private javax.swing.JTextField txtDatumIznajmljivanja;
@@ -315,5 +323,9 @@ public class PotvrdaForma extends javax.swing.JDialog {
 
     public void dodajOsluskivacDodajPotvrdu(ActionListener actionListener) {
         btnSacuvajPotvrdu.addActionListener(actionListener);
+    }
+
+    public void dodajOsluskivacIzmeniPotvrdu(ActionListener actionListener) {
+        btnIzmeniPotvrdu.addActionListener(actionListener);
     }
 }
