@@ -9,12 +9,14 @@ import forme.ClanForma;
 import forme.ClanGlavnaForma;
 import forme.DrustvenaIgraGlavnaForma;
 import forme.GlavnaForma;
+import forme.PotvrdaForma;
 import forme.PotvrdaGlavnaForma;
 import forme.PrijavaForma;
 import java.util.HashMap;
 import javax.swing.JFrame;
 import kontroleri.DodajClanaKontroler;
 import kontroleri.ClanGlavnaFormaKontroler;
+import kontroleri.DodajPotvrduKontroler;
 import kontroleri.DrustvenaIgraGlavnaFormaKontroler;
 import kontroleri.GlavnaFormaKontroler;
 import kontroleri.IzmeniClanaKontroler;
@@ -37,6 +39,7 @@ public class GlavniKontroler {
     private DodajClanaKontroler dodajClanaKontroler;
     private IzmeniClanaKontroler izmeniClanaKontroler;
     private HashMap<String, Object> mapa;
+    private DodajPotvrduKontroler dodajPotKontroler;
 
     private GlavniKontroler() {
         mapa = new HashMap<>();
@@ -103,6 +106,11 @@ public class GlavniKontroler {
     
     public Object vratiParametre(String s){
         return mapa.get(s);
+    }
+
+    public void otvoriPotvrdaFormuDodaj(PotvrdaGlavnaForma potGlavaForma) {
+        dodajPotKontroler = new DodajPotvrduKontroler(new PotvrdaForma(potGlavaForma, true));
+        dodajPotKontroler.otvoriPotvrdaFormu();
     }
     
 }

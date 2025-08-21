@@ -9,11 +9,14 @@ import domen.StavkaPotvrdeOIznajmljivanju;
 import forme.PotvrdaGlavnaForma;
 import forme.modeli.PotvrdaMT;
 import forme.modeli.StavkaMT;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import komunikacija.Komunikacija;
+import kontroleri.glavni.GlavniKontroler;
 
 /**
  *
@@ -63,6 +66,13 @@ public class PotvrdaGlavnaFormaKontroler {
                     potGlavaForma.getTblStavkeIzabranePotvrde().setModel(stMT);
                 }
                 
+            }
+        });
+        
+        potGlavaForma.dodajOsluskivacDodajNovu(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                GlavniKontroler.getInstanca().otvoriPotvrdaFormuDodaj(potGlavaForma);
             }
         });
         

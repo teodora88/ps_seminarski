@@ -4,6 +4,7 @@
  */
 package forme;
 
+import java.awt.event.ActionListener;
 import javax.swing.JTable;
 
 /**
@@ -186,4 +187,8 @@ public class PotvrdaGlavnaForma extends javax.swing.JFrame {
     private javax.swing.JTable tblStavkeIzabranePotvrde;
     private javax.swing.JTextField txtPretraga;
     // End of variables declaration//GEN-END:variables
+
+    public void dodajOsluskivacDodajNovu(ActionListener actionListener) {
+        btnDodaj.addActionListener(actionListener);
+    }
 }

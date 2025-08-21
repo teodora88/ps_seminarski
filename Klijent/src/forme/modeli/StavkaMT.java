@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
 public class StavkaMT extends AbstractTableModel {
 
     List<StavkaPotvrdeOIznajmljivanju> listaStavki;
-    String[] kolone = {"redniBroj", "napomena", "drustvenaIgra"};
+    String[] kolone = {"redniBroj", "drustvenaIgra", "napomena"};
 
     public StavkaMT(List<StavkaPotvrdeOIznajmljivanju> listaStavki) {
         this.listaStavki = listaStavki;
@@ -49,13 +49,25 @@ public class StavkaMT extends AbstractTableModel {
             case 0:
                 return stavka.getRedniBroj();
             case 1:
-                return stavka.getNapomena();
-            case 2:
                 return stavka.getDrustvenaIgra();
+            case 2:
+                return stavka.getNapomena();
             default:
                 return "N/A";
         }
 
+    }
+
+    public void dodajStavkuUTabelu(StavkaPotvrdeOIznajmljivanju stavka) {
+        Long redniBroj = Long.valueOf(listaStavki.size()+1);
+        stavka.setRedniBroj(redniBroj);
+        listaStavki.add(stavka);
+        fireTableDataChanged();
+    }
+
+    public void obrisiStavkuIzTabele(StavkaPotvrdeOIznajmljivanju stavka) {
+        listaStavki.remove(stavka);
+        fireTableDataChanged();
     }
 
 }
