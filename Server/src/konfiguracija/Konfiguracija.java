@@ -5,7 +5,6 @@
 package konfiguracija;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Properties;
@@ -28,7 +27,6 @@ public class Konfiguracija {
             konfiguracija.load(new FileInputStream("C:\\Users\\T440s\\Documents\\NetBeansProjects\\ps_seminarski\\Server\\config\\config.properties"));
         }  catch (IOException ex) {
             ex.printStackTrace();
-            //Logger.getLogger(Konfiguracija.class.getName()).log(Level.SEVERE, null, ex);
         } 
     }
 

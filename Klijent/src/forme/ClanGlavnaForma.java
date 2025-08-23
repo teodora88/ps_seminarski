@@ -30,14 +30,6 @@ public class ClanGlavnaForma extends javax.swing.JFrame {
         this.tblClanovi = tblClanovi;
     }
 
-    public JButton getBtnObrisi() {
-        return btnObrisi;
-    }
-
-    public void setBtnObrisi(JButton btnObrisi) {
-        this.btnObrisi = btnObrisi;
-    }
-
     public JTextField getTxtPretragaIme() {
         return txtPretragaIme;
     }
@@ -70,16 +62,16 @@ public class ClanGlavnaForma extends javax.swing.JFrame {
         btnPretraga = new javax.swing.JButton();
         btndodajNovog = new javax.swing.JButton();
         btnIzmeni = new javax.swing.JButton();
-        btnObrisi = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtPretragaPrezime = new javax.swing.JTextField();
         btnResetujPretragu = new javax.swing.JButton();
+        btnDetalji = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Rad sa clanovima");
+        setTitle("Rad sa članovima");
 
         tblClanovi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -94,13 +86,11 @@ public class ClanGlavnaForma extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblClanovi);
 
-        btnPretraga.setText("Pretrazi");
+        btnPretraga.setText("Pretraži");
 
         btndodajNovog.setText("Dodaj novog");
 
         btnIzmeni.setText("Izmeni");
-
-        btnObrisi.setText("Obrisi");
 
         jLabel1.setText("Ime");
 
@@ -108,41 +98,36 @@ public class ClanGlavnaForma extends javax.swing.JFrame {
 
         btnResetujPretragu.setText("Resetuj pretragu");
 
+        btnDetalji.setText("Detalji");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
                         .addComponent(btndodajNovog)
-                        .addGap(48, 48, 48)
+                        .addGap(78, 78, 78)
                         .addComponent(btnIzmeni)
-                        .addGap(52, 52, 52)
-                        .addComponent(btnObrisi))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(btnDetalji))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2))
+                            .addGap(24, 24, 24)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtPretragaPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtPretragaIme, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(28, 28, 28)
-                                .addComponent(txtPretragaPrezime, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(btnPretraga))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(btnResetujPretragu)))))
-                .addContainerGap(69, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnResetujPretragu, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(btnPretraga, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +148,7 @@ public class ClanGlavnaForma extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btndodajNovog)
                     .addComponent(btnIzmeni)
-                    .addComponent(btnObrisi))
+                    .addComponent(btnDetalji))
                 .addGap(28, 28, 28))
         );
 
@@ -172,8 +157,8 @@ public class ClanGlavnaForma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDetalji;
     private javax.swing.JButton btnIzmeni;
-    private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnPretraga;
     private javax.swing.JButton btnResetujPretragu;
     private javax.swing.JButton btndodajNovog;
@@ -185,10 +170,6 @@ public class ClanGlavnaForma extends javax.swing.JFrame {
     private javax.swing.JTextField txtPretragaIme;
     private javax.swing.JTextField txtPretragaPrezime;
     // End of variables declaration//GEN-END:variables
-
-    public void dodajOsluskivacObrisi(ActionListener actionListener) {
-        btnObrisi.addActionListener(actionListener);
-    }
 
     public void dodajOsluskivacDodajNovog(ActionListener actionListener) {
         btndodajNovog.addActionListener(actionListener);
@@ -204,5 +185,9 @@ public class ClanGlavnaForma extends javax.swing.JFrame {
 
     public void dodajOsluskivacResetuj(ActionListener actionListener) {
         btnResetujPretragu.addActionListener(actionListener);
+    }
+
+    public void dodajOsluskivacDetalji(ActionListener actionListener) {
+        btnDetalji.addActionListener(actionListener);
     }
 }

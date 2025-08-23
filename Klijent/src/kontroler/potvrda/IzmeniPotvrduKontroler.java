@@ -2,10 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package kontroleri;
+package kontroler.potvrda;
 
 import domen.Clan;
-import domen.DrustvenaIgra;
 import domen.PotvrdaOIznajmljivanju;
 import domen.Radnik;
 import domen.StavkaPotvrdeOIznajmljivanju;
@@ -20,7 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
-import kontroleri.glavni.GlavniKontroler;
+import kontroler.glavni.GlavniKontroler;
 
 /**
  *
@@ -41,11 +40,17 @@ public class IzmeniPotvrduKontroler {
     }
 
     private void pripremiFormu() {
-
-        ulogovaniRadnik();
-
+        
+        potForma.setTitle("Izmeni potvrdu o iznajmljivanju");
         popuniComboClan();
 
+        PotvrdaOIznajmljivanju pot = (PotvrdaOIznajmljivanju) GlavniKontroler.getInstanca().vratiParametre("potvrda");
+        potForma.getTxtID().setText(String.valueOf(pot.getPotvrdaID()));
+        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
+        potForma.getTxtDatumIznajmljivanja().setText(sdf.format(pot.getDatumIznajmljivanja()));
+        potForma.getCmbClan().setSelectedItem(pot.getClan());
+        potForma.getLblRadnik().setText("Radnik koji je kreirao potvrdu: " + pot.getRadnik());
+        
         potForma.getTxtID().setEditable(false);
         potForma.getTxtID().setEnabled(false);
 
@@ -54,9 +59,11 @@ public class IzmeniPotvrduKontroler {
 
         potForma.getCmbClan().setEditable(false);
         potForma.getCmbClan().setEnabled(false);
-
-        potForma.getTxtDatumVracanja().setEditable(true);
-        potForma.getTxtDatumVracanja().setEnabled(true);
+        
+        java.util.Date danas = new java.util.Date();
+        potForma.getTxtDatumVracanja().setText(new SimpleDateFormat("dd.MM.yyyy").format(danas));
+        potForma.getTxtDatumVracanja().setEditable(false);
+        potForma.getTxtDatumVracanja().setEnabled(false);
 
         potForma.getCmbIgra().setVisible(false);
         potForma.getLblIgra().setVisible(false);
@@ -70,20 +77,10 @@ public class IzmeniPotvrduKontroler {
         potForma.getBtnIzmeniPotvrdu().setVisible(true);
         potForma.getBtnSacuvajPotvrdu().setVisible(false);
 
-        PotvrdaOIznajmljivanju pot = (PotvrdaOIznajmljivanju) GlavniKontroler.getInstanca().vratiParametre("potvrda");
-        potForma.getTxtID().setText(String.valueOf(pot.getPotvrdaID()));
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        potForma.getTxtDatumIznajmljivanja().setText(sdf.format(pot.getDatumIznajmljivanja()));
-        potForma.getCmbClan().setSelectedItem(pot.getClan());
-
         pripremiTabeluStavki(pot);
 
     }
 
-    private void ulogovaniRadnik() {
-        Radnik ulogovani = GlavniKontroler.getInstanca().getUlogovani();
-        potForma.getLblRadnik().setText("Radnik: " + ulogovani);
-    }
 
     private void popuniComboClan() {
 
@@ -127,16 +124,26 @@ public class IzmeniPotvrduKontroler {
 
                 try {
                     Komunikacija.getInstanca().izmeniPotvrdu(pot);
-                    JOptionPane.showMessageDialog(potForma, "Sistem je zapamtio potvrdu o iznajmljivanju.", "Uspeh", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(
+                            potForma, 
+                            "Sistem je zapamtio potvrdu o iznajmljivanju.", 
+                            "Uspeh", 
+                            JOptionPane.INFORMATION_MESSAGE);
                     GlavniKontroler.getInstanca().osveziTabeluPotvrda();
                     potForma.dispose();
                 } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(potForma, "Sistem ne moze da zapamti potvrdu o iznajmljivanju.", "Greska", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(
+                            potForma, 
+                            "Sistem ne moze da zapamti potvrdu o iznajmljivanju.", 
+                            "Greska", 
+                            JOptionPane.ERROR_MESSAGE);
                 }
 
             }
         });
 
     }
+
+
 
 }

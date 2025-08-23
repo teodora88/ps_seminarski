@@ -12,10 +12,6 @@ import repozitorijum.Repozitorijum;
  */
 public interface RepozitorijumBaze<T> extends Repozitorijum<T>{
     
-    // ovo je na vezbama DbRepository
-    
-    // skladiste sluzi za CRUD operacije, skladisteBazePodataka sluzi za povezivanje baze
-    
     default public void uspostaviKonekciju() throws Exception{
         Konekcija.getInstanca().getKonekcija();
     }

@@ -43,9 +43,11 @@ public class DrustvenaIgraGlavnaForma extends javax.swing.JFrame {
         txtPretraga = new javax.swing.JTextField();
         btnPretraga = new javax.swing.JButton();
         btnResetujPretragu = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        btnDetalji = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Drusteve igre");
+        setTitle("Rad sa društvenim igrama");
 
         tblDrusteveIgre.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -60,28 +62,39 @@ public class DrustvenaIgraGlavnaForma extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblDrusteveIgre);
 
-        btnPretraga.setText("Pretrazi");
+        btnPretraga.setText("Pretraži");
 
         btnResetujPretragu.setText("Resetuj Pretragu");
+
+        jLabel1.setText("Naziv");
+
+        btnDetalji.setText("Detalji");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(26, 26, 26)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 604, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(txtPretraga, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 26, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnPretraga)
-                        .addGap(86, 86, 86))
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtPretraga, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(111, 111, 111)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnPretraga)
+                                .addGap(86, 86, 86))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnResetujPretragu)
+                                .addGap(63, 63, 63))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnResetujPretragu)
+                        .addComponent(btnDetalji)
                         .addGap(63, 63, 63))))
         );
         layout.setVerticalGroup(
@@ -93,13 +106,17 @@ public class DrustvenaIgraGlavnaForma extends javax.swing.JFrame {
                         .addComponent(btnPretraga)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnResetujPretragu)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtPretraga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtPretraga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(44, 44, 44)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnDetalji)
+                .addGap(13, 13, 13))
         );
 
         pack();
@@ -107,8 +124,10 @@ public class DrustvenaIgraGlavnaForma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDetalji;
     private javax.swing.JButton btnPretraga;
     private javax.swing.JButton btnResetujPretragu;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblDrusteveIgre;
     private javax.swing.JTextField txtPretraga;
@@ -120,5 +139,9 @@ public class DrustvenaIgraGlavnaForma extends javax.swing.JFrame {
 
     public void dodajOsluskivacResetuj(ActionListener actionListener) {
         btnResetujPretragu.addActionListener(actionListener);
+    }
+
+    public void dodajOsluskivacDetalji(ActionListener actionListener) {
+        btnDetalji.addActionListener(actionListener);
     }
 }

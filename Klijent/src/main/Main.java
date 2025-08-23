@@ -4,7 +4,7 @@
  */
 package main;
 
-import kontroleri.glavni.GlavniKontroler;
+import kontroler.glavni.GlavniKontroler;
 
 /**
  *

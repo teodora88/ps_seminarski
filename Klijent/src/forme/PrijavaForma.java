@@ -55,15 +55,15 @@ public class PrijavaForma extends javax.swing.JFrame {
         btnPrijava = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Prijavi se!");
+        setTitle("Prijava na sistem");
 
-        jLabel1.setText("Korisnicko ime:");
+        jLabel1.setText("Korisničko ime:");
 
         jLabel2.setText("Lozinka:");
 
-        txtKorisnickoIme.setText("isimic");
+        txtKorisnickoIme.setText("vkostic");
 
-        txtLozinka.setText("ivana456");
+        txtLozinka.setText("vladimir111");
 
         btnPrijava.setText("Prijavi se");
 

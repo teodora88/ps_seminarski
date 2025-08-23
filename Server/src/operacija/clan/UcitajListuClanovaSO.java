@@ -14,16 +14,16 @@ import operacija.ApstraktnaGenerickaOperacija;
  */
 public class UcitajListuClanovaSO extends ApstraktnaGenerickaOperacija{
     
-    List<Clan> listaClanova; // posto je izvrsiOp void metoda, a mi treba da vratimo listu, stavljamo je u atribute
+    List<Clan> listaClanova; 
 
     @Override
     protected void preduslovi(Object param) throws Exception {
-        // todo
+        
     }
 
     @Override
     protected void izvrsiOperaciju(Object param, String uslov) throws Exception {
-        listaClanova = repo.vratiSve(new Clan(), " JOIN grad ON clan.grad = grad.postanskiBroj");
+        listaClanova = repo.vratiSve(new Clan(), " JOIN grad ON clan.grad = grad.postanskiBroj ORDER BY clan.clanId ASC");
     }
 
     public List<Clan> getListaClanova() {

@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package kontroleri;
+package kontroler.potvrda;
 
 import domen.Clan;
 import domen.PotvrdaOIznajmljivanju;
@@ -18,14 +18,14 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
-import kontroleri.glavni.GlavniKontroler;
+import kontroler.glavni.GlavniKontroler;
 
 /**
  *
  * @author T440s
  */
 public class PotvrdaGlavnaFormaKontroler {
-    
+
     private final PotvrdaGlavnaForma potGlavaForma;
 
     public PotvrdaGlavnaFormaKontroler(PotvrdaGlavnaForma potGlavaForma) {
@@ -39,90 +39,126 @@ public class PotvrdaGlavnaFormaKontroler {
     }
 
     public void pripremiFormu() {
-        
+
         List<PotvrdaOIznajmljivanju> listaPotvrda = Komunikacija.getInstanca().ucitajListuPotvrda();
         PotvrdaMT potvrdaMT = new PotvrdaMT(listaPotvrda);
         potGlavaForma.getTblListaPotvrda().setModel(potvrdaMT);
-        
+
         List<StavkaPotvrdeOIznajmljivanju> listaStavki = new ArrayList<>();
         StavkaMT stavkaMT = new StavkaMT(listaStavki);
         potGlavaForma.getTblStavkeIzabranePotvrde().setModel(stavkaMT);
-        
+
     }
 
     private void dodajOsluskivace() {
-        
+
         potGlavaForma.getTblListaPotvrda().addMouseListener(new MouseAdapter() {
-            
+
             @Override
             public void mouseClicked(MouseEvent e) {
-                
+
                 int red = potGlavaForma.getTblListaPotvrda().getSelectedRow();
-                
-                if(red != -1){
+
+                if (red != -1) {
                     PotvrdaMT potMT = (PotvrdaMT) potGlavaForma.getTblListaPotvrda().getModel();
                     PotvrdaOIznajmljivanju pot = potMT.getListaPotvrda().get(red);
-                    
+
                     List<StavkaPotvrdeOIznajmljivanju> listaStavki = Komunikacija.getInstanca().usitajListuStavki(pot.getPotvrdaID());
                     StavkaMT stMT = new StavkaMT(listaStavki);
                     potGlavaForma.getTblStavkeIzabranePotvrde().setModel(stMT);
                 }
-                
+
             }
         });
-        
+
         potGlavaForma.dodajOsluskivacDodajNovu(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 GlavniKontroler.getInstanca().otvoriPotvrdaFormuDodaj(potGlavaForma);
             }
         });
-        
+
         potGlavaForma.dodajOsluskivacPretrazi(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
                 String ime = potGlavaForma.getTxtPretragaIme().getText().trim();
                 String prezime = potGlavaForma.getTxtPretragaPrezime().getText().trim();
-                
+
                 Clan c = new Clan();
                 c.setIme(ime);
                 c.setPrezime(prezime);
-                
+
                 PotvrdaMT potMT = (PotvrdaMT) potGlavaForma.getTblListaPotvrda().getModel();
-                potMT.prertaziPotvrdu(c);
-                
+                boolean uspesnaPretraga = potMT.prertaziPotvrdu(c);
+
+                if (uspesnaPretraga) {
+                    JOptionPane.showMessageDialog(
+                            potGlavaForma,
+                            "Sistem je našao potvrde po zadatoj vrednosti.",
+                            "Uspeh",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                } else {
+                    JOptionPane.showMessageDialog(
+                            potGlavaForma,
+                            "Sistem ne može da nađe potvrde po zadatoj vrednosti.",
+                            "Greška",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                }
+
             }
-        }); 
-        
+        });
+
         potGlavaForma.dodajOsluskivacResetuj(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 pripremiFormu();
             }
         });
-        
+
         potGlavaForma.dodajOsluskivacIzmeniPotvrdu(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
+
                 int red = potGlavaForma.getTblListaPotvrda().getSelectedRow();
-                
+
                 if (red == -1) {
-                    JOptionPane.showMessageDialog(potGlavaForma, "Sistem ne moze da zapamti potvrdu o iznajmljivanju.", "Greska", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(
+                            potGlavaForma,
+                            "Sistem ne može da učita potvrdu o iznajmljivanju.",
+                            "Greška",
+                            JOptionPane.ERROR_MESSAGE);
                 } else {
                     PotvrdaMT potMT = (PotvrdaMT) potGlavaForma.getTblListaPotvrda().getModel();
-                    PotvrdaOIznajmljivanju pot = potMT.getListaPotvrda().get(red); 
+                    PotvrdaOIznajmljivanju pot = potMT.getListaPotvrda().get(red);
 
-                    GlavniKontroler.getInstanca().dodajParametre("potvrda", pot); // saljemo selektovanog clana kroz hash mapu do glavnog kontrolera
+                    if (pot.getDatumVracanja() != null) {
+                        JOptionPane.showMessageDialog(
+                                potGlavaForma,
+                                "Potvrda već ima datum vraćanja i nije je moguće menjati.",
+                                "Obaveštenje",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                        return; // prekid
+                    }
 
+                    JOptionPane.showMessageDialog(
+                            potGlavaForma,
+                            "Sistem je učitao potvrdu o iznajmljivanju.",
+                            "Uspeh",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+
+                    GlavniKontroler.getInstanca().dodajParametre("potvrda", pot);
                     GlavniKontroler.getInstanca().otvoriPotvrdaFormuZaIzmenu(potGlavaForma);
 
                 }
-                
+
             }
         });
-        
+
     }
-    
+
 }

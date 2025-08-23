@@ -10,8 +10,6 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import niti.ObradaKlijentskihZahteva;
 
 /**
@@ -71,7 +69,6 @@ public class Server extends Thread {
             serverSoket.close();
         } catch (IOException ex) {
             ex.printStackTrace();
-            //Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

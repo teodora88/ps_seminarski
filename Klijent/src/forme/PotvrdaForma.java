@@ -86,6 +86,10 @@ public class PotvrdaForma extends javax.swing.JDialog {
     public JLabel getLblIgra() {
         return lblIgra;
     }
+
+    public JLabel getLblVracanje() {
+        return lblVracanje;
+    }
     
 
     /**
@@ -103,10 +107,8 @@ public class PotvrdaForma extends javax.swing.JDialog {
         txtID = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtDatumIznajmljivanja = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        lblVracanje = new javax.swing.JLabel();
         txtDatumVracanja = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        cmbClan = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblStavke = new javax.swing.JTable();
@@ -116,8 +118,10 @@ public class PotvrdaForma extends javax.swing.JDialog {
         cmbIgra = new javax.swing.JComboBox<>();
         lblNapomena = new javax.swing.JLabel();
         txtNapomena = new javax.swing.JTextField();
-        btnIzmeniPotvrdu = new javax.swing.JButton();
+        cmbClan = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
         btnSacuvajPotvrdu = new javax.swing.JButton();
+        btnIzmeniPotvrdu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Dodaj/izmeni potvrdu");
@@ -130,9 +134,7 @@ public class PotvrdaForma extends javax.swing.JDialog {
 
         jLabel2.setText("Datum iznajmljivanja");
 
-        jLabel3.setText("Datum vracanja");
-
-        jLabel4.setText("Clan");
+        lblVracanje.setText("Datum vraćanja");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Podaci o stavkama potvrde"));
 
@@ -151,9 +153,9 @@ public class PotvrdaForma extends javax.swing.JDialog {
 
         btnDodajStavku.setText("Dodaj stavku");
 
-        btnObrisiStavku.setText("Obrisi stavku");
+        btnObrisiStavku.setText("Obriši stavku");
 
-        lblIgra.setText("Drustvena igra");
+        lblIgra.setText("Društvena igra");
 
         lblNapomena.setText("Napomena");
 
@@ -161,10 +163,12 @@ public class PotvrdaForma extends javax.swing.JDialog {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblIgra)
@@ -173,11 +177,11 @@ public class PotvrdaForma extends javax.swing.JDialog {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cmbIgra, 0, 155, Short.MAX_VALUE)
                             .addComponent(txtNapomena))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnDodajStavku)
-                            .addComponent(btnObrisiStavku))))
-                .addGap(29, 29, 29))
+                            .addComponent(btnObrisiStavku))
+                        .addGap(29, 29, 29))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,6 +201,8 @@ public class PotvrdaForma extends javax.swing.JDialog {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
+        jLabel4.setText("Član");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -204,25 +210,26 @@ public class PotvrdaForma extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblVracanje)
+                            .addComponent(lblID, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtID)
-                            .addComponent(cmbClan, 0, 153, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtID, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                            .addComponent(txtDatumVracanja))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(104, 104, 104)
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(cmbClan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtDatumIznajmljivanja, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtDatumVracanja, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(txtDatumIznajmljivanja, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(23, 23, 23))
         );
         jPanel1Layout.setVerticalGroup(
@@ -236,18 +243,18 @@ public class PotvrdaForma extends javax.swing.JDialog {
                     .addComponent(txtDatumIznajmljivanja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(lblVracanje)
                     .addComponent(txtDatumVracanja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4)
-                    .addComponent(cmbClan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbClan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        btnIzmeniPotvrdu.setText("Izmeni potvrdu");
+        btnSacuvajPotvrdu.setText("Sačuvaj potvrdu");
 
-        btnSacuvajPotvrdu.setText("Sacuvaj potvrdu");
+        btnIzmeniPotvrdu.setText("Izmeni potvrdu");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -265,9 +272,9 @@ public class PotvrdaForma extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnIzmeniPotvrdu)
-                .addGap(41, 41, 41)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnSacuvajPotvrdu)
-                .addGap(51, 51, 51))
+                .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,13 +283,11 @@ public class PotvrdaForma extends javax.swing.JDialog {
                 .addComponent(lblRadnik)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 45, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnIzmeniPotvrdu)
-                    .addComponent(btnSacuvajPotvrdu))
-                .addGap(12, 12, 12))
+                    .addComponent(btnSacuvajPotvrdu)
+                    .addComponent(btnIzmeniPotvrdu))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -297,7 +302,6 @@ public class PotvrdaForma extends javax.swing.JDialog {
     private javax.swing.JComboBox<Clan> cmbClan;
     private javax.swing.JComboBox<DrustvenaIgra> cmbIgra;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -306,6 +310,7 @@ public class PotvrdaForma extends javax.swing.JDialog {
     private javax.swing.JLabel lblIgra;
     private javax.swing.JLabel lblNapomena;
     private javax.swing.JLabel lblRadnik;
+    private javax.swing.JLabel lblVracanje;
     private javax.swing.JTable tblStavke;
     private javax.swing.JTextField txtDatumIznajmljivanja;
     private javax.swing.JTextField txtDatumVracanja;

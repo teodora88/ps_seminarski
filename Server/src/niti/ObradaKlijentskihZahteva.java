@@ -10,16 +10,12 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.List;
 import komunikacija.Odgovor;
-import static komunikacija.Operacija.LOGIN;
 import komunikacija.Posiljalac;
 import komunikacija.Primalac;
 import komunikacija.Zahtev;
 import kontroler.Kontroler;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 /**
  *
  * @author T440s
@@ -119,7 +115,7 @@ public class ObradaKlijentskihZahteva extends Thread {
                     }
                     break;
                     default:
-                        System.out.println("Greska,ta operacija ne posoji!");
+                        System.out.println("Greška,ta operacija ne posoji!");
 
                 }
 

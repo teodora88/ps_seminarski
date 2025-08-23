@@ -99,12 +99,12 @@ public class DrustvenaIgra implements ApstraktniDomenskiObjekat{
         List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
         
         while(rs.next()){
-            Long igraID = rs.getLong("drustvenaigra.igraID");
-            String naziv = rs.getString("drustvenaigra.naziv");
-            String tip = rs.getString("drustvenaigra.tip");
-            String opis = rs.getString("drustvenaigra.opis");
+            Long iID = rs.getLong("drustvenaigra.igraID");
+            String nazivI = rs.getString("drustvenaigra.naziv");
+            String tipI = rs.getString("drustvenaigra.tip");
+            String opisI = rs.getString("drustvenaigra.opis");
             
-            DrustvenaIgra igra = new DrustvenaIgra(igraID, naziv, tip, opis);
+            DrustvenaIgra igra = new DrustvenaIgra(iID, nazivI, tipI, opisI);
             lista.add(igra);
         }
         
@@ -124,11 +124,6 @@ public class DrustvenaIgra implements ApstraktniDomenskiObjekat{
     @Override
     public String vratiPrimarniKljuc() {
         return "drustvenaigra.igraID = " + igraID;
-    }
-
-    @Override
-    public ApstraktniDomenskiObjekat vratiObjekat(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override

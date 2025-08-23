@@ -12,12 +12,8 @@ import domen.Radnik;
 import domen.StavkaPotvrdeOIznajmljivanju;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-
+        
 /**
  *
  * @author T440s
@@ -39,18 +35,12 @@ public class Komunikacija {
         return instanca;
     }
 
-    public void konekcija() {
+    public void konekcija() throws IOException {
 
-        try {
-            soket = new Socket("localhost", 9000);
-            System.out.println("Klijent se povezao");
-            posiljalac = new Posiljalac(soket);
-            primalac = new Primalac(soket);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            System.out.println("Nije moguce uspostaviti vezu sa serverom!");
-            Logger.getLogger(Komunikacija.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        soket = new Socket("localhost", 9000);
+        System.out.println("Klijent se povezao");
+        posiljalac = new Posiljalac(soket);
+        primalac = new Primalac(soket);
 
     }
 
@@ -91,46 +81,46 @@ public class Komunikacija {
     }
 
     public List<Grad> vratiListuGradova() {
-        
+
         List<Grad> listaClanova;
-        
+
         Zahtev zahtev = new Zahtev(Operacija.VRATI_LISTU_GRADOVA, null);
         posiljalac.posalji(zahtev);
-        
+
         Odgovor odgovor = (Odgovor) primalac.primi();
         listaClanova = (List<Grad>) odgovor.getOdgovor();
-        
+
         return listaClanova;
     }
 
     public void dodajClana(Clan c) throws Exception {
-        
+
         Zahtev zahtev = new Zahtev(Operacija.DODAJ_CLANA, c);
         posiljalac.posalji(zahtev);
-        
+
         Odgovor odgovor = (Odgovor) primalac.primi();
 
         if (odgovor.getOdgovor() instanceof Exception) {
             throw (Exception) odgovor.getOdgovor();
         }
-        
+
     }
 
     public void izmeniClana(Clan c) throws Exception {
-        
+
         Zahtev zahtev = new Zahtev(Operacija.IZMENI_CLANA, c);
         posiljalac.posalji(zahtev);
-        
+
         Odgovor odgovor = (Odgovor) primalac.primi();
-        
+
         if (odgovor.getOdgovor() instanceof Exception) {
             throw (Exception) odgovor.getOdgovor();
         }
-        
+
     }
 
     public List<DrustvenaIgra> ucitajListuIgara() {
-        
+
         List<DrustvenaIgra> listaIgara;
         Zahtev zahtev = new Zahtev(Operacija.UCITAJ_LISTU_IGARA, null);
         posiljalac.posalji(zahtev);
@@ -139,11 +129,11 @@ public class Komunikacija {
         listaIgara = (List<DrustvenaIgra>) odgovor.getOdgovor();
 
         return listaIgara;
-        
+
     }
 
     public List<PotvrdaOIznajmljivanju> ucitajListuPotvrda() {
-        
+
         List<PotvrdaOIznajmljivanju> listaPotvrda;
         Zahtev zahtev = new Zahtev(Operacija.UCITAJ_LISTU_POTVRDA, null);
         posiljalac.posalji(zahtev);
@@ -152,47 +142,46 @@ public class Komunikacija {
         listaPotvrda = (List<PotvrdaOIznajmljivanju>) odgovor.getOdgovor();
 
         return listaPotvrda;
-        
+
     }
 
     public List<StavkaPotvrdeOIznajmljivanju> usitajListuStavki(Long potvrdaID) {
-        
+
         List<StavkaPotvrdeOIznajmljivanju> listaStavki;
         Zahtev zahtev = new Zahtev(Operacija.UCITAJ_LISTU_STAVKI, potvrdaID);
         posiljalac.posalji(zahtev);
 
         Odgovor odgovor = (Odgovor) primalac.primi();
-        listaStavki =  (List<StavkaPotvrdeOIznajmljivanju>) odgovor.getOdgovor();
+        listaStavki = (List<StavkaPotvrdeOIznajmljivanju>) odgovor.getOdgovor();
 
         return listaStavki;
-        
+
     }
 
     public void dodajPotvrdu(PotvrdaOIznajmljivanju pot) throws Exception {
-        
+
         Zahtev zahtev = new Zahtev(Operacija.DODAJ_POTVRDU, pot);
         posiljalac.posalji(zahtev);
-        
+
         Odgovor odgovor = (Odgovor) primalac.primi();
 
         if (odgovor.getOdgovor() instanceof Exception) {
             throw (Exception) odgovor.getOdgovor();
         }
-        
+
     }
 
     public void izmeniPotvrdu(PotvrdaOIznajmljivanju pot) throws Exception {
-        
+
         Zahtev zahtev = new Zahtev(Operacija.IZMENI_POTVRDU, pot);
         posiljalac.posalji(zahtev);
-        
+
         Odgovor odgovor = (Odgovor) primalac.primi();
-        
+
         if (odgovor.getOdgovor() instanceof Exception) {
             throw (Exception) odgovor.getOdgovor();
         }
-        
-        
+
     }
 
 }

@@ -90,7 +90,8 @@ public class Clan implements ApstraktniDomenskiObjekat{
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 5;
+        hash = 23 * hash + Objects.hashCode(this.clanID);
         return hash;
     }
 
@@ -106,14 +107,10 @@ public class Clan implements ApstraktniDomenskiObjekat{
             return false;
         }
         final Clan other = (Clan) obj;
-        if (!Objects.equals(this.ime, other.ime)) {
-            return false;
-        }
-        if (!Objects.equals(this.prezime, other.prezime)) {
-            return false;
-        }
-        return Objects.equals(this.datumRodjenja, other.datumRodjenja);
+        return Objects.equals(this.clanID, other.clanID);
     }
+
+    
 
     @Override
     public String vratiNazivTabele() {
@@ -124,15 +121,15 @@ public class Clan implements ApstraktniDomenskiObjekat{
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
         List<ApstraktniDomenskiObjekat> listaClanova = new ArrayList<>();
         while(rs.next()){
-            Long clanID = rs.getLong("clan.clanID");
-            String ime = rs.getString("ime");
-            String prezime = rs.getString("prezime");
+            Long cID = rs.getLong("clan.clanID");
+            String imeC = rs.getString("ime");
+            String prezimeC = rs.getString("prezime");
             Date datRodj = rs.getDate("datumRodjenja");
             Date datUcl = rs.getDate("datumUclanjenja");
             Grad g = new Grad();
             g.setPostanskiBroj(rs.getLong("grad.postanskiBroj"));
             g.setNaziv(rs.getString("grad.naziv"));
-            Clan c = new Clan(clanID, ime, prezime, datRodj, datUcl, g);
+            Clan c = new Clan(cID, imeC, prezimeC, datRodj, datUcl, g);
             listaClanova.add(c);
         }
         return listaClanova;
@@ -154,11 +151,7 @@ public class Clan implements ApstraktniDomenskiObjekat{
         return "clan.clanID = " + clanID;
     }
 
-    @Override
-    public ApstraktniDomenskiObjekat vratiObjekat(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    
     @Override
     public String vratiVrednostZaIzmenu() {
         return "ime = '" + ime + "', prezime = '" + prezime + "', datumRodjenja = '" + datumRodjenja +

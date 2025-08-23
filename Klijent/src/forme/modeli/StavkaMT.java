@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
 public class StavkaMT extends AbstractTableModel {
 
     List<StavkaPotvrdeOIznajmljivanju> listaStavki;
-    String[] kolone = {"redniBroj", "drustvenaIgra", "napomena"};
+    String[] kolone = {"Redni broj", "Društvena igra", "Napomena"};
 
     public StavkaMT(List<StavkaPotvrdeOIznajmljivanju> listaStavki) {
         this.listaStavki = listaStavki;

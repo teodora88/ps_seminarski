@@ -98,6 +98,10 @@ public class ClanForma extends javax.swing.JDialog {
     public void setBtnSacuvajNovogClana(JButton btnSacuvajNovogClana) {
         this.btnSacuvajNovogClana = btnSacuvajNovogClana;
     }
+
+    public JButton getBtnObrisi() {
+        return btnObrisi;
+    }
     
     
 
@@ -124,11 +128,10 @@ public class ClanForma extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         cmbGrad = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         btnSacuvajIzmene = new javax.swing.JButton();
+        btnObrisi = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Dodaj/izmeni clana");
 
         lblID.setText("ID");
 
@@ -136,21 +139,20 @@ public class ClanForma extends javax.swing.JDialog {
 
         jLabel3.setText("Prezime");
 
-        jLabel4.setText("Datum rodjenja");
+        jLabel4.setText("Datum rođenja");
 
-        jLabel5.setText("Datum uclanjenja");
+        jLabel5.setText("Datum učlanjenja");
 
-        btnSacuvajNovogClana.setText("Sacuvaj novog clana");
+        btnSacuvajNovogClana.setText("Sačuvaj člana");
 
         jLabel6.setText("Grad");
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
-        jLabel1.setText("Format datuma je: dd.MM.yyyy");
+        jLabel1.setText("(Format datuma je: dd.MM.yyyy)");
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
-        jLabel7.setText("Format datuma je: dd.MM.yyyy");
+        btnSacuvajIzmene.setText("Sačuvaj izmene");
 
-        btnSacuvajIzmene.setText("Sacuvaj Izmene");
+        btnObrisi.setText("Obriši");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,31 +161,35 @@ public class ClanForma extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(77, 77, 77))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblID)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGap(48, 48, 48)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtID)
-                            .addComponent(txtIme)
-                            .addComponent(txtPrezime)
-                            .addComponent(txtDatumRodjenja)
-                            .addComponent(txtDatumUclanjenja)
-                            .addComponent(cmbGrad, 0, 162, Short.MAX_VALUE)))
-                    .addComponent(jLabel7))
-                .addContainerGap(52, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(61, Short.MAX_VALUE)
-                .addComponent(btnSacuvajNovogClana)
-                .addGap(18, 18, 18)
-                .addComponent(btnSacuvajIzmene)
-                .addGap(73, 73, 73))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnSacuvajNovogClana)
+                                .addGap(11, 11, 11)
+                                .addComponent(btnObrisi)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSacuvajIzmene))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblID)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(48, 48, 48)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtID)
+                                    .addComponent(txtIme)
+                                    .addComponent(txtPrezime)
+                                    .addComponent(txtDatumRodjenja)
+                                    .addComponent(txtDatumUclanjenja)
+                                    .addComponent(cmbGrad, 0, 162, Short.MAX_VALUE))))
+                        .addContainerGap(52, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,16 +216,15 @@ public class ClanForma extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtDatumUclanjenja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(cmbGrad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSacuvajNovogClana)
-                    .addComponent(btnSacuvajIzmene))
+                    .addComponent(btnSacuvajIzmene)
+                    .addComponent(btnObrisi))
                 .addGap(19, 19, 19))
         );
 
@@ -228,6 +233,7 @@ public class ClanForma extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnObrisi;
     private javax.swing.JButton btnSacuvajIzmene;
     private javax.swing.JButton btnSacuvajNovogClana;
     private javax.swing.JComboBox<Grad> cmbGrad;
@@ -237,7 +243,6 @@ public class ClanForma extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel lblID;
     private javax.swing.JTextField txtDatumRodjenja;
     private javax.swing.JTextField txtDatumUclanjenja;
@@ -252,5 +257,9 @@ public class ClanForma extends javax.swing.JDialog {
 
     public void dodajOsluskivacSacuvajIzmene(ActionListener actionListener) {
         btnSacuvajIzmene.addActionListener(actionListener);
+    }
+
+    public void dodajOsluskivacObrisi(ActionListener actionListener) {
+        btnObrisi.addActionListener(actionListener);
     }
 }

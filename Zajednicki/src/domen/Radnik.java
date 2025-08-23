@@ -119,13 +119,13 @@ public class Radnik implements ApstraktniDomenskiObjekat{
         List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
         
         while(rs.next()){
-            Long radnikID = rs.getLong("radnik.radnikID");
-            String ime = rs.getString("radnik.ime");
-            String prezime = rs.getString("radnik.prezime");
-            String korisnickoIme = rs.getString("radnik.korisnickoIme");
-            String lozinka = rs.getString("radnik.lozinka");
+            Long rID = rs.getLong("radnik.radnikID");
+            String imeR = rs.getString("radnik.ime");
+            String prezimeR = rs.getString("radnik.prezime");
+            String korisnickoImeR = rs.getString("radnik.korisnickoIme");
+            String lozinkaR = rs.getString("radnik.lozinka");
             
-            Radnik r = new Radnik(radnikID, ime, prezime, korisnickoIme, lozinka);
+            Radnik r = new Radnik(rID, imeR, prezimeR, korisnickoImeR, lozinkaR);
             lista.add(r);
         }
         
@@ -145,11 +145,6 @@ public class Radnik implements ApstraktniDomenskiObjekat{
     @Override
     public String vratiPrimarniKljuc() {
         return "radnik.radnikID = " + radnikID;
-    }
-
-    @Override
-    public ApstraktniDomenskiObjekat vratiObjekat(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override

@@ -42,11 +42,11 @@ public class ServerskaForma extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Serverska forma");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pokretanje i gasenje servera"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pokretanje i gašenje servera"));
 
         jLabel1.setText("Status: ");
 
-        lblStatus.setText("Server je ugasen!");
+        lblStatus.setText("Server je ugašen!");
 
         btnPokreni.setText("Pokreni");
         btnPokreni.addActionListener(new java.awt.event.ActionListener() {
@@ -128,6 +128,8 @@ public class ServerskaForma extends javax.swing.JFrame {
                 .addGap(16, 16, 16))
         );
 
+        jPanel1.getAccessibleContext().setAccessibleName("Pokretanje i gašenje servera");
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -158,7 +160,7 @@ public class ServerskaForma extends javax.swing.JFrame {
             serverNit.zaustaviServer();
             btnPokreni.setEnabled(true);
             btnUgasi.setEnabled(false);
-            lblStatus.setText("Server je ugasen!");
+            lblStatus.setText("Server je ugašen!");
         }
     }//GEN-LAST:event_btnUgasiActionPerformed
 

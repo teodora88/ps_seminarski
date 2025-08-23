@@ -22,7 +22,7 @@ public class UcitajListuIgaraSO extends ApstraktnaGenerickaOperacija{
 
     @Override
     protected void preduslovi(Object param) throws Exception {
-        // todo
+        
     }
 
     @Override

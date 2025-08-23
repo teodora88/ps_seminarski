@@ -22,14 +22,15 @@ public class UcitajListuPotvrdaSO extends ApstraktnaGenerickaOperacija {
 
     @Override
     protected void preduslovi(Object param) throws Exception {
-        //todo
+        
     }
 
     @Override
     protected void izvrsiOperaciju(Object param, String kljuc) throws Exception {
         listaPotvrda = repo.vratiSve(new PotvrdaOIznajmljivanju(),
                 " JOIN clan ON potvrdaoiznajmljivanju.clan = clan.clanID "
-                + " JOIN radnik ON potvrdaoiznajmljivanju.radnik = radnik.radnikID ");
+                + " JOIN radnik ON potvrdaoiznajmljivanju.radnik = radnik.radnikID "
+                + " ORDER BY potvrdaID ASC");
     }
 
 }

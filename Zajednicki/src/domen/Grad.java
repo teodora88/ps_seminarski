@@ -79,10 +79,10 @@ public class Grad implements ApstraktniDomenskiObjekat{
         List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
         
         while(rs.next()){
-            Long postanskiBroj = rs.getLong("grad.postanskiBroj");
-            String naziv = rs.getString("grad.naziv");
+            Long pib = rs.getLong("grad.postanskiBroj");
+            String nazivG = rs.getString("grad.naziv");
             
-            Grad g = new Grad(postanskiBroj, naziv);
+            Grad g = new Grad(pib, nazivG);
             lista.add(g);
         }
         
@@ -102,11 +102,6 @@ public class Grad implements ApstraktniDomenskiObjekat{
     @Override
     public String vratiPrimarniKljuc() {
         return "grad.postanskiBroj = " + postanskiBroj;
-    }
-
-    @Override
-    public ApstraktniDomenskiObjekat vratiObjekat(ResultSet rs) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override

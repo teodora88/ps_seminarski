@@ -15,8 +15,6 @@ import konfiguracija.Konfiguracija;
  */
 public class Konekcija {
     
-    // na vezbama se zove DbConnectionFactory
-
     private static Konekcija instanca;
     private Connection konekcija;
 

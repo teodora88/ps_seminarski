@@ -16,10 +16,14 @@ import javax.swing.table.AbstractTableModel;
 public class IgraMT extends AbstractTableModel {
 
     List<DrustvenaIgra> listaIgara;
-    String[] kolone = {"igraID", "naziv", "tip", "opis"};
+    String[] kolone = {"ID", "Naziv", "Tip", "Opis"};
 
     public IgraMT(List<DrustvenaIgra> listaIgara) {
         this.listaIgara = listaIgara;
+    }
+
+    public List<DrustvenaIgra> getListaIgara() {
+        return listaIgara;
     }
 
     @Override
@@ -57,15 +61,17 @@ public class IgraMT extends AbstractTableModel {
 
     }
     
-    public void pretrazi(String naziv){
+    public boolean pretrazi(String naziv){
         
         List<DrustvenaIgra> listaPretrage = listaIgara.stream()
                 .filter(i -> (naziv == null || naziv.isEmpty() ||
-                          i.getNaziv().toLowerCase().contains(naziv.toLowerCase())))
+                          i.getNaziv().equalsIgnoreCase(naziv)))
             .collect(Collectors.toList());
         
         listaIgara = listaPretrage;
         fireTableDataChanged();
+        
+        return !listaPretrage.isEmpty();
         
     }
 

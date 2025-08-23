@@ -76,10 +76,13 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Pokretanje i gasenje servera"/>
+            <TitledBorder title="Pokretanje i ga&#x161;enje servera"/>
           </Border>
         </Property>
       </Properties>
+      <AccessibilityProperties>
+        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Pokretanje i ga&#x161;enje servera"/>
+      </AccessibilityProperties>
 
       <Layout>
         <DimensionLayout dim="0">
@@ -120,7 +123,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="lblStatus">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Server je ugasen!"/>
+            <Property name="text" type="java.lang.String" value="Server je uga&#x161;en!"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="btnPokreni">

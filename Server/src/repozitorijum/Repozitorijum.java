@@ -11,12 +11,8 @@ import java.util.List;
  * @author T440s
  */
 public interface Repozitorijum<T> {
-    // na vezbama je ovo Repository 
     
-    // ispisujemo CRUD operacije
-    
-    List<T> vratiSve(); // vracaju se svi objekti iz liste
-    List<T> vratiSve(T param, String uslov) throws Exception; // kada radimo pretragu - vracamo objekte sa uslovom
+    List<T> vratiSve(T param, String uslov) throws Exception;
     void dodaj(T param) throws Exception;
     void izmeni(T param) throws Exception;
     void obrisi(T param) throws Exception;

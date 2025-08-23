@@ -40,7 +40,7 @@ public class KonfiguracijaPortaForma extends javax.swing.JDialog {
 
         jLabel1.setText("Port");
 
-        btnSacuvaj.setText("Sacuvaj");
+        btnSacuvaj.setText("Sačuvaj");
         btnSacuvaj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSacuvajActionPerformed(evt);
@@ -86,7 +86,11 @@ public class KonfiguracijaPortaForma extends javax.swing.JDialog {
             port = Integer.parseInt(txtPort.getText());
         } catch (NumberFormatException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Port nije u dobrom formatu!", "GRESKA", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    this, 
+                    "Port nije u dobrom formatu!", 
+                    "Greška", 
+                    JOptionPane.ERROR_MESSAGE);
             return; // prekidamo metodu 
         }
 
@@ -94,10 +98,18 @@ public class KonfiguracijaPortaForma extends javax.swing.JDialog {
         if (port >= 0 && port <= 65535) {
             Konfiguracija.getInstanca().setProperty("port", port + "");
             Konfiguracija.getInstanca().sacuvajIzmene();
-            JOptionPane.showMessageDialog(this, "Uspesno postavljen port!", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    this, 
+                    "Uspešno postavljen port!", 
+                    "Uspeh", 
+                    JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
         } else {
-            JOptionPane.showMessageDialog(this, "Port nije u odgovarajucem opsegu!", "GRESKA", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    this, 
+                    "Port nije u odgovarajućem opsegu!", 
+                    "Greška", 
+                    JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_btnSacuvajActionPerformed

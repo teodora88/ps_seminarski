@@ -69,13 +69,13 @@ public class GlavnaForma extends javax.swing.JFrame {
         lblUlogovani = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Glavna forma");
+        setTitle("Sistem za iznajmljivanje društvenih igara");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Izaberite akciju!"));
 
-        btnClan.setText("Clan");
+        btnClan.setText("Član");
 
-        btnDrutvenaIgra.setText("Drustvena igra");
+        btnDrutvenaIgra.setText("Društvena igra");
 
         btnPotvrda.setText("Potvrda o iznajmljivanju");
 

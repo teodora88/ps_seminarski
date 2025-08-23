@@ -42,21 +42,15 @@ public class Kontroler {
     }
 
     public Radnik prijava(Radnik r) throws Exception {
-        
         PrijavaSO operacija = new PrijavaSO();
         operacija.izvrsi(r, null);
-        System.out.println("klasa kontroler" + operacija.getRadnik());
         return operacija.getRadnik();
-        
     }
 
     public List<Clan> ucitajListuClanova() throws Exception {
-        
         UcitajListuClanovaSO operacija = new UcitajListuClanovaSO();
         operacija.izvrsi(null, null);
-        System.out.println("klasa kontroler" + operacija.getListaClanova());
         return operacija.getListaClanova();
-        
     }
 
     public void obrisiClana(Clan c) throws Exception {
@@ -65,12 +59,9 @@ public class Kontroler {
     }
 
     public List<Grad> ucitajListuGradova() throws Exception {
-        
         UcitajListuGradovaSO operacija = new UcitajListuGradovaSO();
         operacija.izvrsi(null, null);
-        System.out.println("klasa kontroler: " + operacija.getListaGradova());
         return operacija.getListaGradova();
-        
     }
 
     public void dodajClana(Clan c) throws Exception {
@@ -84,21 +75,15 @@ public class Kontroler {
     }
 
     public List<DrustvenaIgra> ucitajListuIgara() throws Exception {
-        
         UcitajListuIgaraSO operacija = new UcitajListuIgaraSO();
         operacija.izvrsi(null, null);
-        System.out.println("klasa kontroler" + operacija.getListaIgara());
         return operacija.getListaIgara();
-        
     }
 
     public List<PotvrdaOIznajmljivanju> ucitajListuPotvrda() throws Exception {
-        
         UcitajListuPotvrdaSO operacija = new UcitajListuPotvrdaSO();
         operacija.izvrsi(null, null);
-        System.out.println("klasa kontroler " + operacija.getListaPotvrda());
         return operacija.getListaPotvrda();
-        
     }
 
     public List<StavkaPotvrdeOIznajmljivanju> ucitajListuStavki(Long potvrdaID) throws Exception {

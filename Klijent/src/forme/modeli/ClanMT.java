@@ -6,7 +6,6 @@ package forme.modeli;
 
 import domen.Clan;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.table.AbstractTableModel;
@@ -18,7 +17,7 @@ import javax.swing.table.AbstractTableModel;
 public class ClanMT extends AbstractTableModel {
 
     List<Clan> listaClanova;
-    String[] kolone = {"clanID", "ime", "prezime", "datumRodjenja", "datumUclanjenja", "grad"};
+    String[] kolone = {"ID", "Ime", "Prezime", "Datum rođenja", "Datum učlanjenja", "Grad"};
 
     public ClanMT(List<Clan> listaClanova) {
         this.listaClanova = listaClanova;
@@ -67,14 +66,17 @@ public class ClanMT extends AbstractTableModel {
         return listaClanova;
     }
 
-    public void pretrazi(String ime, String prezime) {
+    public boolean pretrazi(String ime, String prezime) {
         
         List<Clan> listaPretrage = listaClanova.stream()
-                .filter(c->(ime == null || ime.isEmpty() || c.getIme().toLowerCase().contains(ime.toLowerCase())))
-                .filter(c->(prezime == null || prezime.isEmpty() || c.getPrezime().toLowerCase().contains(prezime.toLowerCase())))
+                .filter(c->(ime == null || ime.isEmpty() || c.getIme().equalsIgnoreCase(ime)))
+                .filter(c->(prezime == null || prezime.isEmpty() || c.getPrezime().equalsIgnoreCase(prezime)))
                 .collect(Collectors.toList());
+        
         listaClanova = listaPretrage;
         fireTableDataChanged();
+        
+        return !listaPretrage.isEmpty();
         
     }
 

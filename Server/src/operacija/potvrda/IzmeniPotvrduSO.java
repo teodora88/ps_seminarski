@@ -16,7 +16,7 @@ public class IzmeniPotvrduSO extends ApstraktnaGenerickaOperacija{
     @Override
     protected void preduslovi(Object param) throws Exception {
         if(param == null || !(param instanceof PotvrdaOIznajmljivanju)){
-            throw new Exception("Sistem ne moze da kreira novog clana.");
+            throw new Exception("Sistem ne moze da zapamti potvrdu o iznajmljivnaju.");
         }
     }
 

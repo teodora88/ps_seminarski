@@ -50,7 +50,7 @@ public class KonfiguracijaBazeForma extends javax.swing.JDialog {
 
         jLabel3.setText("Password");
 
-        btnSacuvaj.setText("Sacuvaj");
+        btnSacuvaj.setText("Sačuvaj");
         btnSacuvaj.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSacuvajActionPerformed(evt);
@@ -116,12 +116,20 @@ public class KonfiguracijaBazeForma extends javax.swing.JDialog {
 
             Konfiguracija.getInstanca().sacuvajIzmene();
 
-            JOptionPane.showMessageDialog(this, "Parametri su sacuvani!", "USPEH", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    this, 
+                    "Parametri su sačuvani!", 
+                    "Uspeh", 
+                    JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
             
         } catch (Exception e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Greska, parametri nisu sacuvani!", "GRESKA", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(
+                    this, 
+                    "Parametri nisu sačuvani!", 
+                    "Greška", 
+                    JOptionPane.ERROR_MESSAGE);
         }
 
 

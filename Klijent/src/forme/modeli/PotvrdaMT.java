@@ -17,7 +17,7 @@ import javax.swing.table.AbstractTableModel;
 public class PotvrdaMT extends AbstractTableModel {
 
     List<PotvrdaOIznajmljivanju> listaPotvrda;
-    String[] kolone = {"potvrdaID", "datumIznajmljivanja", "datumVracanja", "clan", "radnik"};
+    String[] kolone = {"ID", "Član", "Radnik", "Datum iznajmljivanja", "Datum vraćanja"};
 
     public PotvrdaMT(List<PotvrdaOIznajmljivanju> listaPotvrda) {
         this.listaPotvrda = listaPotvrda;
@@ -51,34 +51,36 @@ public class PotvrdaMT extends AbstractTableModel {
             case 0:
                 return potvrda.getPotvrdaID();
             case 1:
-                return potvrda.getDatumIznajmljivanja();
-            case 2:
-                return potvrda.getDatumVracanja();
-            case 3:
                 return potvrda.getClan();
-            case 4:
+            case 2:
                 return potvrda.getRadnik();
+            case 3:
+                return potvrda.getDatumIznajmljivanja();
+            case 4:
+                return potvrda.getDatumVracanja();
             default:
                 return "N/A";
         }
 
     }
 
-    public void prertaziPotvrdu(Clan c) {
+    public boolean prertaziPotvrdu(Clan c) {
 
         String ime = c.getIme();
         String prezime = c.getPrezime();
 
         List<PotvrdaOIznajmljivanju> listaPretrage = listaPotvrda.stream()
                 .filter(p -> (ime == null || ime.isEmpty()
-                || p.getClan().getIme().toLowerCase().contains(ime.toLowerCase())))
+                || p.getClan().getIme().equalsIgnoreCase(ime)))
                 .filter(p -> (prezime == null || prezime.isEmpty()
-                || p.getClan().getPrezime().toLowerCase().contains(prezime.toLowerCase())))
+                || p.getClan().getPrezime().equalsIgnoreCase(prezime)))
                 .collect(Collectors.toList());
-        
+
         this.listaPotvrda = listaPretrage;
 
         fireTableDataChanged();
+
+        return !listaPretrage.isEmpty();
 
     }
 

@@ -16,17 +16,28 @@ public class IzmeniClanaSO extends ApstraktnaGenerickaOperacija{
     @Override
     protected void preduslovi(Object param) throws Exception {
         
-        if(param == null || !(param instanceof Clan)){
-            throw new Exception("Sistem ne moze da izmeni podatke o clanu.");
+        if (param == null || !(param instanceof Clan)) {
+            throw new Exception("Sistem ne može da zapamti člana.");
         }
-        
+
         Clan c = (Clan) param;
-        
-        if(c.getIme() == null || c.getIme().isEmpty()){
-            throw new Exception("Sistem ne moze da izmeni podatke o clanu.");
+
+        if (c.getIme() == null || c.getIme().isEmpty()) {
+            throw new Exception("Sistem ne može da zapamti člana. Ime člana je obavezno.");
+        }
+
+        if (c.getPrezime() == null || c.getPrezime().isEmpty()) {
+            throw new Exception("Sistem ne može da zapamti člana. Prezime člana je obavezno.");
+        }
+
+        if (c.getDatumRodjenja() == null) {
+            throw new Exception("Sistem ne može da zapamti člana. Datum rođenja je obavezan.");
+        }
+
+        if (c.getDatumUclanjenja() == null) {
+            throw new Exception("Sistem ne može da zapamti člana. Datum učlanjenja je obavezan.");
         }
         
-        // todo 
     }
 
     @Override
