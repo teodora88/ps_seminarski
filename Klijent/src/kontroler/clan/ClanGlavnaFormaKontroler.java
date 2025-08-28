@@ -95,7 +95,7 @@ public class ClanGlavnaFormaKontroler {
             }
 
             private void pretraga(ActionEvent e) throws Exception {
-                
+
                 String ime = clanGlavnaForma.getTxtPretragaIme().getText().trim();
                 String prezime = clanGlavnaForma.getTxtPretragaPrezime().getText().trim();
 
@@ -129,8 +129,7 @@ public class ClanGlavnaFormaKontroler {
         }
         );
 
-        clanGlavnaForma.dodajOsluskivacDetalji(
-                new ActionListener() {
+        clanGlavnaForma.dodajOsluskivacDetalji(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e
             ) {

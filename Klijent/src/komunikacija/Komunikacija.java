@@ -211,4 +211,17 @@ public class Komunikacija {
         return (List<DrustvenaIgra>) odgovor.getOdgovor();
     }
 
+    public List<PotvrdaOIznajmljivanju> nadjiPotvrde(Clan c) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.NADJI_POTVRDE, c);
+        posiljalac.posalji(zahtev);
+
+        Odgovor odgovor = (Odgovor) primalac.primi();
+
+        if (odgovor.getOdgovor() instanceof Exception) {
+            throw (Exception) odgovor.getOdgovor();
+        }
+
+        return (List<PotvrdaOIznajmljivanju>) odgovor.getOdgovor();
+    }
+
 }

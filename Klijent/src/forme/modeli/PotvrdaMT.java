@@ -84,4 +84,11 @@ public class PotvrdaMT extends AbstractTableModel {
 
     }
 
+    public void prikaziNadjenePotvrde(List<PotvrdaOIznajmljivanju> nadjenePotvrde) {
+        this.listaPotvrda = nadjenePotvrde;
+        fireTableDataChanged();
+    }
+
+    
+
 }

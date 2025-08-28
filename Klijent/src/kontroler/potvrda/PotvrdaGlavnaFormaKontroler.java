@@ -16,6 +16,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
 import kontroler.glavni.GlavniKontroler;
@@ -81,18 +83,28 @@ public class PotvrdaGlavnaFormaKontroler {
         potGlavaForma.dodajOsluskivacPretrazi(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    pretraga(e);
+                } catch (Exception ex) {
+                    Logger.getLogger(PotvrdaGlavnaFormaKontroler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
 
+            private void pretraga(ActionEvent e) throws Exception {
+                
                 String ime = potGlavaForma.getTxtPretragaIme().getText().trim();
                 String prezime = potGlavaForma.getTxtPretragaPrezime().getText().trim();
 
                 Clan c = new Clan();
                 c.setIme(ime);
                 c.setPrezime(prezime);
+                
+                List<PotvrdaOIznajmljivanju> nadjenePotvrde = Komunikacija.getInstanca().nadjiPotvrde(c);
 
                 PotvrdaMT potMT = (PotvrdaMT) potGlavaForma.getTblListaPotvrda().getModel();
-                boolean uspesnaPretraga = potMT.prertaziPotvrdu(c);
+                potMT.prikaziNadjenePotvrde(nadjenePotvrde);
 
-                if (uspesnaPretraga) {
+                if (!nadjenePotvrde.isEmpty()) {
                     JOptionPane.showMessageDialog(
                             potGlavaForma,
                             "Sistem je našao potvrde po zadatoj vrednosti.",
@@ -109,6 +121,7 @@ public class PotvrdaGlavnaFormaKontroler {
                 }
 
             }
+
         });
 
         potGlavaForma.dodajOsluskivacResetuj(new ActionListener() {

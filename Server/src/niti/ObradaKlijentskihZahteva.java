@@ -109,6 +109,15 @@ public class ObradaKlijentskihZahteva extends Thread {
                         List<PotvrdaOIznajmljivanju> listaPotvrda = Kontroler.getInstanca().ucitajListuPotvrda();
                         odgovor.setOdgovor(listaPotvrda);
                         break;
+                    case NADJI_POTVRDE:
+                        try {
+                        Clan c = (Clan) zahtev.getParametar();
+                        List<PotvrdaOIznajmljivanju> nadjenePotvrde = Kontroler.getInstanca().nadjiPotvrde(c);
+                        odgovor.setOdgovor(nadjenePotvrde);
+                    } catch (Exception e) {
+                        odgovor.setOdgovor(e);
+                    }
+                    break;
                     case UCITAJ_LISTU_STAVKI:
                         List<StavkaPotvrdeOIznajmljivanju> listaStavki = Kontroler.getInstanca().ucitajListuStavki((Long) zahtev.getParametar());
                         odgovor.setOdgovor(listaStavki);

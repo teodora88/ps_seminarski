@@ -24,6 +24,7 @@ import operacija.potvrda.DodajPotvrduSO;
 import operacija.potvrda.IzmeniPotvrduSO;
 import operacija.potvrda.UcitajListuPotvrdaSO;
 import operacija.potvrda.UcitajListuStavkiSO;
+import operacija.potvrda.NadjiPotvrdeSO;
 
 /**
  *
@@ -114,6 +115,12 @@ public class Kontroler {
         NadjiDrustveneIgreSO operacija = new NadjiDrustveneIgreSO();
         operacija.izvrsi(di, null);
         return operacija.getListaIgara();
+    }
+
+    public List<PotvrdaOIznajmljivanju> nadjiPotvrde(Clan c) throws Exception {
+        NadjiPotvrdeSO operacija = new NadjiPotvrdeSO();
+        operacija.izvrsi(c, null);
+        return operacija.getListaPotvrda();
     }
     
 }
