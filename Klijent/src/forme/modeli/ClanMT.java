@@ -53,7 +53,7 @@ public class ClanMT extends AbstractTableModel {
             case 3:
                 return c.getDatumRodjenja() != null ? new SimpleDateFormat("dd.MM.yyyy").format(c.getDatumRodjenja()) : "";
             case 4:
-                return c.getDatumUclanjenja()!= null ? new SimpleDateFormat("dd.MM.yyyy").format(c.getDatumUclanjenja()) : "";
+                return c.getDatumUclanjenja() != null ? new SimpleDateFormat("dd.MM.yyyy").format(c.getDatumUclanjenja()) : "";
             case 5:
                 return c.getGrad().getNaziv();
             default:
@@ -67,17 +67,22 @@ public class ClanMT extends AbstractTableModel {
     }
 
     public boolean pretrazi(String ime, String prezime) {
-        
+
         List<Clan> listaPretrage = listaClanova.stream()
-                .filter(c->(ime == null || ime.isEmpty() || c.getIme().equalsIgnoreCase(ime)))
-                .filter(c->(prezime == null || prezime.isEmpty() || c.getPrezime().equalsIgnoreCase(prezime)))
+                .filter(c -> (ime == null || ime.isEmpty() || c.getIme().equalsIgnoreCase(ime)))
+                .filter(c -> (prezime == null || prezime.isEmpty() || c.getPrezime().equalsIgnoreCase(prezime)))
                 .collect(Collectors.toList());
-        
+
         listaClanova = listaPretrage;
         fireTableDataChanged();
-        
+
         return !listaPretrage.isEmpty();
-        
+
+    }
+
+    public void prikaziNadjeneClanove(List<Clan> nadjeniClanovi) {
+        this.listaClanova = nadjeniClanovi;
+        fireTableDataChanged();
     }
 
 }

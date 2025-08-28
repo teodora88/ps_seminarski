@@ -75,4 +75,9 @@ public class IgraMT extends AbstractTableModel {
         
     }
 
+    public void prikaziNadjeneIgre(List<DrustvenaIgra> nadjeneIgre) {
+        this.listaIgara = nadjeneIgre;
+        fireTableDataChanged();
+    }
+
 }

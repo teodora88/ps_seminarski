@@ -15,7 +15,6 @@ import komunikacija.Primalac;
 import komunikacija.Zahtev;
 import kontroler.Kontroler;
 
-
 /**
  *
  * @author T440s
@@ -75,6 +74,15 @@ public class ObradaKlijentskihZahteva extends Thread {
                         odgovor.setOdgovor(e);
                     }
                     break;
+                    case NADJI_CLANOVE:
+                        try {
+                        Clan c = (Clan) zahtev.getParametar();
+                        List<Clan> nadjeniClanovi = Kontroler.getInstanca().nadjiClanove(c);
+                        odgovor.setOdgovor(nadjeniClanovi);
+                    } catch (Exception e) {
+                        odgovor.setOdgovor(e);
+                    }
+                    break;
                     case IZMENI_CLANA:
                         try {
                         Clan c = (Clan) zahtev.getParametar();
@@ -88,6 +96,15 @@ public class ObradaKlijentskihZahteva extends Thread {
                         List<DrustvenaIgra> listaIgara = Kontroler.getInstanca().ucitajListuIgara();
                         odgovor.setOdgovor(listaIgara);
                         break;
+                    case NADJI_IGRE:
+                        try {
+                        DrustvenaIgra di = (DrustvenaIgra) zahtev.getParametar();
+                        List<DrustvenaIgra> nadjeneIgre = Kontroler.getInstanca().nadjiDrustveneIgre(di);
+                        odgovor.setOdgovor(nadjeneIgre);
+                    } catch (Exception e) {
+                        odgovor.setOdgovor(e);
+                    }
+                    break;
                     case UCITAJ_LISTU_POTVRDA:
                         List<PotvrdaOIznajmljivanju> listaPotvrda = Kontroler.getInstanca().ucitajListuPotvrda();
                         odgovor.setOdgovor(listaPotvrda);

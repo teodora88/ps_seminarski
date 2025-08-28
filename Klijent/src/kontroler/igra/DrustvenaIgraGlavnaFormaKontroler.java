@@ -10,6 +10,8 @@ import forme.modeli.IgraMT;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
 import kontroler.glavni.GlavniKontroler;
@@ -45,13 +47,25 @@ public class DrustvenaIgraGlavnaFormaKontroler {
         diGlavnaForma.dodajOsluskivacPretraga(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    pretrazi(e);
+                } catch (Exception ex) {
+                    Logger.getLogger(DrustvenaIgraGlavnaFormaKontroler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
 
+            private void pretrazi(ActionEvent e) throws Exception {
                 String naziv = diGlavnaForma.getTxtPretraga().getText().trim();
 
-                IgraMT igraMT = (IgraMT) diGlavnaForma.getTblDrusteveIgre().getModel();
-                boolean uspesnaPretraga = igraMT.pretrazi(naziv);
+                DrustvenaIgra di = new DrustvenaIgra();
+                di.setNaziv(naziv);
 
-                if (uspesnaPretraga) {
+                List<DrustvenaIgra> nadjeneIgre = Komunikacija.getInstanca().nadjiDrustveneIgre(di);
+
+                IgraMT igraMT = (IgraMT) diGlavnaForma.getTblDrusteveIgre().getModel();
+                igraMT.prikaziNadjeneIgre(nadjeneIgre);
+
+                if (!nadjeneIgre.isEmpty()) {
                     JOptionPane.showMessageDialog(
                             diGlavnaForma,
                             "Sistem je našao društvene igre po zadatoj vrednosti.",
@@ -68,6 +82,7 @@ public class DrustvenaIgraGlavnaFormaKontroler {
                 }
 
             }
+
         });
 
         diGlavnaForma.dodajOsluskivacResetuj(new ActionListener() {
@@ -84,7 +99,7 @@ public class DrustvenaIgraGlavnaFormaKontroler {
             }
 
             private void detalji(ActionEvent e) {
-                
+
                 int red = diGlavnaForma.getTblDrusteveIgre().getSelectedRow();
                 if (red == -1) {
                     JOptionPane.showMessageDialog(
@@ -93,10 +108,10 @@ public class DrustvenaIgraGlavnaFormaKontroler {
                             "Greška",
                             JOptionPane.ERROR_MESSAGE);
                 } else {
-                    
+
                     IgraMT igraMT = (IgraMT) diGlavnaForma.getTblDrusteveIgre().getModel();
                     DrustvenaIgra di = igraMT.getListaIgara().get(red);
-                    
+
                     JOptionPane.showMessageDialog(
                             diGlavnaForma,
                             "Sistem je učitao društvenu igru.",

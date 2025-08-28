@@ -13,7 +13,7 @@ import domen.StavkaPotvrdeOIznajmljivanju;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.List;
-        
+
 /**
  *
  * @author T440s
@@ -182,6 +182,33 @@ public class Komunikacija {
             throw (Exception) odgovor.getOdgovor();
         }
 
+    }
+
+    public List<Clan> nadjiClanove(Clan c) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.NADJI_CLANOVE, c);
+        posiljalac.posalji(zahtev);
+
+        Odgovor odgovor = (Odgovor) primalac.primi();
+
+        if (odgovor.getOdgovor() instanceof Exception) {
+            throw (Exception) odgovor.getOdgovor();
+        }
+
+        return (List<Clan>) odgovor.getOdgovor();
+
+    }
+
+    public List<DrustvenaIgra> nadjiDrustveneIgre(DrustvenaIgra di) throws Exception {
+        Zahtev zahtev = new Zahtev(Operacija.NADJI_IGRE, di);
+        posiljalac.posalji(zahtev);
+
+        Odgovor odgovor = (Odgovor) primalac.primi();
+
+        if (odgovor.getOdgovor() instanceof Exception) {
+            throw (Exception) odgovor.getOdgovor();
+        }
+
+        return (List<DrustvenaIgra>) odgovor.getOdgovor();
     }
 
 }

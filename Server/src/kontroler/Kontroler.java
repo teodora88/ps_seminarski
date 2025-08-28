@@ -13,10 +13,12 @@ import domen.StavkaPotvrdeOIznajmljivanju;
 import java.util.List;
 import operacija.clan.DodajClanaSO;
 import operacija.clan.IzmeniClanaSO;
+import operacija.clan.NadjiClanoveSO;
 import operacija.clan.ObrisiClanaSO;
 import operacija.prijava.PrijavaSO;
 import operacija.clan.UcitajListuClanovaSO;
 import operacija.grad.UcitajListuGradovaSO;
+import operacija.igra.NadjiDrustveneIgreSO;
 import operacija.igra.UcitajListuIgaraSO;
 import operacija.potvrda.DodajPotvrduSO;
 import operacija.potvrda.IzmeniPotvrduSO;
@@ -100,6 +102,18 @@ public class Kontroler {
     public void izmeniPotvrdu(PotvrdaOIznajmljivanju pot) throws Exception {
         IzmeniPotvrduSO operacija = new IzmeniPotvrduSO();
         operacija.izvrsi(pot, null);
+    }
+
+    public List<Clan> nadjiClanove(Clan c) throws Exception {
+        NadjiClanoveSO operacija = new NadjiClanoveSO();
+        operacija.izvrsi(c, null);
+        return operacija.getListaClanova();
+    }
+
+    public List<DrustvenaIgra> nadjiDrustveneIgre(DrustvenaIgra di) throws Exception {
+        NadjiDrustveneIgreSO operacija = new NadjiDrustveneIgreSO();
+        operacija.izvrsi(di, null);
+        return operacija.getListaIgara();
     }
     
 }

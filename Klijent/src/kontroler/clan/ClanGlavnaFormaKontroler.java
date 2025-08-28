@@ -10,6 +10,8 @@ import forme.modeli.ClanMT;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import komunikacija.Komunikacija;
 import kontroler.glavni.GlavniKontroler;
@@ -28,7 +30,7 @@ public class ClanGlavnaFormaKontroler {
     }
 
     public void otvoriClanGlavnuFormu() {
-        pripremiFormu(); 
+        pripremiFormu();
         clanGlavnaForma.setVisible(true);
     }
 
@@ -41,7 +43,7 @@ public class ClanGlavnaFormaKontroler {
     }
 
     private void dodajOsluskivace() {
-        
+
         clanGlavnaForma.dodajOsluskivacDodajNovog(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -56,23 +58,23 @@ public class ClanGlavnaFormaKontroler {
                 int red = clanGlavnaForma.getTblClanovi().getSelectedRow();
                 if (red == -1) {
                     JOptionPane.showMessageDialog(
-                            clanGlavnaForma, 
-                            "Sistem ne može da učita člana.", 
-                            "Greška", 
+                            clanGlavnaForma,
+                            "Sistem ne može da učita člana.",
+                            "Greška",
                             JOptionPane.ERROR_MESSAGE);
                 } else {
-                    
+
                     ClanMT clanMT = (ClanMT) clanGlavnaForma.getTblClanovi().getModel();
-                    Clan c = clanMT.getListaClanova().get(red); 
-                    
+                    Clan c = clanMT.getListaClanova().get(red);
+
                     JOptionPane.showMessageDialog(
                             clanGlavnaForma,
                             "Sistem je učitao člana.",
                             "Uspeh",
                             JOptionPane.INFORMATION_MESSAGE
                     );
-                    
-                    GlavniKontroler.getInstanca().dodajParametre("clan", c); 
+
+                    GlavniKontroler.getInstanca().dodajParametre("clan", c);
                     GlavniKontroler.getInstanca().otvoriClanFormuZaIzmenu(clanGlavnaForma);
 
                 }
@@ -84,13 +86,29 @@ public class ClanGlavnaFormaKontroler {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                try {
+                    pretraga(e);
+                } catch (Exception ex) {
+                    Logger.getLogger(ClanGlavnaFormaKontroler.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+            private void pretraga(ActionEvent e) throws Exception {
+                
                 String ime = clanGlavnaForma.getTxtPretragaIme().getText().trim();
                 String prezime = clanGlavnaForma.getTxtPretragaPrezime().getText().trim();
 
-                ClanMT clanMT = (ClanMT) clanGlavnaForma.getTblClanovi().getModel();
-                boolean uspesnaPretraga = clanMT.pretrazi(ime, prezime);
+                Clan c = new Clan();
+                c.setIme(ime);
+                c.setPrezime(prezime);
 
-                if (uspesnaPretraga) {
+                List<Clan> nadjeniClanovi = Komunikacija.getInstanca().nadjiClanove(c);
+
+                ClanMT clanMT = (ClanMT) clanGlavnaForma.getTblClanovi().getModel();
+                clanMT.prikaziNadjeneClanove(nadjeniClanovi);
+
+                if (!nadjeniClanovi.isEmpty()) {
                     JOptionPane.showMessageDialog(
                             clanGlavnaForma,
                             "Sistem je našao članove po zadatoj vrednosti.",
@@ -107,11 +125,15 @@ public class ClanGlavnaFormaKontroler {
                 }
 
             }
-        });
 
-        clanGlavnaForma.dodajOsluskivacDetalji(new ActionListener() {
+        }
+        );
+
+        clanGlavnaForma.dodajOsluskivacDetalji(
+                new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e
+            ) {
                 detalji(e);
             }
 
@@ -125,10 +147,10 @@ public class ClanGlavnaFormaKontroler {
                             "Greška",
                             JOptionPane.ERROR_MESSAGE);
                 } else {
-                    
+
                     ClanMT clanMT = (ClanMT) clanGlavnaForma.getTblClanovi().getModel();
                     Clan c = clanMT.getListaClanova().get(red);
-                    
+
                     JOptionPane.showMessageDialog(
                             clanGlavnaForma,
                             "Sistem je učitao člana.",
@@ -142,7 +164,8 @@ public class ClanGlavnaFormaKontroler {
 
                 }
             }
-        });
+        }
+        );
 
         clanGlavnaForma.dodajOsluskivacResetuj(new ActionListener() {
             @Override
