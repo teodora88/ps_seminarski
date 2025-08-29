@@ -134,6 +134,7 @@ public class ClanGlavnaFormaKontroler {
             public void actionPerformed(ActionEvent e
             ) {
                 detalji(e);
+
             }
 
             private void detalji(ActionEvent e) {

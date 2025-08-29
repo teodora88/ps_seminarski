@@ -107,6 +107,8 @@ public class StavkaPotvrdeOIznajmljivanju implements ApstraktniDomenskiObjekat{
             stavka.setRedniBroj(rs.getLong("redniBroj"));
             stavka.setNapomena(rs.getString("napomena"));
             
+            stavka.setPotvrdaID(rs.getLong("stavkapotvrdeoiznajmljivanju.potvrdaOIznajmljivanju"));
+            
             DrustvenaIgra drig = new DrustvenaIgra();
             drig.setIgraID(rs.getLong("drustvenaigra.igraID"));
             drig.setNaziv(rs.getString("naziv"));
@@ -132,11 +134,16 @@ public class StavkaPotvrdeOIznajmljivanju implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiPrimarniKljuc() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return "redniBroj = " + redniBroj + " AND potvrdaOIznajmljivanju = " + potvrdaID;
     }
 
     @Override
     public String vratiVrednostZaIzmenu() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public ApstraktniDomenskiObjekat vratiObjekat(ResultSet rs) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     

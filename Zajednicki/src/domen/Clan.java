@@ -14,8 +14,8 @@ import java.util.Objects;
  *
  * @author T440s
  */
-public class Clan implements ApstraktniDomenskiObjekat{
-    
+public class Clan implements ApstraktniDomenskiObjekat {
+
     private Long clanID;
     private String ime;
     private String prezime;
@@ -110,8 +110,6 @@ public class Clan implements ApstraktniDomenskiObjekat{
         return Objects.equals(this.clanID, other.clanID);
     }
 
-    
-
     @Override
     public String vratiNazivTabele() {
         return "clan";
@@ -120,7 +118,7 @@ public class Clan implements ApstraktniDomenskiObjekat{
     @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
         List<ApstraktniDomenskiObjekat> listaClanova = new ArrayList<>();
-        while(rs.next()){
+        while (rs.next()) {
             Long cID = rs.getLong("clan.clanID");
             String imeC = rs.getString("ime");
             String prezimeC = rs.getString("prezime");
@@ -142,8 +140,8 @@ public class Clan implements ApstraktniDomenskiObjekat{
 
     @Override
     public String vratiVrednostiZaUbacivanje() {
-        return "'" + ime + "', '" + prezime + "', '" + datumRodjenja + "', '" + datumUclanjenja + 
-                "', " + grad.getPostanskiBroj();
+        return "'" + ime + "', '" + prezime + "', '" + datumRodjenja + "', '" + datumUclanjenja
+                + "', " + grad.getPostanskiBroj();
     }
 
     @Override
@@ -151,13 +149,28 @@ public class Clan implements ApstraktniDomenskiObjekat{
         return "clan.clanID = " + clanID;
     }
 
-    
     @Override
     public String vratiVrednostZaIzmenu() {
-        return "ime = '" + ime + "', prezime = '" + prezime + "', datumRodjenja = '" + datumRodjenja +
-                "', datumUclanjenja = '" + datumUclanjenja + "', grad = " + grad.getPostanskiBroj();
+        return "ime = '" + ime + "', prezime = '" + prezime + "', datumRodjenja = '" + datumRodjenja
+                + "', datumUclanjenja = '" + datumUclanjenja + "', grad = " + grad.getPostanskiBroj();
     }
-    
-    
-    
+
+    @Override
+    public ApstraktniDomenskiObjekat vratiObjekat(ResultSet rs) throws Exception {
+        
+            Long cID = rs.getLong("clan.clanID");
+            String imeC = rs.getString("ime");
+            String prezimeC = rs.getString("prezime");
+            Date datRodj = rs.getDate("datumRodjenja");
+            Date datUcl = rs.getDate("datumUclanjenja");
+
+            Grad g = new Grad();
+            g.setPostanskiBroj(rs.getLong("grad.postanskiBroj"));
+            g.setNaziv(rs.getString("grad.naziv"));
+
+            return new Clan(cID, imeC, prezimeC, datRodj, datUcl, g);
+        
+       
+    }
+
 }

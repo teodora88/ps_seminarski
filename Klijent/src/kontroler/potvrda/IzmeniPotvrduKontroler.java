@@ -5,8 +5,8 @@
 package kontroler.potvrda;
 
 import domen.Clan;
+import domen.DrustvenaIgra;
 import domen.PotvrdaOIznajmljivanju;
-import domen.Radnik;
 import domen.StavkaPotvrdeOIznajmljivanju;
 import forme.PotvrdaForma;
 import forme.modeli.StavkaMT;
@@ -40,7 +40,7 @@ public class IzmeniPotvrduKontroler {
     }
 
     private void pripremiFormu() {
-        
+
         potForma.setTitle("Izmeni potvrdu o iznajmljivanju");
         popuniComboClan();
 
@@ -50,7 +50,7 @@ public class IzmeniPotvrduKontroler {
         potForma.getTxtDatumIznajmljivanja().setText(sdf.format(pot.getDatumIznajmljivanja()));
         potForma.getCmbClan().setSelectedItem(pot.getClan());
         potForma.getLblRadnik().setText("Radnik koji je kreirao potvrdu: " + pot.getRadnik());
-        
+
         potForma.getTxtID().setEditable(false);
         potForma.getTxtID().setEnabled(false);
 
@@ -59,28 +59,43 @@ public class IzmeniPotvrduKontroler {
 
         potForma.getCmbClan().setEditable(false);
         potForma.getCmbClan().setEnabled(false);
-        
+
         java.util.Date danas = new java.util.Date();
         potForma.getTxtDatumVracanja().setText(new SimpleDateFormat("dd.MM.yyyy").format(danas));
-        potForma.getTxtDatumVracanja().setEditable(false);
-        potForma.getTxtDatumVracanja().setEnabled(false);
+        potForma.getTxtDatumVracanja().setEditable(true);
+        potForma.getTxtDatumVracanja().setEnabled(true);
 
-        potForma.getCmbIgra().setVisible(false);
-        potForma.getLblIgra().setVisible(false);
+        potForma.getCmbIgra().setVisible(true);
+        potForma.getLblIgra().setVisible(true);
 
-        potForma.getTxtNapomena().setVisible(false);
-        potForma.getLblNapomena().setVisible(false);
+        potForma.getTxtNapomena().setVisible(true);
+        potForma.getLblNapomena().setVisible(true);
 
-        potForma.getBtnDodajStavku().setVisible(false);
-        potForma.getBtnObrisiStavku().setVisible(false);
+        potForma.getBtnDodajStavku().setVisible(true);
+        potForma.getBtnObrisiStavku().setVisible(true);
 
         potForma.getBtnIzmeniPotvrdu().setVisible(true);
         potForma.getBtnSacuvajPotvrdu().setVisible(false);
 
+        List<StavkaPotvrdeOIznajmljivanju> listaStavki = pot.getListaStavki();
+        StavkaMT stavkaMT = new StavkaMT(listaStavki);
+        potForma.getTblStavke().setModel(stavkaMT);
+
         pripremiTabeluStavki(pot);
+        popuniComboIgra();
 
     }
 
+    private void popuniComboIgra() {
+
+        List<DrustvenaIgra> listaIgara = Komunikacija.getInstanca().ucitajListuIgara();
+        potForma.getCmbIgra().removeAllItems();
+
+        for (DrustvenaIgra di : listaIgara) {
+            potForma.getCmbIgra().addItem(di);
+        }
+
+    }
 
     private void popuniComboClan() {
 
@@ -103,6 +118,64 @@ public class IzmeniPotvrduKontroler {
 
     private void dodajOsluskivac() {
 
+        potForma.dodajOsluskivacDodajStavku(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dodajStavku(e);
+            }
+
+            private void dodajStavku(ActionEvent e) {
+
+                DrustvenaIgra di = (DrustvenaIgra) potForma.getCmbIgra().getSelectedItem();
+                String napomena = potForma.getTxtNapomena().getText().trim();
+
+                StavkaPotvrdeOIznajmljivanju stavka = new StavkaPotvrdeOIznajmljivanju();
+                stavka.setDrustvenaIgra(di);
+                stavka.setNapomena(napomena);
+                stavka.setPotvrdaID(Long.valueOf(potForma.getTxtID().getText()));
+
+                StavkaMT stavkaMT = (StavkaMT) potForma.getTblStavke().getModel();
+                stavkaMT.dodajStavkuUTabelu(stavka);
+
+                JOptionPane.showMessageDialog(
+                        potForma,
+                        "Sistem je zapamito stavku.",
+                        "Uspeh",
+                        JOptionPane.INFORMATION_MESSAGE);
+
+            }
+        });
+
+        potForma.dodajOsluskivasObrisiStavku(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                obrisiStavku(e);
+            }
+
+            private void obrisiStavku(ActionEvent e) {
+
+                int red = potForma.getTblStavke().getSelectedRow();
+
+                if (red == -1) {
+                    JOptionPane.showMessageDialog(
+                            potForma,
+                            "Sistem ne može da obriše stavku.",
+                            "Greška",
+                            JOptionPane.ERROR_MESSAGE);
+                } else {
+                    StavkaMT stavkaMT = (StavkaMT) potForma.getTblStavke().getModel();
+                    StavkaPotvrdeOIznajmljivanju stavka = stavkaMT.getListaStavki().get(red);
+                    stavkaMT.obrisiStavkuIzTabele(stavka);
+                    JOptionPane.showMessageDialog(
+                            potForma,
+                            "Sistem je obrisao stavku.",
+                            "Uspeh",
+                            JOptionPane.INFORMATION_MESSAGE);
+
+                }
+            }
+        });
+
         potForma.dodajOsluskivacIzmeniPotvrdu(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -115,27 +188,45 @@ public class IzmeniPotvrduKontroler {
 
             private void izmeni(ActionEvent e) throws ParseException {
 
-                String strDatVrac = potForma.getTxtDatumVracanja().getText().trim();
-                java.util.Date utilDatVrac = new SimpleDateFormat("dd.MM.yyyy").parse(strDatVrac);
-                java.sql.Date sqlDatVrac = new java.sql.Date(utilDatVrac.getTime());
-
                 PotvrdaOIznajmljivanju pot = (PotvrdaOIznajmljivanju) GlavniKontroler.getInstanca().vratiParametre("potvrda");
-                pot.setDatumVracanja(sqlDatVrac);
+                String strDatVrac = potForma.getTxtDatumVracanja().getText().trim();
+
+                if (strDatVrac.isEmpty()) {
+                    pot.setDatumVracanja(null);
+                } else {
+                    java.util.Date utilDatVrac = new SimpleDateFormat("dd.MM.yyyy").parse(strDatVrac);
+                    java.sql.Date sqlDatVrac = new java.sql.Date(utilDatVrac.getTime());
+                    pot.setDatumVracanja(sqlDatVrac);
+                }
+
+                StavkaMT stavkaMT = (StavkaMT) potForma.getTblStavke().getModel();
+                List<StavkaPotvrdeOIznajmljivanju> listaStavki = stavkaMT.getListaStavki();
+
+                if (listaStavki.isEmpty()) {
+                    JOptionPane.showMessageDialog(
+                            potForma,
+                            "Sistem ne može da zapamti potvrdu o iznajmljivanju. Potvrda mora da sadrži bar jednu stavku.",
+                            "Greška",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                pot.setListaStavki(listaStavki);
 
                 try {
                     Komunikacija.getInstanca().izmeniPotvrdu(pot);
                     JOptionPane.showMessageDialog(
-                            potForma, 
-                            "Sistem je zapamtio potvrdu o iznajmljivanju.", 
-                            "Uspeh", 
+                            potForma,
+                            "Sistem je zapamtio potvrdu o iznajmljivanju.",
+                            "Uspeh",
                             JOptionPane.INFORMATION_MESSAGE);
                     GlavniKontroler.getInstanca().osveziTabeluPotvrda();
                     potForma.dispose();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(
-                            potForma, 
-                            "Sistem ne moze da zapamti potvrdu o iznajmljivanju.", 
-                            "Greska", 
+                            potForma,
+                            "Sistem ne moze da zapamti potvrdu o iznajmljivanju.",
+                            "Greska",
                             JOptionPane.ERROR_MESSAGE);
                 }
 
@@ -143,7 +234,5 @@ public class IzmeniPotvrduKontroler {
         });
 
     }
-
-
 
 }

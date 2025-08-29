@@ -11,10 +11,17 @@ import java.util.List;
  * @author T440s
  */
 public interface Repozitorijum<T> {
-    
+
     List<T> vratiSve(T param, String uslov) throws Exception;
+
     void dodaj(T param) throws Exception;
+
     void izmeni(T param) throws Exception;
+
     void obrisi(T param) throws Exception;
+
     int dodajIVratiPK(T param) throws Exception;
+
+    T ucitaj(T param, String uslov) throws Exception;
+
 }

@@ -12,18 +12,20 @@ import java.sql.ResultSet;
  *
  * @author T440s
  */
-public interface ApstraktniDomenskiObjekat extends Serializable{
-    
+public interface ApstraktniDomenskiObjekat extends Serializable {
+
     public String vratiNazivTabele();
-    
+
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception;
-    
+
     public String vratiKoloneZaUbacivanje();
-    
+
     public String vratiVrednostiZaUbacivanje();
-    
+
     public String vratiPrimarniKljuc();
-        
+
     public String vratiVrednostZaIzmenu();
-    
+
+    public ApstraktniDomenskiObjekat vratiObjekat(ResultSet rs) throws Exception;
+
 }

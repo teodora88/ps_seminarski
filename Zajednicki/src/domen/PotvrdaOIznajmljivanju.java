@@ -115,7 +115,7 @@ public class PotvrdaOIznajmljivanju implements ApstraktniDomenskiObjekat {
 
     @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
-        
+
         List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
 
         while (rs.next()) {
@@ -129,13 +129,13 @@ public class PotvrdaOIznajmljivanju implements ApstraktniDomenskiObjekat {
             c.setIme(rs.getString("clan.ime"));
             c.setPrezime(rs.getString("clan.prezime"));
             potvrda.setClan(c);
-            
+
             Radnik r = new Radnik();
             r.setRadnikID(rs.getLong("radnik.radnikID"));
             r.setIme(rs.getString("radnik.ime"));
             r.setPrezime(rs.getString("radnik.prezime"));
             potvrda.setRadnik(r);
-            
+
             potvrda.setListaStavki(new ArrayList<>());
 
             lista.add(potvrda);
@@ -162,7 +162,44 @@ public class PotvrdaOIznajmljivanju implements ApstraktniDomenskiObjekat {
 
     @Override
     public String vratiVrednostZaIzmenu() {
-        return "datumVracanja = '" + datumVracanja + "'";
+        if (datumVracanja == null) {
+            String datumVracanjaStr = " datumVracanja = NULL";
+            return datumVracanjaStr;
+        } else {
+            return "datumVracanja = '" + datumVracanja + "'";
+        }
+    }
+
+    @Override
+    public ApstraktniDomenskiObjekat vratiObjekat(ResultSet rs) throws Exception {
+
+        if (rs.next()) {  // proverava da li postoji red
+            PotvrdaOIznajmljivanju potvrda = new PotvrdaOIznajmljivanju();
+            potvrda.setPotvrdaID(rs.getLong("potvrdaoiznajmljivanju.potvrdaID"));
+            potvrda.setDatumIznajmljivanja(rs.getDate("datumIznajmljivanja"));
+            potvrda.setDatumVracanja(rs.getDate("datumVracanja"));
+
+            // Učitaj Clana
+            Clan c = new Clan();
+            c.setClanID(rs.getLong("clan.clanID"));
+            c.setIme(rs.getString("clan.ime"));
+            c.setPrezime(rs.getString("clan.prezime"));
+            potvrda.setClan(c);
+
+            // Učitaj Radnika
+            Radnik r = new Radnik();
+            r.setRadnikID(rs.getLong("radnik.radnikID"));
+            r.setIme(rs.getString("radnik.ime"));
+            r.setPrezime(rs.getString("radnik.prezime"));
+            potvrda.setRadnik(r);
+
+            // Lista stavki ostaje prazna
+            potvrda.setListaStavki(new ArrayList<>());
+
+            return potvrda;
+        }
+        return null;
+
     }
 
 }

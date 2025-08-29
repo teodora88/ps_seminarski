@@ -224,4 +224,6 @@ public class Komunikacija {
         return (List<PotvrdaOIznajmljivanju>) odgovor.getOdgovor();
     }
 
+    
+
 }

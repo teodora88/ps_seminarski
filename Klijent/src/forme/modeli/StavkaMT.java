@@ -59,8 +59,11 @@ public class StavkaMT extends AbstractTableModel {
     }
 
     public void dodajStavkuUTabelu(StavkaPotvrdeOIznajmljivanju stavka) {
-        Long redniBroj = Long.valueOf(listaStavki.size()+1);
-        stavka.setRedniBroj(redniBroj);
+        long maxRedniBroj = listaStavki.stream()
+                                   .mapToLong(StavkaPotvrdeOIznajmljivanju::getRedniBroj)
+                                   .max()
+                                   .orElse(0); 
+    stavka.setRedniBroj(maxRedniBroj + 1);
         listaStavki.add(stavka);
         fireTableDataChanged();
     }

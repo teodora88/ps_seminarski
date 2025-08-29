@@ -31,14 +31,14 @@ import operacija.potvrda.NadjiPotvrdeSO;
  * @author T440s
  */
 public class Kontroler {
-    
+
     private static Kontroler instanca;
 
     private Kontroler() {
     }
 
     public static Kontroler getInstanca() {
-        if(instanca == null){
+        if (instanca == null) {
             instanca = new Kontroler();
         }
         return instanca;
@@ -95,7 +95,7 @@ public class Kontroler {
         return operacija.getListaStavki();
     }
 
-    public void dodajPotvrdu(PotvrdaOIznajmljivanju pot)throws Exception{
+    public void dodajPotvrdu(PotvrdaOIznajmljivanju pot) throws Exception {
         DodajPotvrduSO operacija = new DodajPotvrduSO();
         operacija.izvrsi(pot, null);
     }
@@ -122,5 +122,7 @@ public class Kontroler {
         operacija.izvrsi(c, null);
         return operacija.getListaPotvrda();
     }
+
     
+
 }

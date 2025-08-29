@@ -17,10 +17,9 @@ import repozitorijum.baza.RepozitorijumBaze;
  */
 public class GenerickiRepozitorijumBaze implements RepozitorijumBaze<ApstraktniDomenskiObjekat> {
 
-    
     @Override
     public List<ApstraktniDomenskiObjekat> vratiSve(ApstraktniDomenskiObjekat param, String uslov) throws Exception {
-        
+
         List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
 
         String upit = "SELECT * FROM " + param.vratiNazivTabele();
@@ -37,7 +36,7 @@ public class GenerickiRepozitorijumBaze implements RepozitorijumBaze<ApstraktniD
         rs.close();
         statement.close();
         return lista;
-        
+
     }
 
     @Override
@@ -45,7 +44,7 @@ public class GenerickiRepozitorijumBaze implements RepozitorijumBaze<ApstraktniD
 
         String upit = "INSERT INTO " + param.vratiNazivTabele() + " (" + param.vratiKoloneZaUbacivanje()
                 + " ) VALUES (" + param.vratiVrednostiZaUbacivanje() + " )";
-        
+
         Statement statement = Konekcija.getInstanca().getKonekcija().createStatement();
         statement.executeUpdate(upit);
 
@@ -58,24 +57,26 @@ public class GenerickiRepozitorijumBaze implements RepozitorijumBaze<ApstraktniD
 
         String upit = "UPDATE " + param.vratiNazivTabele() + " SET " + param.vratiVrednostZaIzmenu()
                 + " WHERE " + param.vratiPrimarniKljuc();
-        
+
+        System.out.println(upit);
         Statement statement = Konekcija.getInstanca().getKonekcija().createStatement();
         statement.executeUpdate(upit);
 
         statement.close();
-        
+
     }
 
     @Override
     public void obrisi(ApstraktniDomenskiObjekat param) throws Exception {
-        
+
         String upit = "DELETE FROM " + param.vratiNazivTabele() + " WHERE " + param.vratiPrimarniKljuc();
 
+        System.out.println(upit);
         Statement statement = Konekcija.getInstanca().getKonekcija().createStatement();
         statement.executeUpdate(upit);
 
         statement.close();
-        
+
     }
 
     @Override
@@ -84,21 +85,46 @@ public class GenerickiRepozitorijumBaze implements RepozitorijumBaze<ApstraktniD
         String upit = "INSERT INTO " + param.vratiNazivTabele()
                 + " (" + param.vratiKoloneZaUbacivanje() + ") VALUES ("
                 + param.vratiVrednostiZaUbacivanje() + ")";
-                
+
         PreparedStatement prStat = Konekcija.getInstanca().getKonekcija().prepareStatement(upit, Statement.RETURN_GENERATED_KEYS);
         prStat.executeUpdate();
-        
+
         ResultSet rs = prStat.getGeneratedKeys();
         int genKljuc = -1;
-        if(rs.next()){
+        if (rs.next()) {
             genKljuc = rs.getInt(1);
         }
-        
+
         rs.close();
         prStat.close();
-        
+
         return genKljuc;
 
+    }
+
+    @Override
+    public ApstraktniDomenskiObjekat ucitaj(ApstraktniDomenskiObjekat param, String uslov) throws Exception {
+        String upit = "SELECT * FROM " + param.vratiNazivTabele();
+
+        if (uslov != null && !uslov.isEmpty()) {
+            upit += " " + uslov;
+        }
+
+        upit += (uslov != null && !uslov.isEmpty() ? " AND " : " WHERE ") + param.vratiPrimarniKljuc();
+        System.out.println(uslov);
+        
+        Statement statement = Konekcija.getInstanca().getKonekcija().createStatement();
+        ResultSet rs = statement.executeQuery(upit);
+
+        ApstraktniDomenskiObjekat obj = null;
+        if (rs.next()) {
+            obj = param.vratiObjekat(rs);
+        }
+
+        rs.close();
+        statement.close();
+
+        return obj;
     }
 
 }

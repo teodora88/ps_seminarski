@@ -152,6 +152,11 @@ public class Radnik implements ApstraktniDomenskiObjekat{
         return "ime = '" + ime + "', prezime = '" + prezime + "', korisnickoIme = '" + 
                 korisnickoIme + "', lozinka = '" + lozinka + "'";
     }
+
+    @Override
+    public ApstraktniDomenskiObjekat vratiObjekat(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
     

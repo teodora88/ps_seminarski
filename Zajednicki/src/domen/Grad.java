@@ -108,6 +108,11 @@ public class Grad implements ApstraktniDomenskiObjekat{
     public String vratiVrednostZaIzmenu() {
         return "postanskiBroj = " + postanskiBroj + ", naziv = '" + naziv + "'"; 
     }
+
+    @Override
+    public ApstraktniDomenskiObjekat vratiObjekat(ResultSet rs) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     
     

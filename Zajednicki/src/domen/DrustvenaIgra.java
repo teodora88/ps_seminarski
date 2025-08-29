@@ -4,7 +4,6 @@
  */
 package domen;
 
-
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +13,8 @@ import java.util.Objects;
  *
  * @author T440s
  */
-public class DrustvenaIgra implements ApstraktniDomenskiObjekat{
-    
+public class DrustvenaIgra implements ApstraktniDomenskiObjekat {
+
     private Long igraID;
     private String naziv;
     private String tip;
@@ -97,17 +96,17 @@ public class DrustvenaIgra implements ApstraktniDomenskiObjekat{
     @Override
     public List<ApstraktniDomenskiObjekat> vratiListu(ResultSet rs) throws Exception {
         List<ApstraktniDomenskiObjekat> lista = new ArrayList<>();
-        
-        while(rs.next()){
+
+        while (rs.next()) {
             Long iID = rs.getLong("drustvenaigra.igraID");
             String nazivI = rs.getString("drustvenaigra.naziv");
             String tipI = rs.getString("drustvenaigra.tip");
             String opisI = rs.getString("drustvenaigra.opis");
-            
+
             DrustvenaIgra igra = new DrustvenaIgra(iID, nazivI, tipI, opisI);
             lista.add(igra);
         }
-        
+
         return lista;
     }
 
@@ -130,7 +129,20 @@ public class DrustvenaIgra implements ApstraktniDomenskiObjekat{
     public String vratiVrednostZaIzmenu() {
         return "naziv = '" + naziv + "', tip = '" + tip + "', opis = '" + opis + "'";
     }
-    
-    
-    
+
+    @Override
+    public ApstraktniDomenskiObjekat vratiObjekat(ResultSet rs) throws Exception {
+
+        if (rs.next()) {
+            Long iID = rs.getLong("drustvenaigra.igraID");
+            String nazivI = rs.getString("drustvenaigra.naziv");
+            String tipI = rs.getString("drustvenaigra.tip");
+            String opisI = rs.getString("drustvenaigra.opis");
+
+            return new DrustvenaIgra(iID, nazivI, tipI, opisI);
+        }
+        return null;
+
+    }
+
 }

@@ -91,14 +91,14 @@ public class PotvrdaGlavnaFormaKontroler {
             }
 
             private void pretraga(ActionEvent e) throws Exception {
-                
+
                 String ime = potGlavaForma.getTxtPretragaIme().getText().trim();
                 String prezime = potGlavaForma.getTxtPretragaPrezime().getText().trim();
 
                 Clan c = new Clan();
                 c.setIme(ime);
                 c.setPrezime(prezime);
-                
+
                 List<PotvrdaOIznajmljivanju> nadjenePotvrde = Komunikacija.getInstanca().nadjiPotvrde(c);
 
                 PotvrdaMT potMT = (PotvrdaMT) potGlavaForma.getTblListaPotvrda().getModel();
@@ -144,8 +144,12 @@ public class PotvrdaGlavnaFormaKontroler {
                             "Greška",
                             JOptionPane.ERROR_MESSAGE);
                 } else {
+
                     PotvrdaMT potMT = (PotvrdaMT) potGlavaForma.getTblListaPotvrda().getModel();
                     PotvrdaOIznajmljivanju pot = potMT.getListaPotvrda().get(red);
+
+                    List<StavkaPotvrdeOIznajmljivanju> listastavki = Komunikacija.getInstanca().usitajListuStavki(pot.getPotvrdaID());
+                    pot.setListaStavki(listastavki);
 
                     if (pot.getDatumVracanja() != null) {
                         JOptionPane.showMessageDialog(
@@ -154,7 +158,7 @@ public class PotvrdaGlavnaFormaKontroler {
                                 "Obaveštenje",
                                 JOptionPane.INFORMATION_MESSAGE
                         );
-                        return; // prekid
+                        return;
                     }
 
                     JOptionPane.showMessageDialog(
