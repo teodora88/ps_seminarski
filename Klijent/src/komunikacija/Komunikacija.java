@@ -224,6 +224,19 @@ public class Komunikacija {
         return (List<PotvrdaOIznajmljivanju>) odgovor.getOdgovor();
     }
 
+    public PotvrdaOIznajmljivanju ucitajPotvrdu(Long potvrdaID) {
+        
+        Zahtev zahtev = new Zahtev(Operacija.UCITAJ_POTVRDU, potvrdaID);
+        posiljalac.posalji(zahtev);
+        
+        Odgovor odgovor = (Odgovor) primalac.primi();
+        
+        PotvrdaOIznajmljivanju pot = (PotvrdaOIznajmljivanju) odgovor.getOdgovor();
+        
+        return pot;
+        
+    }
+
     
 
 }

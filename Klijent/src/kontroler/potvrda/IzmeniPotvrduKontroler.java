@@ -81,7 +81,7 @@ public class IzmeniPotvrduKontroler {
         StavkaMT stavkaMT = new StavkaMT(listaStavki);
         potForma.getTblStavke().setModel(stavkaMT);
 
-        pripremiTabeluStavki(pot);
+        
         popuniComboIgra();
 
     }
@@ -108,15 +108,7 @@ public class IzmeniPotvrduKontroler {
 
     }
 
-    private void pripremiTabeluStavki(PotvrdaOIznajmljivanju pot) {
-
-        List<StavkaPotvrdeOIznajmljivanju> listaStavki = Komunikacija.getInstanca().usitajListuStavki(pot.getPotvrdaID());;
-        StavkaMT stavkaMT = new StavkaMT(listaStavki);
-        potForma.getTblStavke().setModel(stavkaMT);
-
-    }
-
-    private void dodajOsluskivac() {
+     private void dodajOsluskivac() {
 
         potForma.dodajOsluskivacDodajStavku(new ActionListener() {
             @Override

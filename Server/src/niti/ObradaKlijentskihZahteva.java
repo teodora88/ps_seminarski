@@ -140,6 +140,15 @@ public class ObradaKlijentskihZahteva extends Thread {
                         odgovor.setOdgovor(e);
                     }
                     break;
+                    case UCITAJ_POTVRDU:
+                        try{
+                        Long potID = (Long) zahtev.getParametar();
+                        PotvrdaOIznajmljivanju pot = Kontroler.getInstanca().vratiPotvrdu(potID);
+                        odgovor.setOdgovor(pot);
+                        } catch(Exception e){
+                            odgovor.setOdgovor(e);
+                        }
+                        break;
                     default:
                         System.out.println("Greška,ta operacija ne posoji!");
 

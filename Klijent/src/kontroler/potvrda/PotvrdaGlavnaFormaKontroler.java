@@ -64,8 +64,11 @@ public class PotvrdaGlavnaFormaKontroler {
                 if (red != -1) {
                     PotvrdaMT potMT = (PotvrdaMT) potGlavaForma.getTblListaPotvrda().getModel();
                     PotvrdaOIznajmljivanju pot = potMT.getListaPotvrda().get(red);
+                    
+                    
+                    PotvrdaOIznajmljivanju potSaStavkama = Komunikacija.getInstanca().ucitajPotvrdu(pot.getPotvrdaID());
 
-                    List<StavkaPotvrdeOIznajmljivanju> listaStavki = Komunikacija.getInstanca().usitajListuStavki(pot.getPotvrdaID());
+                    List<StavkaPotvrdeOIznajmljivanju> listaStavki = potSaStavkama.getListaStavki();
                     StavkaMT stMT = new StavkaMT(listaStavki);
                     potGlavaForma.getTblStavkeIzabranePotvrde().setModel(stMT);
                 }
@@ -147,9 +150,9 @@ public class PotvrdaGlavnaFormaKontroler {
 
                     PotvrdaMT potMT = (PotvrdaMT) potGlavaForma.getTblListaPotvrda().getModel();
                     PotvrdaOIznajmljivanju pot = potMT.getListaPotvrda().get(red);
+                    
+                    PotvrdaOIznajmljivanju potSaStavkama = Komunikacija.getInstanca().ucitajPotvrdu(pot.getPotvrdaID());
 
-                    List<StavkaPotvrdeOIznajmljivanju> listastavki = Komunikacija.getInstanca().usitajListuStavki(pot.getPotvrdaID());
-                    pot.setListaStavki(listastavki);
 
                     if (pot.getDatumVracanja() != null) {
                         JOptionPane.showMessageDialog(
@@ -168,7 +171,7 @@ public class PotvrdaGlavnaFormaKontroler {
                             JOptionPane.INFORMATION_MESSAGE
                     );
 
-                    GlavniKontroler.getInstanca().dodajParametre("potvrda", pot);
+                    GlavniKontroler.getInstanca().dodajParametre("potvrda", potSaStavkama);
                     GlavniKontroler.getInstanca().otvoriPotvrdaFormuZaIzmenu(potGlavaForma);
 
                 }

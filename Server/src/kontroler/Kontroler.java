@@ -25,6 +25,7 @@ import operacija.potvrda.IzmeniPotvrduSO;
 import operacija.potvrda.UcitajListuPotvrdaSO;
 import operacija.potvrda.UcitajListuStavkiSO;
 import operacija.potvrda.NadjiPotvrdeSO;
+import operacija.potvrda.UcitajPotvrduSO;
 
 /**
  *
@@ -121,6 +122,12 @@ public class Kontroler {
         NadjiPotvrdeSO operacija = new NadjiPotvrdeSO();
         operacija.izvrsi(c, null);
         return operacija.getListaPotvrda();
+    }
+
+    public PotvrdaOIznajmljivanju vratiPotvrdu(Long potID) throws Exception {
+        UcitajPotvrduSO operacija = new UcitajPotvrduSO();
+        operacija.izvrsi(potID, null);
+        return operacija.getPot();
     }
 
     
